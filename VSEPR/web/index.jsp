@@ -1,13 +1,13 @@
 <%-- 
     Document   : index
-    Created on : 2 Jun, 2017, 2:55:23 PM
-    Author     : abhi
+    Created on : 5 Jun, 2017, 12:04:42 PM
+    Author     : aishwarya
 --%>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+    <head>
   <title>Chemistry</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,6 @@
         <script type = "text/javascript" src = "js/TrackballControls.js"> </script>
   <style>
  
-
   .sidebar-nav .navbar ul {
     float: none;
     display: block;
@@ -65,7 +64,6 @@ width:200px;
             background-color: rgb(0,0,0); /* Fallback color */
             background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
         }
-
         /* Modal Content/Box */
         .modal-content {
             background-color: #fefefe;
@@ -74,7 +72,6 @@ width:200px;
             border: 1px solid #888;
             width: 80%; /* Could be more or less, depending on screen size */
         }
-
         /* The Close Button */
         .close {
             color: #aaa;
@@ -82,7 +79,6 @@ width:200px;
             font-size: 28px;
             font-weight: bold;
         }
-
         .close:hover,
         .close:focus {
             color: black;
@@ -92,7 +88,6 @@ width:200px;
  input[type="radio"]{
   margin: 0 10px 0 10px;
 }
-
   </style>
   </head>
   <body>
@@ -137,22 +132,55 @@ width:200px;
 		  <h2>List of topics</h2>
            <!-- <li id="linear" onclick="getVal(1)">Linear</li>
             <li id="octahedral" onclick="getVal(2)">Octahedral</li>-->
+           
+           
+           
+           
+          
+           
+           
+           
+           
+           <li value="-1">
+            
+           <%
+                try
+                {
+                    Class.forName("com.mysql.jdbc.Driver").newInstance();
+                    Connection myConn=DriverManager.getConnection("jdbc:mysql://localhost:3306/Chemistry","root","shoot");
+                    Statement mystmt=myConn.createStatement();
+                    ResultSet myRs=mystmt.executeQuery("select * from subtopic");
+            while(myRs.next())
+            {
+            %>
+            <li value="<%=myRs.getInt("sub_id")%>"><a href='#'><%=myRs.getString("subtopic_name")%></li>
+            
+            <%
+            }
+                }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            
+            %>
+            </li>
+            <!--
            <li><a href='#'>Structure of an Atom</a></li>
            <li><a href='#'>Chemical bonding (VSEPR)</a></li>
            <li><a href='#'>Crystal Structure</a></li>
            <li><a href='#'>Chemical Reactions</a></li>
 
            
-            
+            -->
+             
           </ul>
         </div>
       </div>
     </div>
   </div>
   <div class="col-sm-6">
-  <div width="700px" height="800px" style="border:1px solid black" id="animationCanvas">
-         
-  </div>
+      <div width="700px" height ="800px" id="animationCanvas"></div>
             <!-- The Modal -->
         <div id="myModal" class="modal">
 
@@ -250,15 +278,12 @@ width:200px;
           {
            // alert("Linear!");
             //alert(central_radius+" "+bond_thickness+" "+atom_radius+" in linear");
-
            neededShape = new Linear(central_radius,bond_thickness,atom_radius) ;
-
           }
           else if(val===2)
           {
            // alert("Octahedral");
             neededShape= new Octahedral(central_radius,bond_thickness,atom_radius) ;
-
           }
           init();
           animate();
@@ -274,7 +299,6 @@ width:200px;
           }
         function openModal(val) {
             modal.style.display = "block";
-
           }
           function showval(p)
           {
@@ -283,7 +307,6 @@ width:200px;
                 var selectedValue = idElement.options[idElement.selectedIndex].value;
                 alert(selectedValue);
           }
-
         // When the user clicks anywhere outside of the modal, close it
      /*   window.onclick = function(event) {
             if (event.target === modal) {
@@ -293,25 +316,18 @@ width:200px;
       function getVal(val)
       {
         value=val;
-
         openModal();
-
       }
-
       function init() {
         scene = new THREE.Scene();
         scene.background = new THREE.Color('black');
-
         camera = new THREE.PerspectiveCamera(60, window.innerHeight / window.innerWidth, 0.1, 10000.0);
         camera.position.set(0, 0, 15);
         camera.lookAt(new THREE.Vector3(0, 0, 0));
-
         renderer = new THREE.WebGLRenderer({antialias: false});
-
         controls = new THREE.OrbitControls(camera, renderer.domElement);
         cont = new THREE.TrackballControls(camera, renderer.domElement);
         
-
         
         window.addEventListener('resize', onWindowResize, false);
         onWindowResize();
@@ -324,13 +340,11 @@ width:200px;
         scene.add(neededShape.shape) ;
         /*end*/
       }
-
       function onWindowResize() {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth/2, 3*window.innerHeight/4);
       }
-
       function animate(time) {
         
         controls.update() ;
@@ -339,7 +353,6 @@ width:200px;
         requestAnimationFrame(animate);
       }
         </script> 
- 
-  </body>
-</html>  
-  
+        
+</body>
+</html>
