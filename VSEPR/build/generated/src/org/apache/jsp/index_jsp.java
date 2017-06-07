@@ -45,9 +45,10 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
-      out.write("<html lang=\"en\">\n");
-      out.write("<head>\n");
+      out.write("<html>\n");
+      out.write("    <head>\n");
       out.write("  <title>Chemistry</title>\n");
       out.write("  <meta charset=\"utf-8\">\n");
       out.write("  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n");
@@ -56,15 +57,18 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("  <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n");
       out.write("  <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css\">\n");
       out.write("          <script type = \"text/javascript\" src = \"js/three.js\"> </script>\n");
-      out.write("        <script type = \"text/javascript\" src = \"js/Linear.js\"> </script>\n");
-      out.write("        <script id=\"octahedralScript\" type = \"text/javascript\" src = \"js/Octahedral.js\"> </script>\n");
-      out.write("        <script type = \"text/javascript\" src = \"js/tetrahedral.js\"> </script>\n");
+      out.write("        <script type = \"text/javascript\" src = \"js/Geometry/Bond.js\"> </script>\n");
+      out.write("        <script type = \"text/javascript\" src = \"js/Geometry/Linear.js\"> </script>\n");
+      out.write("        <script type = \"text/javascript\" src = \"js/Geometry/Octahedral.js\"> </script>\n");
+      out.write("        <script type = \"text/javascript\" src = \"js/Geometry/PentagonalBipyramidal.js\"> </script>\n");
+      out.write("        <script type = \"text/javascript\" src = \"js/Geometry/Tetrahedral.js\"> </script>\n");
+      out.write("        <script type = \"text/javascript\" src = \"js/Geometry/TrigonalBipyramidal.js\"> </script>\n");
+      out.write("        <script type = \"text/javascript\" src = \"js/Geometry/TrigonalPlanar.js\"> </script>\n");
       out.write("\n");
       out.write("        <script type = \"text/javascript\" src = \"js/OrbitControls.js\"> </script>\n");
       out.write("        <script type = \"text/javascript\" src = \"js/TrackballControls.js\"> </script>\n");
       out.write("  <style>\n");
       out.write(" \n");
-      out.write("\n");
       out.write("  .sidebar-nav .navbar ul {\n");
       out.write("    float: none;\n");
       out.write("    display: block;\n");
@@ -105,7 +109,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            background-color: rgb(0,0,0); /* Fallback color */\n");
       out.write("            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */\n");
       out.write("        }\n");
-      out.write("\n");
       out.write("        /* Modal Content/Box */\n");
       out.write("        .modal-content {\n");
       out.write("            background-color: #fefefe;\n");
@@ -114,7 +117,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            border: 1px solid #888;\n");
       out.write("            width: 80%; /* Could be more or less, depending on screen size */\n");
       out.write("        }\n");
-      out.write("\n");
       out.write("        /* The Close Button */\n");
       out.write("        .close {\n");
       out.write("            color: #aaa;\n");
@@ -122,7 +124,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            font-size: 28px;\n");
       out.write("            font-weight: bold;\n");
       out.write("        }\n");
-      out.write("\n");
       out.write("        .close:hover,\n");
       out.write("        .close:focus {\n");
       out.write("            color: black;\n");
@@ -132,7 +133,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write(" input[type=\"radio\"]{\n");
       out.write("  margin: 0 10px 0 10px;\n");
       out.write("}\n");
-      out.write("\n");
       out.write("  </style>\n");
       out.write("  </head>\n");
       out.write("  <body>\n");
@@ -175,24 +175,48 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <div class=\"navbar-collapse collapse sidebar-navbar-collapse\">\n");
       out.write("          <ul class=\"nav navbar-nav\">\n");
       out.write("\t\t  <h2>List of topics</h2>\n");
-      out.write("           <!-- <li id=\"linear\" onclick=\"getVal(1)\">Linear</li>\n");
-      out.write("            <li id=\"octahedral\" onclick=\"getVal(2)\">Octahedral</li>-->\n");
-      out.write("           <li><a href='#'>Structure of an Atom</a></li>\n");
-      out.write("           <li><a href='#'>Chemical bonding (VSEPR)</a></li>\n");
-      out.write("           <li><a href='#'>Crystal Structure</a></li>\n");
-      out.write("           <li><a href='#'>Chemical Reactions</a></li>\n");
       out.write("\n");
-      out.write("           \n");
+      out.write("           <li value=\"-1\">\n");
       out.write("            \n");
+      out.write("           ");
+
+                try
+                {
+                    Class.forName("com.mysql.jdbc.Driver").newInstance();
+                    Connection myConn=DriverManager.getConnection("jdbc:mysql://localhost:3306/Chemistry","root","shoot");
+                    Statement mystmt=myConn.createStatement();
+                    ResultSet myRs=mystmt.executeQuery("select * from subtopic");
+            while(myRs.next())
+            {
+            
+      out.write("\n");
+      out.write("            <li value=\"");
+      out.print(myRs.getInt("sub_id"));
+      out.write("\"><a href='#'>");
+      out.print(myRs.getString("subtopic_name"));
+      out.write("</li>\n");
+      out.write("            \n");
+      out.write("            ");
+
+            }
+                }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            
+            
+      out.write("\n");
+      out.write("            </li>\n");
+      out.write(" \n");
+      out.write("             \n");
       out.write("          </ul>\n");
       out.write("        </div>\n");
       out.write("      </div>\n");
       out.write("    </div>\n");
       out.write("  </div>\n");
       out.write("  <div class=\"col-sm-6\">\n");
-      out.write("  <div width=\"700px\" height=\"800px\" style=\"border:1px solid black\" id=\"animationCanvas\">\n");
-      out.write("         \n");
-      out.write("  </div>\n");
+      out.write("      <div width=\"700px\" height =\"800px\" id=\"animationCanvas\"></div>\n");
       out.write("            <!-- The Modal -->\n");
       out.write("        <div id=\"myModal\" class=\"modal\">\n");
       out.write("\n");
@@ -201,9 +225,8 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <span class=\"close\">&times;</span>\n");
       out.write("            <p id=\"modalinnerContent\">\n");
       out.write("            Central atom radius: <input type='number' id='central'><br><br>\n");
-      out.write("            Bond thickness: <input type='number' id='bond'><br><br>\n");
-      out.write("            Node radius: <input type='number' id='node'><br><br>\n");
-      out.write("            <input type='submit' value='Create Shape' id='shapeCreate' onclick='getParams()'>\"\n");
+      out.write("            Bond length: <input type='number' id='bond'><br><br>\n");
+      out.write("            <input type='submit' value='Create Shape' id='shapeCreate' onclick='getParams()'>\n");
       out.write("            </p>\n");
       out.write("          </div>\n");
       out.write("\n");
@@ -227,7 +250,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <center>\n");
       out.write("            <label>Compounds<br><br></label>\n");
       out.write("        \n");
-      out.write("        <select class=\"form-control\" id=\"compound\">\n");
+      out.write("            <select class=\"form-control\" id=\"compound\" onchange=\"getVal(this.value)\">\n");
       out.write("            <option value=\"-1\">Choose compound</option>\n");
       out.write("            \n");
       out.write("            ");
@@ -243,7 +266,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
             
       out.write("\n");
       out.write("            <option value=\"");
-      out.print(myRs.getInt("compound_id"));
+      out.print(myRs.getInt("shape_id"));
       out.write("\" >");
       out.print(myRs.getString("compound_name"));
       out.write("</option>\n");
@@ -260,7 +283,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
             
       out.write("\n");
       out.write("        </select>\n");
-      out.write("        <button onclick=\"showval()\">Go!</button>\n");
       out.write("    </center>\n");
       out.write("          <div class=\"nav navbar-nav\">\n");
       out.write("\t\t  <h2>Shapes</h2>\n");
@@ -268,7 +290,11 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                  <ul class=\" navbar-nav\">\n");
       out.write("            <p>List of topics</p>\n");
       out.write("            <li id=\"linear\" onclick=\"getVal(1)\"><a href='#'>Linear</a></li>\n");
-      out.write("            <li id=\"octahedral\" onclick=\"getVal(2)\"><a href='#'>Octahedral</a></li>\n");
+      out.write("            <li id=\"trigonal\" onclick=\"getVal(2)\"><a href='#'>Trigonal Planar</a></li>\n");
+      out.write("            <li id=\"tetrahedral\" onclick=\"getVal(3)\"><a href='#'>Tetrahedral</a></li>\n");
+      out.write("            <li id=\"pyramidal\" onclick=\"getVal(4)\"><a href='#'>Trigonal Bipyramidal</a></li>\n");
+      out.write("            <li id=\"octahedral\" onclick=\"getVal(5)\"><a href='#'>Octahedral</a></li>\n");
+      out.write("            <li id=\"pentpy\" onclick=\"getVal(6)\"><a href='#'>Pentagonal Bipyramidal</a></li>\n");
       out.write("            </ul>\n");
       out.write("                      \n");
       out.write("                  </div>\n");
@@ -289,77 +315,72 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("      //animate();\n");
       out.write("       var modal = document.getElementById('myModal');\n");
       out.write("        var span = document.getElementsByClassName(\"close\")[0];\n");
-      out.write("        var modalc,central_radius,bond_thickness,atom_radius,value;\n");
+      out.write("        var modalc,central_radius,bond_thickness,value;\n");
       out.write("        span.onclick = function closeModal() {\n");
       out.write("            modal.style.display = \"none\";\n");
       out.write("        };\n");
       out.write("        function createShapes(val){\n");
-      out.write("          if(val===1)\n");
+      out.write("          if(val==1)\n");
       out.write("          {\n");
-      out.write("           // alert(\"Linear!\");\n");
-      out.write("            //alert(central_radius+\" \"+bond_thickness+\" \"+atom_radius+\" in linear\");\n");
-      out.write("\n");
-      out.write("           neededShape = new Linear(central_radius,bond_thickness,atom_radius) ;\n");
+      out.write("           neededShape = new Linear(0.3,0.6) ;\n");
       out.write("\n");
       out.write("          }\n");
-      out.write("          else if(val===2)\n");
+      out.write("          else if(val==2 )\n");
       out.write("          {\n");
-      out.write("           // alert(\"Octahedral\");\n");
-      out.write("            neededShape= new Octahedral(central_radius,bond_thickness,atom_radius) ;\n");
+      out.write("            neededShape= new TrigonalPlanar(0.3,0.6) ;\n");
+      out.write("            \n");
+      out.write("          }\n");
+      out.write("          else if(val==3)\n");
+      out.write("          {//alert(central_radius+\" hey \"+bond_thickness);\n");
+      out.write("            neededShape= new Tetrahedral(0.3,0.6) ;\n");
       out.write("\n");
       out.write("          }\n");
-      out.write("          init();\n");
+      out.write("          else if(val==4)\n");
+      out.write("          {\n");
+      out.write("            neededShape= new TrigonalBypyramidal(0.3,0.6) ;\n");
+      out.write("\n");
+      out.write("          }\n");
+      out.write("          else if(val==5)\n");
+      out.write("          {\n");
+      out.write("            neededShape= new Octahedral(0.3,0.6) ;\n");
+      out.write("\n");
+      out.write("          }\n");
+      out.write("          else\n");
+      out.write("          {\n");
+      out.write("            neededShape= new PentagonalBipyramidal(0.3,0.6) ;\n");
+      out.write("\n");
+      out.write("          }\n");
+      out.write("           init();\n");
       out.write("          animate();\n");
+      out.write("        \n");
       out.write("        }\n");
       out.write("        function getParams()\n");
       out.write("        {\n");
+      out.write("          //alert(\"Working\");\n");
       out.write("          central_radius=document.getElementById('central').value;\n");
       out.write("          bond_thickness=document.getElementById('bond').value;\n");
-      out.write("          atom_radius=document.getElementById('node').value;\n");
-      out.write("          //alert(val);\n");
       out.write("          modal.style.display = \"none\"; \n");
       out.write("          createShapes(value);\n");
       out.write("          }\n");
       out.write("        function openModal(val) {\n");
       out.write("            modal.style.display = \"block\";\n");
-      out.write("\n");
       out.write("          }\n");
-      out.write("          function showval(p)\n");
-      out.write("          {\n");
-      out.write("             // console.log(p);\n");
-      out.write("              var idElement = document.getElementById(\"compound\");\n");
-      out.write("                var selectedValue = idElement.options[idElement.selectedIndex].value;\n");
-      out.write("                alert(selectedValue);\n");
-      out.write("          }\n");
-      out.write("\n");
-      out.write("        // When the user clicks anywhere outside of the modal, close it\n");
-      out.write("     /*   window.onclick = function(event) {\n");
-      out.write("            if (event.target === modal) {\n");
-      out.write("                modal.style.display = \"none\";\n");
-      out.write("            }\n");
-      out.write("        };*/\n");
       out.write("      function getVal(val)\n");
       out.write("      {\n");
+      out.write("          //alert(val);\n");
       out.write("        value=val;\n");
-      out.write("\n");
       out.write("        openModal();\n");
-      out.write("\n");
       out.write("      }\n");
-      out.write("\n");
       out.write("      function init() {\n");
       out.write("        scene = new THREE.Scene();\n");
       out.write("        scene.background = new THREE.Color('black');\n");
-      out.write("\n");
       out.write("        camera = new THREE.PerspectiveCamera(60, window.innerHeight / window.innerWidth, 0.1, 10000.0);\n");
-      out.write("        camera.position.set(0, 0, 15);\n");
+      out.write("        camera.position.set(0, 0, 5);\n");
       out.write("        camera.lookAt(new THREE.Vector3(0, 0, 0));\n");
-      out.write("\n");
       out.write("        renderer = new THREE.WebGLRenderer({antialias: false});\n");
-      out.write("\n");
       out.write("        controls = new THREE.OrbitControls(camera, renderer.domElement);\n");
       out.write("        cont = new THREE.TrackballControls(camera, renderer.domElement);\n");
       out.write("        \n");
-      out.write("\n");
       out.write("        \n");
       out.write("        window.addEventListener('resize', onWindowResize, false);\n");
       out.write("        onWindowResize();\n");
@@ -372,13 +393,11 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        scene.add(neededShape.shape) ;\n");
       out.write("        /*end*/\n");
       out.write("      }\n");
-      out.write("\n");
       out.write("      function onWindowResize() {\n");
       out.write("        camera.aspect = window.innerWidth / window.innerHeight;\n");
       out.write("        camera.updateProjectionMatrix();\n");
       out.write("        renderer.setSize(window.innerWidth/2, 3*window.innerHeight/4);\n");
       out.write("      }\n");
-      out.write("\n");
       out.write("      function animate(time) {\n");
       out.write("        \n");
       out.write("        controls.update() ;\n");
@@ -387,10 +406,9 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        requestAnimationFrame(animate);\n");
       out.write("      }\n");
       out.write("        </script> \n");
-      out.write(" \n");
-      out.write("  </body>\n");
-      out.write("</html>  \n");
-      out.write("  ");
+      out.write("        \n");
+      out.write("</body>\n");
+      out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

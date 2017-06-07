@@ -1,8 +1,9 @@
 <%-- 
-    Document   : index
-    Created on : 5 Jun, 2017, 12:04:42 PM
-    Author     : aishwarya
+    Document   : index.jsp
+    Created on : 6 Jun, 2017, 3:40:11 PM
+    Author     : abhi
 --%>
+
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,9 +17,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
           <script type = "text/javascript" src = "js/three.js"> </script>
-        <script type = "text/javascript" src = "js/Linear.js"> </script>
-        <script id="octahedralScript" type = "text/javascript" src = "js/Octahedral.js"> </script>
-        <script type = "text/javascript" src = "js/tetrahedral.js"> </script>
+        <script type = "text/javascript" src = "js/Geometry/Bond.js"> </script>
+        <script type = "text/javascript" src = "js/Geometry/Linear.js"> </script>
+        <script type = "text/javascript" src = "js/Geometry/Octahedral.js"> </script>
+        <script type = "text/javascript" src = "js/Geometry/PentagonalBipyramidal.js"> </script>
+        <script type = "text/javascript" src = "js/Geometry/Tetrahedral.js"> </script>
+        <script type = "text/javascript" src = "js/Geometry/TrigonalBipyramidal.js"> </script>
+        <script type = "text/javascript" src = "js/Geometry/TrigonalPlanar.js"> </script>
 
         <script type = "text/javascript" src = "js/OrbitControls.js"> </script>
         <script type = "text/javascript" src = "js/TrackballControls.js"> </script>
@@ -130,17 +135,7 @@ width:200px;
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
           <ul class="nav navbar-nav">
 		  <h2>List of topics</h2>
-           <!-- <li id="linear" onclick="getVal(1)">Linear</li>
-            <li id="octahedral" onclick="getVal(2)">Octahedral</li>-->
-           
-           
-           
-           
-          
-           
-           
-           
-           
+
            <li value="-1">
             
            <%
@@ -165,14 +160,7 @@ width:200px;
             
             %>
             </li>
-            <!--
-           <li><a href='#'>Structure of an Atom</a></li>
-           <li><a href='#'>Chemical bonding (VSEPR)</a></li>
-           <li><a href='#'>Crystal Structure</a></li>
-           <li><a href='#'>Chemical Reactions</a></li>
-
-           
-            -->
+ 
              
           </ul>
         </div>
@@ -189,9 +177,8 @@ width:200px;
             <span class="close">&times;</span>
             <p id="modalinnerContent">
             Central atom radius: <input type='number' id='central'><br><br>
-            Bond thickness: <input type='number' id='bond'><br><br>
-            Node radius: <input type='number' id='node'><br><br>
-            <input type='submit' value='Create Shape' id='shapeCreate' onclick='getParams()'>"
+            Bond length: <input type='number' id='bond'><br><br>
+            <input type='submit' value='Create Shape' id='shapeCreate' onclick='getParams()'>
             </p>
           </div>
 
@@ -215,7 +202,7 @@ width:200px;
         <center>
             <label>Compounds<br><br></label>
         
-        <select class="form-control" id="compound">
+            <select class="form-control" id="compound" onchange="getVal(this.value)">
             <option value="-1">Choose compound</option>
             
             <%
@@ -228,7 +215,7 @@ width:200px;
             while(myRs.next())
             {
             %>
-            <option value="<%=myRs.getInt("compound_id")%>" ><%=myRs.getString("compound_name")%></option>
+            <option value="<%=myRs.getInt("shape_id")%>" ><%=myRs.getString("compound_name")%></option>
             
             <%
             }
@@ -240,7 +227,6 @@ width:200px;
             
             %>
         </select>
-        <button onclick="showval()">Go!</button>
     </center>
           <div class="nav navbar-nav">
 		  <h2>Shapes</h2>
@@ -248,7 +234,11 @@ width:200px;
                   <ul class=" navbar-nav">
             <p>List of topics</p>
             <li id="linear" onclick="getVal(1)"><a href='#'>Linear</a></li>
-            <li id="octahedral" onclick="getVal(2)"><a href='#'>Octahedral</a></li>
+            <li id="trigonal" onclick="getVal(2)"><a href='#'>Trigonal Planar</a></li>
+            <li id="tetrahedral" onclick="getVal(3)"><a href='#'>Tetrahedral</a></li>
+            <li id="pyramidal" onclick="getVal(4)"><a href='#'>Trigonal Bipyramidal</a></li>
+            <li id="octahedral" onclick="getVal(5)"><a href='#'>Octahedral</a></li>
+            <li id="pentpy" onclick="getVal(6)"><a href='#'>Pentagonal Bipyramidal</a></li>
             </ul>
                       
                   </div>
@@ -269,52 +259,59 @@ width:200px;
       //animate();
        var modal = document.getElementById('myModal');
         var span = document.getElementsByClassName("close")[0];
-        var modalc,central_radius,bond_thickness,atom_radius,value;
+        var modalc,central_radius,bond_thickness,value;
         span.onclick = function closeModal() {
             modal.style.display = "none";
         };
         function createShapes(val){
-          if(val===1)
+          if(val==1)
           {
-           // alert("Linear!");
-            //alert(central_radius+" "+bond_thickness+" "+atom_radius+" in linear");
-           neededShape = new Linear(central_radius,bond_thickness,atom_radius) ;
+           neededShape = new Linear(0.3,0.6) ;
+
           }
-          else if(val===2)
+          else if(val==2 )
           {
-           // alert("Octahedral");
-            neededShape= new Octahedral(central_radius,bond_thickness,atom_radius) ;
+            neededShape= new TrigonalPlanar(0.3,0.6) ;
+            
           }
-          init();
+          else if(val==3)
+          {//alert(central_radius+" hey "+bond_thickness);
+            neededShape= new Tetrahedral(0.3,0.6) ;
+
+          }
+          else if(val==4)
+          {
+            neededShape= new TrigonalBypyramidal(0.3,0.6) ;
+
+          }
+          else if(val==5)
+          {
+            neededShape= new Octahedral(0.3,0.6) ;
+
+          }
+          else
+          {
+            neededShape= new PentagonalBipyramidal(0.3,0.6) ;
+
+          }
+           init();
           animate();
+        
         }
         function getParams()
         {
+          //alert("Working");
           central_radius=document.getElementById('central').value;
           bond_thickness=document.getElementById('bond').value;
-          atom_radius=document.getElementById('node').value;
-          //alert(val);
           modal.style.display = "none"; 
           createShapes(value);
           }
         function openModal(val) {
             modal.style.display = "block";
           }
-          function showval(p)
-          {
-             // console.log(p);
-              var idElement = document.getElementById("compound");
-                var selectedValue = idElement.options[idElement.selectedIndex].value;
-                alert(selectedValue);
-          }
-        // When the user clicks anywhere outside of the modal, close it
-     /*   window.onclick = function(event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        };*/
       function getVal(val)
       {
+          //alert(val);
         value=val;
         openModal();
       }
@@ -322,7 +319,7 @@ width:200px;
         scene = new THREE.Scene();
         scene.background = new THREE.Color('black');
         camera = new THREE.PerspectiveCamera(60, window.innerHeight / window.innerWidth, 0.1, 10000.0);
-        camera.position.set(0, 0, 15);
+        camera.position.set(0, 0, 5);
         camera.lookAt(new THREE.Vector3(0, 0, 0));
         renderer = new THREE.WebGLRenderer({antialias: false});
         controls = new THREE.OrbitControls(camera, renderer.domElement);
