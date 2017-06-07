@@ -22,7 +22,7 @@
         <script type = "text/javascript" src = "js/Geometry/Octahedral.js"> </script>
         <script type = "text/javascript" src = "js/Geometry/PentagonalBipyramidal.js"> </script>
         <script type = "text/javascript" src = "js/Geometry/Tetrahedral.js"> </script>
-        <script type = "text/javascript" src = "js/Geometry/TrigonalBipyramidal.js"> </script>
+        <script type = "text/javascript" src = "js/Geometry/TrigonalBypyramidal.js"> </script>
         <script type = "text/javascript" src = "js/Geometry/TrigonalPlanar.js"> </script>
 
         <script type = "text/javascript" src = "js/OrbitControls.js"> </script>
@@ -142,7 +142,7 @@ width:200px;
                 try
                 {
                     Class.forName("com.mysql.jdbc.Driver").newInstance();
-                    Connection myConn=DriverManager.getConnection("jdbc:mysql://localhost:3306/Chemistry","root","shoot");
+                    Connection myConn=DriverManager.getConnection("jdbc:mysql://localhost:3306/Chemistry2","root","shoot");
                     Statement mystmt=myConn.createStatement();
                     ResultSet myRs=mystmt.executeQuery("select * from subtopic");
             while(myRs.next())
@@ -209,7 +209,7 @@ width:200px;
                 try
                 {
                     Class.forName("com.mysql.jdbc.Driver").newInstance();
-                    Connection myConn=DriverManager.getConnection("jdbc:mysql://localhost:3306/Chemistry","root","shoot");
+                    Connection myConn=DriverManager.getConnection("jdbc:mysql://localhost:3306/Chemistry2","root","shoot");
                     Statement mystmt=myConn.createStatement();
                     ResultSet myRs=mystmt.executeQuery("select * from VSEPR");
             while(myRs.next())
@@ -264,34 +264,37 @@ width:200px;
             modal.style.display = "none";
         };
         function createShapes(val){
+            central_radius=parseInt(central_radius);
+            bond_thickness=parseInt(bond_thickness);
           if(val==1)
           {
-           neededShape = new Linear(0.3,0.6) ;
+           neededShape = new Linear(central_radius,bond_thickness) ;
 
           }
           else if(val==2 )
           {
-            neededShape= new TrigonalPlanar(0.3,0.6) ;
+            neededShape= new TrigonalPlanar(central_radius,bond_thickness) ;
             
           }
           else if(val==3)
-          {//alert(central_radius+" hey "+bond_thickness);
-            neededShape= new Tetrahedral(0.3,0.6) ;
+          {
+               
+            neededShape= new Tetrahedral(central_radius,bond_thickness) ;
 
           }
           else if(val==4)
           {
-            neededShape= new TrigonalBypyramidal(0.3,0.6) ;
+            neededShape= new TrigonalBypyramidal(central_radius,bond_thickness) ;
 
           }
           else if(val==5)
           {
-            neededShape= new Octahedral(0.3,0.6) ;
+            neededShape= new Octahedral(central_radius,bond_thickness) ;
 
           }
           else
           {
-            neededShape= new PentagonalBipyramidal(0.3,0.6) ;
+            neededShape= new PentagonalBipyramidal(central_radius,bond_thickness) ;
 
           }
            init();
@@ -300,7 +303,6 @@ width:200px;
         }
         function getParams()
         {
-          //alert("Working");
           central_radius=document.getElementById('central').value;
           bond_thickness=document.getElementById('bond').value;
           modal.style.display = "none"; 
