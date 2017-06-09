@@ -1,0 +1,18 @@
+function Bond(r, h) {
+	this.type = "Bond" ;
+	var group = new THREE.Group() ;
+	var sphere = new THREE.Mesh(new THREE.SphereBufferGeometry(r, 32, 32),new THREE.MeshBasicMaterial({color : 0xffffff}));
+	sphere.position.y += 2*h+r ;
+	group.add(sphere) ;
+	
+	var cylinder = new THREE.Mesh(new THREE.CylinderGeometry( 0.1, 0.1, h, 32 ), new THREE.MeshBasicMaterial( {color: 0xffffff} ));
+	cylinder.position.y += h+h/2 ;
+	group.add(cylinder) ;
+	
+	var cylinder = new THREE.Mesh(new THREE.CylinderGeometry( 0.1, 0.1, h, 32 ), new THREE.MeshBasicMaterial( {color: 0xFF1493} ));
+	cylinder.position.y += h/2 ;
+	group.add(cylinder) ;
+	
+	
+	this.shape = group ;
+}

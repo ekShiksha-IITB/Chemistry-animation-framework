@@ -1,0 +1,23 @@
+<html ng-app>
+  <head>
+    <script src="http://code.angularjs.org/1.1.5/angular.min.js"></script>
+    <script src="script.js"></script>
+
+
+
+  </head>
+  <body>
+
+    <div ng-controller="Ctrl">
+      <h1>This is testScriptForm.html</h1>
+      <button ng-click="getUrl(1)">Change to Test Case</button>
+
+      <h1>This is testScriptCase.html</h1>
+      <button ng-click="getUrl(2)">Change to Test Form</button>
+
+        <div ng-include="tpl.contentUrl"></div>
+
+    </div>
+
+  </body>
+</html>

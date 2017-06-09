@@ -1,12 +1,13 @@
 <%-- 
-    Document   : index
-    Created on : 5 Jun, 2017, 12:04:42 PM
-    Author     : aishwarya
+    Document   : index.jsp
+    Created on : 6 Jun, 2017, 3:40:11 PM
+    Author     : abhi
 --%>
+
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html ng-app>
     <head>
   <title>Chemistry</title>
   <meta charset="utf-8">
@@ -14,11 +15,26 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://code.angularjs.org/1.1.5/angular.min.js"></script>
+    <script src="script.js"></script>
+
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
           <script type = "text/javascript" src = "js/three.js"> </script>
-        <script type = "text/javascript" src = "js/Linear.js"> </script>
-        <script id="octahedralScript" type = "text/javascript" src = "js/Octahedral.js"> </script>
-        <script type = "text/javascript" src = "js/tetrahedral.js"> </script>
+        <script type = "text/javascript" src = "js/Geometry/Bond.js"> </script>
+        <script type = "text/javascript" src = "js/Geometry/Linear.js"> </script>
+        <script type = "text/javascript" src = "js/Geometry/Octahedral.js"> </script>
+        <script type = "text/javascript" src = "js/Geometry/PentagonalBipyramidal.js"> </script>
+        <script type = "text/javascript" src = "js/Geometry/Tetrahedral.js"> </script>
+        <script type = "text/javascript" src = "js/Geometry/TrigonalBypyramidal.js"> </script>
+        <script type = "text/javascript" src = "js/Geometry/TrigonalPlanar.js"> </script>
+        <script type = "text/javascript" src = "js/Lattice/Cubic/SimpleCube.js"> </script>
+        <script type = "text/javascript" src = "js/Lattice/Hexagonal/SimpleCube.js"> </script>
+        <script type = "text/javascript" src = "js/Lattice/Monoclinic/SimpleCube.js"> </script>
+        <script type = "text/javascript" src = "js/Lattice/Orthorhombic/SimpleCube.js"> </script>
+        <script type = "text/javascript" src = "js/Lattice/Tetragonal/SimpleCube.js"> </script>
+
+
 
         <script type = "text/javascript" src = "js/OrbitControls.js"> </script>
         <script type = "text/javascript" src = "js/TrackballControls.js"> </script>
@@ -90,7 +106,7 @@ width:200px;
 }
   </style>
   </head>
-  <body>
+  <body ng-controller="Ctrl">
   <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -130,31 +146,20 @@ width:200px;
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
           <ul class="nav navbar-nav">
 		  <h2>List of topics</h2>
-           <!-- <li id="linear" onclick="getVal(1)">Linear</li>
-            <li id="octahedral" onclick="getVal(2)">Octahedral</li>-->
-           
-           
-           
-           
-          
-           
-           
-           
-           
+
            <li value="-1">
             
            <%
                 try
                 {
                     Class.forName("com.mysql.jdbc.Driver").newInstance();
-                    Connection myConn=DriverManager.getConnection("jdbc:mysql://localhost:3306/Chemistry","root","shoot");
+                    Connection myConn=DriverManager.getConnection("jdbc:mysql://localhost:3306/Chemistry2","root","shoot");
                     Statement mystmt=myConn.createStatement();
                     ResultSet myRs=mystmt.executeQuery("select * from subtopic");
             while(myRs.next())
             {
             %>
-            <li value="<%=myRs.getInt("sub_id")%>"><a href='#'><%=myRs.getString("subtopic_name")%></li>
-            
+           <li value="<%=myRs.getInt("sub_id")%>" ng-model="url"+<%=myRs.getInt("sub_id")%> ng-click="getUrl(url+<%=myRs.getInt("sub_id")%>)" ><a href='#'><%=myRs.getString("subtopic_name")%></li>            
             <%
             }
                 }
@@ -165,14 +170,7 @@ width:200px;
             
             %>
             </li>
-            <!--
-           <li><a href='#'>Structure of an Atom</a></li>
-           <li><a href='#'>Chemical bonding (VSEPR)</a></li>
-           <li><a href='#'>Crystal Structure</a></li>
-           <li><a href='#'>Chemical Reactions</a></li>
-
-           
-            -->
+ 
              
           </ul>
         </div>
@@ -189,9 +187,8 @@ width:200px;
             <span class="close">&times;</span>
             <p id="modalinnerContent">
             Central atom radius: <input type='number' id='central'><br><br>
-            Bond thickness: <input type='number' id='bond'><br><br>
-            Node radius: <input type='number' id='node'><br><br>
-            <input type='submit' value='Create Shape' id='shapeCreate' onclick='getParams()'>"
+            Bond length: <input type='number' id='bond'><br><br>
+            <input type='submit' value='Create Shape' id='shapeCreate' onclick='getParams()'>
             </p>
           </div>
 
@@ -210,50 +207,8 @@ width:200px;
           </button>
           <span class="visible-xs navbar-brand">Choose your method</span>
         </div>
-        <div class="navbar-collapse collapse sidebar-navbar-collapse">
-
-        <center>
-            <label>Compounds<br><br></label>
-        
-        <select class="form-control" id="compound">
-            <option value="-1">Choose compound</option>
-            
-            <%
-                try
-                {
-                    Class.forName("com.mysql.jdbc.Driver").newInstance();
-                    Connection myConn=DriverManager.getConnection("jdbc:mysql://localhost:3306/Chemistry","root","shoot");
-                    Statement mystmt=myConn.createStatement();
-                    ResultSet myRs=mystmt.executeQuery("select * from VSEPR");
-            while(myRs.next())
-            {
-            %>
-            <option value="<%=myRs.getInt("compound_id")%>" ><%=myRs.getString("compound_name")%></option>
-            
-            <%
-            }
-                }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }
-            
-            %>
-        </select>
-        <button onclick="showval()">Go!</button>
-    </center>
-          <div class="nav navbar-nav">
-		  <h2>Shapes</h2>
-                  <div id='options'>
-                  <ul class=" navbar-nav">
-            <p>List of topics</p>
-            <li id="linear" onclick="getVal(1)"><a href='#'>Linear</a></li>
-            <li id="octahedral" onclick="getVal(2)"><a href='#'>Octahedral</a></li>
-            </ul>
-                      
-                  </div>
-          
-          </div>
+        <div class="navbar-collapse collapse sidebar-navbar-collapse" ng-include="tpl.contentUrl" id="sidebar">
+                <!--Content goes here -->
         </div>
       </div>
     </div>
@@ -269,52 +224,79 @@ width:200px;
       //animate();
        var modal = document.getElementById('myModal');
         var span = document.getElementsByClassName("close")[0];
-        var modalc,central_radius,bond_thickness,atom_radius,value;
+        var modalc,central_radius,bond_thickness,value;
         span.onclick = function closeModal() {
             modal.style.display = "none";
         };
+        function getLattice(val)
+        {
+            //val=parseInt(val);
+            if(val==1)
+                neededShape=new CubicSimpleCube(1.5,0.3);
+            else if(val==4)
+                neededShape=new HexagonalSimpleCube(1.5,0.3);
+            else if(val==5)
+                neededShape=new MonoclinicSimpleCube(1.5,0.3);
+            else if(val==3)
+                neededShape=new OrthorhombicSimpleCube(1.5,0.3);
+            else if(val==2)
+                neededShape=new TetragonalSimpleCube(1.5,0.3);
+            else
+                neededShape=null;
+            init();
+            animate();
+        }
         function createShapes(val){
-          if(val===1)
+            central_radius=parseInt(central_radius);
+            bond_thickness=parseInt(bond_thickness);
+          if(val==1)
           {
-           // alert("Linear!");
-            //alert(central_radius+" "+bond_thickness+" "+atom_radius+" in linear");
-           neededShape = new Linear(central_radius,bond_thickness,atom_radius) ;
+           neededShape = new Linear(central_radius,bond_thickness) ;
+
           }
-          else if(val===2)
+          else if(val==2 )
           {
-           // alert("Octahedral");
-            neededShape= new Octahedral(central_radius,bond_thickness,atom_radius) ;
+            neededShape= new TrigonalPlanar(central_radius,bond_thickness) ;
+            
           }
-          init();
+          else if(val==3)
+          {
+               
+            neededShape= new Tetrahedral(central_radius,bond_thickness) ;
+
+          }
+          else if(val==4)
+          {
+            neededShape= new TrigonalBypyramidal(central_radius,bond_thickness) ;
+
+          }
+          else if(val==5)
+          {
+            neededShape= new Octahedral(central_radius,bond_thickness) ;
+
+          }
+          else
+          {
+            neededShape= new PentagonalBipyramidal(central_radius,bond_thickness) ;
+
+          }
+           init();
           animate();
+        
         }
         function getParams()
         {
           central_radius=document.getElementById('central').value;
           bond_thickness=document.getElementById('bond').value;
-          atom_radius=document.getElementById('node').value;
-          //alert(val);
           modal.style.display = "none"; 
           createShapes(value);
           }
         function openModal(val) {
             modal.style.display = "block";
           }
-          function showval(p)
-          {
-             // console.log(p);
-              var idElement = document.getElementById("compound");
-                var selectedValue = idElement.options[idElement.selectedIndex].value;
-                alert(selectedValue);
-          }
-        // When the user clicks anywhere outside of the modal, close it
-     /*   window.onclick = function(event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        };*/
       function getVal(val)
       {
+          //alert(val);
         value=val;
         openModal();
       }
