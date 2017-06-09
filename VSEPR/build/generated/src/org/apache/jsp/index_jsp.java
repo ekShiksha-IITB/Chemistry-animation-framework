@@ -46,8 +46,10 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
-      out.write("<html ng-app>\n");
+      out.write("<html>\n");
       out.write("    <head>\n");
       out.write("  <title>Chemistry</title>\n");
       out.write("  <meta charset=\"utf-8\">\n");
@@ -55,10 +57,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("  <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">\n");
       out.write("  <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>\n");
       out.write("  <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n");
-      out.write("    <script src=\"http://code.angularjs.org/1.1.5/angular.min.js\"></script>\n");
-      out.write("    <script src=\"script.js\"></script>\n");
-      out.write("\n");
-      out.write("\n");
       out.write("  <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css\">\n");
       out.write("          <script type = \"text/javascript\" src = \"js/three.js\"> </script>\n");
       out.write("        <script type = \"text/javascript\" src = \"js/Geometry/Bond.js\"> </script>\n");
@@ -139,7 +137,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("}\n");
       out.write("  </style>\n");
       out.write("  </head>\n");
-      out.write("  <body ng-controller=\"Ctrl\">\n");
+      out.write("  <body>\n");
       out.write("  <nav class=\"navbar navbar-inverse\">\n");
       out.write("  <div class=\"container-fluid\">\n");
       out.write("    <div class=\"navbar-header\">\n");
@@ -180,7 +178,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("          <ul class=\"nav navbar-nav\">\n");
       out.write("\t\t  <h2>List of topics</h2>\n");
       out.write("\n");
-      out.write("           <li value=\"-1\">\n");
+      out.write("           <li>\n");
       out.write("            \n");
       out.write("           ");
 
@@ -196,7 +194,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("            <li value=\"");
       out.print(myRs.getInt("sub_id"));
-      out.write("\" onclick=\"alert(this.value)\"<!--ng-click=\"getUrl(this.value)\"--> ><a href='#'>");
+      out.write("\"><a href='#'>");
       out.print(myRs.getString("subtopic_name"));
       out.write("</li>\n");
       out.write("            \n");
@@ -249,8 +247,61 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("          </button>\n");
       out.write("          <span class=\"visible-xs navbar-brand\">Choose your method</span>\n");
       out.write("        </div>\n");
-      out.write("        <div class=\"navbar-collapse collapse sidebar-navbar-collapse\" ng-include=\"tpl.contentUrl\" id=\"sidebar\">\n");
-      out.write("                <!--Content goes here -->\n");
+      out.write("        <div class=\"navbar-collapse collapse sidebar-navbar-collapse\">\n");
+      out.write("\n");
+      out.write("        <center>\n");
+      out.write("            <label>Compounds<br><br></label>\n");
+      out.write("        \n");
+      out.write("            <select class=\"form-control\" id=\"compound\" onchange=\"getVal(this.value)\">\n");
+      out.write("            <option value=\"-1\">Choose compound</option>\n");
+      out.write("            \n");
+      out.write("            ");
+
+                try
+                {
+                    Class.forName("com.mysql.jdbc.Driver").newInstance();
+                    Connection myConn=DriverManager.getConnection("jdbc:mysql://localhost:3306/Chemistry2","root","shoot");
+                    Statement mystmt=myConn.createStatement();
+                    ResultSet myRs=mystmt.executeQuery("select * from VSEPR");
+            while(myRs.next())
+            {
+            
+      out.write("\n");
+      out.write("            <option value=\"");
+      out.print(myRs.getInt("shape_id"));
+      out.write("\" >");
+      out.print(myRs.getString("compound_name"));
+      out.write("</option>\n");
+      out.write("            \n");
+      out.write("            ");
+
+            }
+                }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            
+            
+      out.write("\n");
+      out.write("        </select>\n");
+      out.write("    </center>\n");
+      out.write("          <div class=\"nav navbar-nav\">\n");
+      out.write("\t\t  <h2>Shapes</h2>\n");
+      out.write("                  <div id='options'>\n");
+      out.write("                  <ul class=\" navbar-nav\">\n");
+      out.write("            <p>List of topics</p>\n");
+      out.write("            <li id=\"linear\" onclick=\"getVal(1)\"><a href='#'>Linear</a></li>\n");
+      out.write("            <li id=\"trigonal\" onclick=\"getVal(2)\"><a href='#'>Trigonal Planar</a></li>\n");
+      out.write("            <li id=\"tetrahedral\" onclick=\"getVal(3)\"><a href='#'>Tetrahedral</a></li>\n");
+      out.write("            <li id=\"pyramidal\" onclick=\"getVal(4)\"><a href='#'>Trigonal Bipyramidal</a></li>\n");
+      out.write("            <li id=\"octahedral\" onclick=\"getVal(5)\"><a href='#'>Octahedral</a></li>\n");
+      out.write("            <li id=\"pentpy\" onclick=\"getVal(6)\"><a href='#'>Pentagonal Bipyramidal</a></li>\n");
+      out.write("            </ul>\n");
+      out.write("                      \n");
+      out.write("                  </div>\n");
+      out.write("          \n");
+      out.write("          </div>\n");
       out.write("        </div>\n");
       out.write("      </div>\n");
       out.write("    </div>\n");
@@ -270,13 +321,6 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        span.onclick = function closeModal() {\n");
       out.write("            modal.style.display = \"none\";\n");
       out.write("        };\n");
-      out.write("        function getSidebar(val)\n");
-      out.write("        {\n");
-      out.write("            alert(val);\n");
-      out.write("            //if(val==3)\n");
-      out.write("            //document.getElementById(\"sidebar\").ng-include=\"'sidebar.jsp'\";\n");
-      out.write("            console.log(document.getElementById(\"sidebar\"));\n");
-      out.write("        }\n");
       out.write("        function createShapes(val){\n");
       out.write("            central_radius=parseInt(central_radius);\n");
       out.write("            bond_thickness=parseInt(bond_thickness);\n");
@@ -335,7 +379,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        scene = new THREE.Scene();\n");
       out.write("        scene.background = new THREE.Color('black');\n");
       out.write("        camera = new THREE.PerspectiveCamera(60, window.innerHeight / window.innerWidth, 0.1, 10000.0);\n");
-      out.write("        camera.position.set(0, 0, 15);\n");
+      out.write("        camera.position.set(0, 0, 5);\n");
       out.write("        camera.lookAt(new THREE.Vector3(0, 0, 0));\n");
       out.write("        renderer = new THREE.WebGLRenderer({antialias: false});\n");
       out.write("        controls = new THREE.OrbitControls(camera, renderer.domElement);\n");
@@ -369,6 +413,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        \n");
       out.write("</body>\n");
       out.write("</html>\n");
+      out.write("\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

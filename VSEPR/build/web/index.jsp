@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index.jsp
-    Created on : 6 Jun, 2017, 3:40:11 PM
-    Author     : abhi
---%>
-
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,11 +22,8 @@
         <script type = "text/javascript" src = "js/Geometry/Tetrahedral.js"> </script>
         <script type = "text/javascript" src = "js/Geometry/TrigonalBypyramidal.js"> </script>
         <script type = "text/javascript" src = "js/Geometry/TrigonalPlanar.js"> </script>
-        <script type = "text/javascript" src = "js/Lattice/Cubic/SimpleCube.js"> </script>
-        <script type = "text/javascript" src = "js/Lattice/Hexagonal/SimpleCube.js"> </script>
-        <script type = "text/javascript" src = "js/Lattice/Monoclinic/SimpleCube.js"> </script>
-        <script type = "text/javascript" src = "js/Lattice/Orthorhombic/SimpleCube.js"> </script>
-        <script type = "text/javascript" src = "js/Lattice/Tetragonal/SimpleCube.js"> </script>
+       
+        <script type = "text/javascript" src = "js/lattice.js"> </script>
 
 
 
@@ -220,31 +211,102 @@ width:200px;
  <script type = "text/javascript">
       var scene, camera, renderer;
       var controls, cont,neededShape;
-      //init();
-      //animate();
        var modal = document.getElementById('myModal');
         var span = document.getElementsByClassName("close")[0];
         var modalc,central_radius,bond_thickness,value;
         span.onclick = function closeModal() {
             modal.style.display = "none";
         };
-        function getLattice(val)
+       
+       var crystal;
+       function setShape(val)
         {
-            //val=parseInt(val);
+            crystal=val;
+            document.getElementById("Simple").style.visibility="hidden";
+                document.getElementById("FCC").style.visibility="hidden";
+                document.getElementById("BCC").style.visibility="hidden";
+                document.getElementById("SCC").style.visibility="hidden";
+            if(val==1)
+            {
+                document.getElementById("Simple").style.visibility="visible";
+                document.getElementById("BCC").style.visibility="visible";
+                document.getElementById("FCC").style.visibility="visible";
+        }
+            else if(val==4)
+            {
+                document.getElementById("Simple").style.visibility="visible";
+            }
+                
+            else if(val==5)
+            {
+                document.getElementById("Simple").style.visibility="visible";
+                document.getElementById("SCC").style.visibility="visible";
+            }
+                
+            else if(val==3)
+            {
+                document.getElementById("Simple").style.visibility="visible";
+                document.getElementById("FCC").style.visibility="visible";
+                document.getElementById("BCC").style.visibility="visible";
+                document.getElementById("SCC").style.visibility="visible";
+            }
+                
+            else if(val==2)
+            {
+                document.getElementById("Simple").style.visibility="visible";
+                document.getElementById("BCC").style.visibility="visible";
+            }
+            
+        }
+        
+    
+    function getLattice(val)
+        {
+            if(crystal==1)
+            {
             if(val==1)
                 neededShape=new CubicSimpleCube(1.5,0.3);
-            else if(val==4)
-                neededShape=new HexagonalSimpleCube(1.5,0.3);
-            else if(val==5)
-                neededShape=new MonoclinicSimpleCube(1.5,0.3);
-            else if(val==3)
-                neededShape=new OrthorhombicSimpleCube(1.5,0.3);
             else if(val==2)
-                neededShape=new TetragonalSimpleCube(1.5,0.3);
-            else
-                neededShape=null;
+                neededShape=new CubicBodyCenteredCube(1.5,0.3);
+            else 
+                neededShape=new CubicFaceCenteredCube(1.5,0.3);
+        }
+        
+               else if(crystal==2)
+               {
+                   if(val==1)
+                     neededShape=new TetragonalSimpleCube(1.5,0.3);  
+                 else if(val==2)
+                     neededShape=new TetragonalBodyCenteredCube(1.5,0.3);
+
+               }
+               else if(crystal==3)
+               {
+                    if(val==1)
+                     neededShape=new OrthorhombicSimpleCube(1.5,0.3);  
+                 else if(val==2)
+                     neededShape=new OrthorhombicBodyCenteredCube(1.5,0.3);
+                 else if(val==3)
+                     neededShape=new OrthorhombicFaceCenteredCube(1.5,0.3);
+                 else if(val==4)
+                     neededShape=new OrthorhombicSideCenteredCube(1.5,0.3);
+               }
+               else if(crystal==4)
+               {
+                    if(val==1)
+                     neededShape=new HexagonalSimpleCube(1.5,0.3);  
+                
+               }
+               else if(crystal==5)
+               {
+                    if(val==1)
+                     neededShape=new MonoclinicSimpleCube(1.5,0.3);  
+                 else if(val==4)
+                     neededShape=new MonoclinicSideCenteredCube(1.5,0.3);
+               }
             init();
             animate();
+            
         }
         function createShapes(val){
             central_radius=parseInt(central_radius);
