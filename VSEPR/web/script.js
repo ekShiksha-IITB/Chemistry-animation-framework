@@ -9,8 +9,9 @@ function Ctrl($scope) {
   $scope.getUrl=function(val)
   {   
      // val=value.$id;
-      
-      if(val==3)
+        if(val==1)
+            $scope.tpl.contentUrl='sidebar1.jsp';
+        else if(val==3)
             $scope.tpl.contentUrl='sidebar.jsp';
         else if(val==4)
             $scope.tpl.contentUrl='sidebar2.jsp';

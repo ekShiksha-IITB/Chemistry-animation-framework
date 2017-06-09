@@ -1,3 +1,9 @@
+<%-- 
+    Document   : index.jsp
+    Created on : 6 Jun, 2017, 3:40:11 PM
+    Author     : abhi
+--%>
+
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,19 +20,10 @@
 
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-          <script type = "text/javascript" src = "js/three.js"> </script>
-        <script type = "text/javascript" src = "js/Geometry/Bond.js"> </script>
-        <script type = "text/javascript" src = "js/Geometry/Linear.js"> </script>
-        <script type = "text/javascript" src = "js/Geometry/Octahedral.js"> </script>
-        <script type = "text/javascript" src = "js/Geometry/PentagonalBipyramidal.js"> </script>
-        <script type = "text/javascript" src = "js/Geometry/Tetrahedral.js"> </script>
-        <script type = "text/javascript" src = "js/Geometry/TrigonalBypyramidal.js"> </script>
-        <script type = "text/javascript" src = "js/Geometry/TrigonalPlanar.js"> </script>
-       
+        <script type = "text/javascript" src = "js/three.js"> </script>
+        <script type = "text/javascript" src = "js/atom.js"> </script>
+        <script type = "text/javascript" src = "js/geometry.js"> </script>
         <script type = "text/javascript" src = "js/lattice.js"> </script>
-
-
-
         <script type = "text/javascript" src = "js/OrbitControls.js"> </script>
         <script type = "text/javascript" src = "js/TrackballControls.js"> </script>
   <style>
@@ -211,14 +208,31 @@ width:200px;
  <script type = "text/javascript">
       var scene, camera, renderer;
       var controls, cont,neededShape;
+      var animateValue=1;
+      //init();
+      //animate();
        var modal = document.getElementById('myModal');
         var span = document.getElementsByClassName("close")[0];
         var modalc,central_radius,bond_thickness,value;
         span.onclick = function closeModal() {
             modal.style.display = "none";
         };
-       
-       var crystal;
+        function getAtom(val)
+        {
+            var z=document.getElementById("Z").value;
+            z=parseInt(z);
+            var atom=new Atom(z);
+            if(val==1)
+                neededShape =atom.firstModel();
+            else if(val==2)
+                neededShape =atom.secondModel();
+            else
+                neededShape =atom.thirdModel();
+            init(2);
+            animateValue=2;
+            animate();
+        }
+  var crystal;
        function setShape(val)
         {
             crystal=val;
@@ -278,7 +292,6 @@ width:200px;
                      neededShape=new TetragonalSimpleCube(1.5,0.3);  
                  else if(val==2)
                      neededShape=new TetragonalBodyCenteredCube(1.5,0.3);
-
                }
                else if(crystal==3)
                {
@@ -304,10 +317,12 @@ width:200px;
                  else if(val==4)
                      neededShape=new MonoclinicSideCenteredCube(1.5,0.3);
                }
-            init();
+            init(1);
+            animateValue=1;
             animate();
             
         }
+
         function createShapes(val){
             central_radius=parseInt(central_radius);
             bond_thickness=parseInt(bond_thickness);
@@ -342,7 +357,8 @@ width:200px;
             neededShape= new PentagonalBipyramidal(central_radius,bond_thickness) ;
 
           }
-           init();
+           init(1);
+           animateValue=1;
           animate();
         
         }
@@ -362,37 +378,46 @@ width:200px;
         value=val;
         openModal();
       }
-      function init() {
+      function init(val) {
         scene = new THREE.Scene();
         scene.background = new THREE.Color('black');
         camera = new THREE.PerspectiveCamera(60, window.innerHeight / window.innerWidth, 0.1, 10000.0);
         camera.position.set(0, 0, 15);
         camera.lookAt(new THREE.Vector3(0, 0, 0));
         renderer = new THREE.WebGLRenderer({antialias: false});
+        var light = new THREE.AmbientLight( 0xffffff ); // white light
+        scene.add( light );
+
+        var light = new THREE.DirectionalLight( 0xffffff );
+        light.position.set( 0, 10, 10 ).normalize();
+        scene.add(light);
+
         controls = new THREE.OrbitControls(camera, renderer.domElement);
-        cont = new THREE.TrackballControls(camera, renderer.domElement);
-        
-        
+        cont = new THREE.TrackballControls(camera, renderer.domElement); 
         window.addEventListener('resize', onWindowResize, false);
         onWindowResize();
         var canvas=document.getElementById("animationCanvas");
         canvas.innerHTML='';
-        canvas.appendChild(renderer.domElement);
-        
-        
-        /*actual starts here*/
+        canvas.appendChild(renderer.domElement);        /*actual starts here*/
+        if(val==1)
         scene.add(neededShape.shape) ;
+        else
+            scene.add(neededShape);
         /*end*/
       }
+
       function onWindowResize() {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth/2, 3*window.innerHeight/4);
       }
-      function animate(time) {
+      function animate() {
         
         controls.update() ;
         cont.update() ;
+        if(animateValue==2)
+        neededShape.rotation.z += 0.01 ;
+
         renderer.render(scene, camera);
         requestAnimationFrame(animate);
       }

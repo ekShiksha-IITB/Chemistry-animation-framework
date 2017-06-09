@@ -1,8 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 function CubicSimpleCube(edgeLength, nodeRadius) {
 	this.edgeLength = edgeLength ;
 	var shape = new THREE.Group() ;
@@ -1665,7 +1660,6 @@ function TetragonalBodyCenteredCube(edgeLength, nodeRadius) {
     
     this.shape = shape ;
 }
-
 
 
 

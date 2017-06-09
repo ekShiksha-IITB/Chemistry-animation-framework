@@ -31,7 +31,7 @@
     
     <div id="SCC" style="visibility: hidden" onclick="getLattice(4)"><a href='#'>End-centred</a></div>
     <div id="Simple" style="visibility: hidden" onclick="getLattice(1)"><a href='#'>Simple</a></div>
-            <div id="BCC" style="visibility: hidden" onclick="getLattice(2)"><a href='#'>Body-centred</a></div>
-            <div id="FCC" style="visibility: hidden" onclick="getLattice(3)"><a href='#'>Face-centred</a></div>
+    <div id="BCC" style="visibility: hidden" onclick="getLattice(2)"><a href='#'>Body-centred</a></div>
+    <div id="FCC" style="visibility: hidden" onclick="getLattice(3)"><a href='#'>Face-centred</a></div>
             
-                  </div>
+</div>
