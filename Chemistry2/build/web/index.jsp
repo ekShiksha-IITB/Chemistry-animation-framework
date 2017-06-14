@@ -3,9 +3,13 @@
     Created on : 6 Jun, 2017, 3:40:11 PM
     Author     : abhi
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@page language="java" import="java.util.*" %>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Objects.Topic"%>
+<%@page import="DAO.TopicDAO"%>
+<%@page import="Objects.Subtopic"%>
 <!DOCTYPE html>
 <html ng-app>
     <head>
@@ -65,35 +69,47 @@
           <span class="visible-xs navbar-brand">Choose your topic</span>
         </div>
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
-          <ul class="nav navbar-nav">
-		  <h2>List of topics</h2>
-
-           <li value="-1">
-            
-           <%
-                try
-                {
-                    Class.forName("com.mysql.jdbc.Driver").newInstance();
-                    Connection myConn=DriverManager.getConnection("jdbc:mysql://localhost:3306/Chemistry2","root","shoot");
-                    Statement mystmt=myConn.createStatement();
-                    ResultSet myRs=mystmt.executeQuery("select * from subtopic");
-            while(myRs.next())
-            {
-            %>
-           <li value="<%=myRs.getInt("sub_id")%>" ng-model="url"+<%=myRs.getInt("sub_id")%> ng-click="getUrl(url+<%=myRs.getInt("sub_id")%>)" ><a href='#'><%=myRs.getString("subtopic_name")%></li>            
             <%
-            }
-                }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }
+              try { 
+            TopicDAO topicDAO=new TopicDAO();
+            List<Topic> topics=topicDAO.getTopic();
+              }
+              catch(Exception e)
+              {
+                  e.printStackTrace();
+              }
+            
             
             %>
-            </li>
- 
-             
-          </ul>
+            
+            
+            <table>
+    <tr>
+        <th colspan="5"  style="font-size: 20px"><p id="t_head">List of topics</p></th>
+    </tr>
+    
+    <%  
+            TopicDAO topicDAO=new TopicDAO();
+            List<Topic> topics=topicDAO.getTopic();
+        for(int i=0; i < topics.size(); i++)
+    {
+        %>
+        <tr>
+            <td style="font-size: 16px;"><p><strong><%= topics.get(i).getTopicName()%></strong></p></td>
+            <%
+                List<Subtopic> subtopics=topics.get(i).getSubtopics();
+                for(int j=0; j < subtopics.size(); j++)
+    {
+        %>
+        <tr>
+            <td><p><li><a href="#"><%= subtopics.get(j).getSubtopicName()%><li></p></td>
+        <tr>      
+            
+        </tr>
+        <%}}%>
+</table>
+            
+          
         </div>
       </div>
     </div>
@@ -103,7 +119,6 @@
             <!-- The Modal -->
         <div id="myModal" class="modal">
 
-          <!-- Modal content -->
           <div class="modal-content">
             <span class="close">&times;</span>
             <p id="modalinnerContent">
