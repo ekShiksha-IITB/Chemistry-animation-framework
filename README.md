@@ -1,4 +1,4 @@
-Ekalavya Chemistry Animations
+EkShiksha Chemistry Animations
 
 The aim of this project is to create a web-application with fun, easy-to-use animations in Chemistry for school students to enhance the overall learning experience.
 
@@ -16,7 +16,7 @@ JSP- The web framework used
 MySQL database
 Three.js animations
 
-Authors
+Contributors
 
 Aishwarya Nair      https://github.com/MayTune
 Abhinaya S.B        https://github.com/grangergirl
@@ -24,5 +24,5 @@ Srikanth Chekuri    https://github.com/srikanthchekuri
 
 Acknowledgments
 
-Our sincere gratitude to IIT Bombay and the entire Ekalavya team.
+Our sincere gratitude to IIT Bombay and the entire EkShiksha team.
 
