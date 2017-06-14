@@ -12,7 +12,7 @@
     padding-bottom: 12px;
   }
 .sidebar-nav .navbar li a:hover {
-   background-color:green;
+   background-color:#fed528;
   }
  .sidebar-nav2{
 width:200px;
@@ -63,5 +63,3 @@ width:200px;
  input[type="radio"]{
   margin: 0 10px 0 10px;
 }
-
-       

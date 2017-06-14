@@ -6,42 +6,37 @@
 package Servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import DAO.ElementDAO;
-import Objects.Element;
 
 /**
  *
  * @author abhi
  */
-public class ElementServlet extends HttpServlet {
+public class DemoServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+     int count=-1;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {           
-            try {   
-            int atomic_number = Integer.parseInt((String) request.getParameter("atomic_number"));
-            ElementDAO elementDao = new ElementDAO();
-            Element element = elementDao.getElement(atomic_number);  
-            int an=atomic_number;
-            request.setAttribute("an", an); // Will be available as ${element} in JSP
-
-            request.setAttribute("element", element); // Will be available as ${element} in JSP
-            request.getRequestDispatcher("/DemoServlet?option=1").forward(request, response);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } 
+            throws ServletException, IOException {
+    
+        System.out.print("In here");
+    if(request.getParameter("option")!=null)
+     count=Integer.parseInt(request.getParameter("option"));
+    String sidebar="sidebars/generic.jsp";
+    if(count==1)
+        sidebar="sidebars/atom.jsp";
+    else if(count==3)
+        sidebar="sidebars/sidebar.jsp";
+    else if(count==4)
+        sidebar="sidebars/sidebar2.jsp";
+    else
+        sidebar="sidebars/generic.jsp";
+   
+            request.setAttribute("somePage",sidebar );
+            request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <welcome-file-list>
-        <welcome-file>
-            index.jsp
-        </welcome-file>
-    </welcome-file-list>
     <servlet>
         <servlet-name>ElementServlet</servlet-name>
         <servlet-class>Servlets.ElementServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>TopicServlet</servlet-name>
-        <servlet-class>Servlets.TopicServlet</servlet-class>
+        <servlet-name>DemoServlet</servlet-name>
+        <servlet-class>Servlets.DemoServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ElementServlet</servlet-name>
         <url-pattern>/ElementServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>TopicServlet</servlet-name>
-        <url-pattern>/TopicServlet</url-pattern>
+        <servlet-name>DemoServlet</servlet-name>
+        <url-pattern>/DemoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

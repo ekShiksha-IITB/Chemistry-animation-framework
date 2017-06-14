@@ -4,6 +4,7 @@
     Author     : abhi
 --%>
 
+<%@page import="ConnectionUtil.ConnectionFactory"%>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,10 +18,9 @@
             <%
                 try
                 {
-                    Class.forName("com.mysql.jdbc.Driver").newInstance();
-                    Connection myConn=DriverManager.getConnection("jdbc:mysql://localhost:3306/Chemistry2","root","shoot");
-                    Statement mystmt=myConn.createStatement();
-                    ResultSet myRs=mystmt.executeQuery("select * from VSEPR");
+                   Connection connection = ConnectionFactory.getConnection();
+            Statement statement = connection.createStatement();
+                    ResultSet myRs=statement.executeQuery("select * from VSEPR");
             while(myRs.next())
             {
             %>

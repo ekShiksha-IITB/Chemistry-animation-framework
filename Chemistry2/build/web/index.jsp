@@ -3,15 +3,15 @@
     Created on : 6 Jun, 2017, 3:40:11 PM
     Author     : abhi
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@page language="java" import="java.util.*" %>
+
+<%@page import="Objects.Subtopic"%>
+<%@page import="Objects.Topic"%>
+<%@page import="java.util.*"%>
+<%@page import="DAO.TopicDAO"%>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="Objects.Topic"%>
-<%@page import="DAO.TopicDAO"%>
-<%@page import="Objects.Subtopic"%>
 <!DOCTYPE html>
-<html ng-app>
+<html>
     <head>
     <title>Chemistry</title>
     <meta charset="utf-8">
@@ -28,10 +28,11 @@
     <script type = "text/javascript" src = "js/OrbitControls.js"> </script>
     <script type = "text/javascript" src = "js/TrackballControls.js"> </script>
     <script type = "text/javascript" src = "js/animations.js"> </script>
-    <script type = "text/javascript" src = "js/angscript.js"></script>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@include file="jspFunctions.jsp"%>
     <link rel="stylesheet" href="index.css">
   </head>
-  <body ng-controller="Ctrl" onload="init()">
+  <body onload="init()">
   <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -68,49 +69,31 @@
           </button>
           <span class="visible-xs navbar-brand">Choose your topic</span>
         </div>
-        <div class="navbar-collapse collapse sidebar-navbar-collapse">
-            <%
-              try { 
-            TopicDAO topicDAO=new TopicDAO();
-            List<Topic> topics=topicDAO.getTopic();
-              }
-              catch(Exception e)
-              {
-                  e.printStackTrace();
-              }
-            
-            
-            %>
-            
-            
+         <div class="navbar-collapse collapse sidebar-navbar-collapse">
+         <form method="Get" action="DemoServlet">
             <table>
-    <tr>
-        <th colspan="5"  style="font-size: 20px"><p id="t_head">List of topics</p></th>
-    </tr>
-    
-    <%  
-            TopicDAO topicDAO=new TopicDAO();
-            List<Topic> topics=topicDAO.getTopic();
-        for(int i=0; i < topics.size(); i++)
-    {
-        %>
-        <tr>
-            <td style="font-size: 16px;"><p><strong><%= topics.get(i).getTopicName()%></strong></p></td>
-            <%
-                List<Subtopic> subtopics=topics.get(i).getSubtopics();
-                for(int j=0; j < subtopics.size(); j++)
-    {
-        %>
-        <tr>
-            <td><p><li><a href="#"><%= subtopics.get(j).getSubtopicName()%><li></p></td>
-        <tr>      
-            
-        </tr>
-        <%}}%>
-</table>
-            
-          
+            <%  
+                    TopicDAO topicDAO=new TopicDAO();
+                    List<Topic> topics=topicDAO.getTopic();
+                for(int i=0; i < topics.size(); i++)
+            {
+                %>
+                <tr>
+                    <td style="font-size: 16px;"><p><strong><%= topics.get(i).getTopicName()%></strong></p></td>
+                    <%
+                        List<Subtopic> subtopics=topics.get(i).getSubtopics();
+                        for(int j=0; j < subtopics.size(); j++)
+            {
+                %>
+                <tr>
+                    <td><p><li><input value="<%=subtopics.get(j).getSubId()%>" name="option" type="submit" ><%= subtopics.get(j).getSubtopicName()%><li></p></td>
+                <tr>  
+                </tr>
+                <%}}%>
+        </table>  
+         </form>
         </div>
+        
       </div>
     </div>
   </div>
@@ -119,6 +102,7 @@
             <!-- The Modal -->
         <div id="myModal" class="modal">
 
+          <!-- Modal content -->
           <div class="modal-content">
             <span class="close">&times;</span>
             <p id="modalinnerContent">
@@ -143,9 +127,12 @@
           </button>
           <span class="visible-xs navbar-brand">Choose options</span>
         </div>
-        <div class="navbar-collapse collapse sidebar-navbar-collapse" ng-include="tpl.contentUrl" id="sidebar">
+
+      <div class="navbar-collapse collapse sidebar-navbar-collapse"  id="sidebar">
                 <!--Content goes here -->
+                <jsp:include page="${somePage}" flush="true"/>  
         </div>
+
       </div>
     </div>
   </div>

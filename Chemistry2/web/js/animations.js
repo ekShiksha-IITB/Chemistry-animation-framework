@@ -6,7 +6,6 @@ function init() {
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize( window.innerWidth, window.innerHeight );
         var canvas=document.getElementById("animationCanvas");
-        console.log(canvas);
 	canvas.appendChild( renderer.domElement );	
 	var controls = new THREE.OrbitControls(camera, renderer.domElement);
 	var cont = new THREE.TrackballControls(camera, renderer.domElement);        
@@ -61,6 +60,7 @@ function init() {
 }
 function addAtom(atomicNumber, k, l, m, n, o, p, q, model) {
 	deleteObjects() ;
+        console.log(atomicNumber,k,l);
 	var ob = new Atom(atomicNumber, k, l, m, n, o, p, q, model) ;
 	var shape ;
 	if(model == 1) {
