@@ -34,7 +34,7 @@ public class SubtopicDAO {
             
             while (rs.next()) {
                 Subtopic subtopic = new Subtopic();
-                subtopic.setAll(rs.getString("subtopic_name"), rs.getInt("sub_id"), rs.getInt("topic_id"));
+                subtopic.setAll(rs.getString("subtopic_name"), rs.getInt("sub_id"), rs.getInt("topic_id"),rs.getString("description"),rs.getString("tip"));
 
                 subtopics.add(subtopic);
             }
@@ -47,4 +47,28 @@ public class SubtopicDAO {
 
         return subtopics;
     }
+    
+    public Subtopic getSubtopicWithId(int sub_id) throws SQLException {
+         Subtopic subtopic = new Subtopic();
+         Connection connection = ConnectionFactory.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select * from subtopic where sub_id="+ sub_id);
+         
+        try {
+            while (rs.next())
+            {
+                subtopic.setAll(rs.getString("subtopic_name"), rs.getInt("sub_id"), rs.getInt("topic_id"),rs.getString("description"),rs.getString("tip"));
+            }
+                
+            }
+        
+        finally {
+            DBUtil.close(rs);
+            DBUtil.close(statement);
+            DBUtil.close(connection);
+        }
+
+        return subtopic;
+    }
+    
 }

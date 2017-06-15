@@ -7,6 +7,11 @@
 <%@page import="ConnectionUtil.ConnectionFactory"%>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Objects.Subtopic"%>
+<%@page import="Objects.Topic"%>
+<%@page import="java.util.*"%>
+<%@page import="DAO.TopicDAO"%>
+<%@page import="DAO.SubtopicDAO"%>
 <!DOCTYPE html>
 
         <center>
@@ -53,4 +58,4 @@
                   </div>
           
           </div>
-
+        <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48" height="48">

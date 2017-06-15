@@ -106,10 +106,8 @@
           <div class="modal-content">
             <span class="close">&times;</span>
             <p id="modalinnerContent">
-            Central atom radius: <input type='number' id='central'><br><br>
-            Bond length: <input type='number' id='bond'><br><br>
-            <input type='submit' value='Create Shape' id='shapeCreate' onclick='getParams()'>
-            </p>
+                <c:out value="${tip}"/>
+           </p>
           </div>
 
         </div>
@@ -135,8 +133,16 @@
 
       </div>
     </div>
+        
+        
   </div>
-</div>
+ </div>
+        
+     <div id="desc">
+            <jsp:include page="${descBox}" flush="true"/> 
+            
+        </div>   
+       
 </div>
  <script type = "text/javascript" src="js/appFunctions.js"></script>         
 </body>

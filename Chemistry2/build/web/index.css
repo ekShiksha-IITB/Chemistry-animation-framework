@@ -63,3 +63,22 @@ width:200px;
  input[type="radio"]{
   margin: 0 10px 0 10px;
 }
+
+/*for description*/
+
+#desc{
+    background-color:#E7ECEE;
+  margin-top:-230px;
+  margin-left:240px;
+  width:50%;
+  text-align:center;
+  
+   border-radius: 12px;
+   border: 2px solid #B7B9B0;
+}
+
+/* for question button */
+.question{
+    margin-left: 120px;
+    margin-bottom: 20px;
+   }

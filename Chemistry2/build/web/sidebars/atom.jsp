@@ -32,3 +32,4 @@ Atomic Number: <input type="number" name="atomic_number">
   <li onclick="addAtom('${an}','${element.k}','${element.l}','${element.m}','${element.n}','${element.o}','${element.p}','${element.q}', 2)"><a href='#'>Full View</a></li>
   </ul>
 </div>
+   <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48" height="48">
