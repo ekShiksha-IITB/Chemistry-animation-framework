@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="http://code.angularjs.org/1.1.5/angular.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script type = "text/javascript" src = "js/three.js"> </script>
     <script type = "text/javascript" src = "js/atom.js"> </script>
@@ -101,7 +100,6 @@
       <div width="700px" height ="800px" id="animationCanvas"></div>
             <!-- The Modal -->
         <div id="myModal" class="modal">
-
           <!-- Modal content -->
           <div class="modal-content">
             <span class="close">&times;</span>
@@ -133,16 +131,12 @@
 
       </div>
     </div>
-        
-        
   </div>
- </div>
-        
-     <div id="desc">
+</div>
+            <div id="desc">
             <jsp:include page="${descBox}" flush="true"/> 
             
-        </div>   
-       
+        </div>  
 </div>
  <script type = "text/javascript" src="js/appFunctions.js"></script>         
 </body>

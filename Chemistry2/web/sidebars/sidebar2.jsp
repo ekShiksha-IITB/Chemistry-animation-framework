@@ -35,4 +35,4 @@
     <div id="FCC" style="visibility: hidden" onclick="getLattice(2)"><a href='#'>Face-centred</a></div>
             
 </div>
- <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48" height="48">
+  <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48" height="48">

@@ -30,6 +30,10 @@ Atomic Number: <input type="number" name="atomic_number">
   <li onclick="addAtom('${an}','${element.k}','${element.l}','${element.m}','${element.n}','${element.o}','${element.p}','${element.q}', 3)"><a href='#'>Valence shell view</a></li>
   <li onclick="addAtom('${an}','${element.k}','${element.l}','${element.m}','${element.n}','${element.o}','${element.p}','${element.q}', 1)"><a href='#'>Electron view</a></li>
   <li onclick="addAtom('${an}','${element.k}','${element.l}','${element.m}','${element.n}','${element.o}','${element.p}','${element.q}', 2)"><a href='#'>Full View</a></li>
+
   </ul>
 </div>
+    <form method="Get" action="PeriodicServlet">
+        <input type="submit" value="Get Periodic table">
+    </form>
    <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48" height="48">

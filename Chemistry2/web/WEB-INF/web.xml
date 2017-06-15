@@ -8,6 +8,10 @@
         <servlet-name>DemoServlet</servlet-name>
         <servlet-class>Servlets.DemoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PeriodicServlet</servlet-name>
+        <servlet-class>Servlets.PeriodicServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ElementServlet</servlet-name>
         <url-pattern>/ElementServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>DemoServlet</servlet-name>
         <url-pattern>/DemoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PeriodicServlet</servlet-name>
+        <url-pattern>/PeriodicServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

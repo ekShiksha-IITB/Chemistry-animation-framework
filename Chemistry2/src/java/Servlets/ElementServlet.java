@@ -38,6 +38,7 @@ public class ElementServlet extends HttpServlet {
             request.setAttribute("an", an); // Will be available as ${element} in JSP
 
             request.setAttribute("element", element); // Will be available as ${element} in JSP
+            //request.getRequestDispatcher("/DemoServlet?option=1").forward(request, response);
             request.getRequestDispatcher("/DemoServlet?option=1").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();

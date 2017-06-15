@@ -15,7 +15,7 @@ import java.util.*;
 public class Element {
 
     private String name, symbol, type;
-    private int z,periodic_group,period,valence_electrons,k,l,m,n,o,p,q;
+    private int z,periodic_group,period,table_group,table_period,valence_electrons,k,l,m,n,o,p,q;
     private double molar_mass;
     
     public Element()
@@ -45,6 +45,14 @@ public class Element {
     public int getPeriod()
     {
         return period;
+    }
+    public int getTableGroup()
+    {
+        return table_group;
+    }
+    public int getTablePeriod()
+    {
+        return table_period;
     }
     public int getValenceElectrons()
     {
@@ -78,7 +86,7 @@ public class Element {
     {
         return molar_mass;
     }
-    public void setAll(String name,String symbol,String type, int z,int group,int period,int valence_electrons,int k,int l,int m,int n, int o,int p,int q,double molar_mass)
+    public void setAll(String name,String symbol,String type, int z,int group,int period,int table_group,int table_period,int valence_electrons,int k,int l,int m,int n, int o,int p,int q,double molar_mass)
     {
       this.name=name;
       this.symbol=symbol;
@@ -86,6 +94,8 @@ public class Element {
       this.z=z;
       this.periodic_group=group;
       this.period=period;
+      this.table_group=table_group;
+      this.table_period=table_period;
       this.valence_electrons=valence_electrons;
       this.k=k;
       this.l=l;
