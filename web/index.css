@@ -1,0 +1,159 @@
+ 
+  .sidebar-nav .navbar ul {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+.sidebar-nav .navbar li a:hover {
+   background-color:#fed528;
+  }
+ .sidebar-nav2{
+width:200px;
+ margin-left:160px;}
+ 
+ .sidebar-nav2 .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav2 .navbar li {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+                      /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+ input[type="radio"]{
+  margin: 0 10px 0 10px;
+}
+/*Periodic table*/
+    #info {
+            position: absolute;
+            width: 100%;
+            color: #ffffff;
+            padding: 5px;
+            font-family: Monospace;
+            font-size: 13px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1;
+    }
+            #menu {
+                    position: absolute;
+                    bottom: 20px;
+                    width: 100%;
+                    text-align: center;
+            }
+            .element {
+                    width: 120px;
+                    height: 160px;
+                    box-shadow: 0px 0px 12px rgba(255,127,0,0.5);
+                    border: 1px solid rgba(255,127,0,0.25);
+                    text-align: center;
+                    cursor: default;
+            }
+            .element:hover {
+                    box-shadow: 0px 0px 12px rgba(255,127,0,0.75);
+                    border: 1px solid rgba(127,255,255,0.75);
+            }
+            .element .number {
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                    font-size: 12px;
+                    color: rgba(255,255,0,0.75);
+            }
+            .element .symbol {
+                    position: absolute;
+                    top: 40px;
+                    left: 0px;
+                    right: 0px;
+                    font-size: 60px;
+                    font-weight: bold;
+                    color: rgba(255,255,0,0.75);
+                    text-shadow: 0 0 10px rgba(255,255,0,0.95);
+            }
+            .element .details {
+                    position: absolute;
+                    bottom: 15px;
+                    left: 0px;
+                    right: 0px;
+                    font-size: 12px;
+                    color: rgba(255,255,0,0.75);
+            }
+            button {
+                   /* color: rgba(255,255,0,0.75);*/
+                    background: transparent;
+                   /* outline: 1px solid rgba(255,255,0,0.75);*/
+                    border: 0px;
+                    padding: 5px 10px;
+                    cursor: pointer;
+            }
+    /*        button:hover {
+                    background-color: rgba(255,255,0,0.5);
+            }
+            button:active {
+                    color: #000000;
+                    background-color: rgba(255,255,0,0.75);
+            }*/
+/*for description*/
+
+#desc{
+    background-color:#E7ECEE;
+  margin-top:-230px;
+  margin-left:240px;
+  width:50%;
+  text-align:center;
+  
+   border-radius: 12px;
+   border: 2px solid #B7B9B0;
+}
+
+/* for question button */
+.question{
+    margin-left: 120px;
+    margin-bottom: 20px;
+   }
+   
+   /* for question button */
+.bullet{
+    width:38px;
+   height: 38px;
+   }
