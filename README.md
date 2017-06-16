@@ -12,15 +12,22 @@ The application can be run on any web browser that supports WebGL.
 
 Built With
 
-JSP- The web framework used
-MySQL database
-Three.js animations
+JSP- The web framework used<br />
+MySQL database<br />
+Three.js animations<br />
 
 Contributors
 
-Aishwarya Nair      https://github.com/MayTune
-Abhinaya S.B        https://github.com/grangergirl
-Srikanth Chekuri    https://github.com/srikanthchekuri
+Aishwarya Nair      https://github.com/MayTune<br />
+Abhinaya S.B        https://github.com/grangergirl<br />
+Srikanth Chekuri    https://github.com/srikanthchekuri<br />
+
+Features
+
+Supports animations on the following topics in Chemistry
+1) Structure of an atom : Different properties of elements, view of a periodic table<br />
+2) Chemical bonding     : The different shapes of the VSEPR theory<br />
+3) Crystal structure    : The different Bravais structures<br />
 
 Acknowledgments
 
