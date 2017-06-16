@@ -13,14 +13,12 @@
 <%@page import="DAO.TopicDAO"%>
 <%@page import="DAO.SubtopicDAO"%>
 <!DOCTYPE html>
-
         <center>
             <label>Compounds<br><br></label>
         
-            <select class="form-control" id="compound" onchange="createVSEPRShapes(this.value,this.value2)">
-            <option value="-1">Choose compound</option>
-            
-            <%
+            <select class="form-control" id="compound" onchange="createVSEPRShapes(this.value)">
+            <option value="-1">Choose compound</option>            
+            <%               
                 try
                 {
                    Connection connection = ConnectionFactory.getConnection();
@@ -29,7 +27,8 @@
             while(myRs.next())
             {
             %>
-            <option value="<%=myRs.getInt("shape_id")%>"><%=myRs.getString("compound_name")%></option>
+     
+            <option value="<%=myRs.getInt("shape_id")*10+myRs.getInt("lonepairs")%>"><%=myRs.getString("compound_name")%></option>
             
             <%
             }

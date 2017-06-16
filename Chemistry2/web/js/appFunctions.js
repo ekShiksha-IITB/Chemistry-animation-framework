@@ -69,20 +69,22 @@
                  addMonoclinicLattice(val);
         }
 
-        function createVSEPRShapes(val,lonepairs){
-            lonepairs=1;
-            if(val==1)
+        function createVSEPRShapes(val){
+            
+            var lonepairs=val%10;
+            var value=parseInt(val/10); 
+           if(value==1)
                 addLinearGeometry();
-            else if(val==2)
+            else if(value==2)
                 addTrigonalPlanarGeometry(lonepairs);         
-            else if(val==3)
+            else if(value==3)
                 addTetrahedralGeometry(lonepairs);
-            else if(val==4)
+            else if(value==4)
                 addTrigonalBipyramidalGeometry(lonepairs);
-            else if(val==5)
+            else if(value==5)
                 addOctahedralGeometry(lonepairs);
-            else if(val==6)
-                addPenatagonalBipyramidalGeometry(lonepairs);
+            else if(value==6)
+                addPentagonalBipyramidalGeometry(lonepairs);
         }
         function getParams()
         {

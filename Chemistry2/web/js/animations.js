@@ -114,7 +114,7 @@ function addTrigonalBipyramidalGeometry(noOfLonePair) {
 	shape.name = objectCount ;
 	scene.add(shape) ;
 }
-function addPenatagonalBipyramidalGeometry(noOfLonePair) {
+function addPentagonalBipyramidalGeometry(noOfLonePair) {
 	deleteObjects() ;
 	var ob = new PentagonalBipyramidal(0.3, 0.6, noOfLonePair) ;
 	++objectCount ;
