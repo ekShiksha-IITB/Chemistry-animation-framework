@@ -46,12 +46,12 @@
 		  <h2>Shapes</h2>
                   <div id='options'>
                   <ul class=" navbar-nav">
-            <li id="linear" onclick="createVSEPRShapes(1)"><a href='#'>Linear</a></li>
-            <li id="trigonal" onclick="createVSEPRShapes(2)"><a href='#'>Trigonal Planar</a></li>
-            <li id="tetrahedral" onclick="createVSEPRShapes(3)"><a href='#'>Tetrahedral</a></li>
-            <li id="pyramidal" onclick="createVSEPRShapes(4)"><a href='#'>Trigonal Bipyramidal</a></li>
-            <li id="octahedral" onclick="createVSEPRShapes(5)"><a href='#'>Octahedral</a></li>
-            <li id="pentpy" onclick="createVSEPRShapes(6)"><a href='#'>Pentagonal Bipyramidal</a></li>
+            <li id="linear" onclick="createVSEPRShapes(10)"><a href='#'>Linear</a></li>
+            <li id="trigonal" onclick="createVSEPRShapes(20)"><a href='#'>Trigonal Planar</a></li>
+            <li id="tetrahedral" onclick="createVSEPRShapes(30)"><a href='#'>Tetrahedral</a></li>
+            <li id="pyramidal" onclick="createVSEPRShapes(40)"><a href='#'>Trigonal Bipyramidal</a></li>
+            <li id="octahedral" onclick="createVSEPRShapes(50)"><a href='#'>Octahedral</a></li>
+            <li id="pentpy" onclick="createVSEPRShapes(60)"><a href='#'>Pentagonal Bipyramidal</a></li>
             </ul>
                       
                   </div>

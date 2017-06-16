@@ -26,6 +26,19 @@
 		<script src="js/tween.min.js"></script>
 		<script src="js/TrackballControls.js"></script>
 		<script src="js/CSS3DRenderer.js"></script>
+                <script src="js/atom.js"></script>
+                 <!-- The Modal -->
+                <div id="myModal" class="modal">
+                  <!-- Modal content -->
+                  <div class="modal-content">
+                    <span class="close">&times;</span>
+                    Select Atom View :<br><br>
+                    <input type="radio" name="option" onclick="setAtomView(3)"> Full view<br>
+                    <input type="radio" name="option" onclick="setAtomView(1)"> Electron view<br>
+                    <input type="radio" name="option" onclick="setAtomView(2)"> Valence shell view                   
+                  </div>
+                </div>
+
 
                 <div id="container">
 
@@ -33,6 +46,8 @@
 		
 		<div id="menu">
 			<button id="table">CREATE TABLE</button>
+                        <button id="atom">ATOM VIEW</button>
+
 			
 		</div>
 
@@ -43,13 +58,24 @@
 			var controls;
 			var objects = [];
 			var targets = { table: [] };
-			init();
-			animate();
-			function init() {
-				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
-				camera.position.z = 3000;
-				scene = new THREE.Scene();
-                                i=1;
+                        var objectCount=0;
+                        var atomView=-1;
+                        var ca={an:1,k:1,l:0,m:0,n:0,o:0,p:0,q:0};//current atom
+                        var modal = document.getElementById('myModal');
+                        var span = document.getElementsByClassName("close")[0];
+
+			//initTable(1);
+			//animate1();
+                        function setAtomView(val)
+                        {
+                            atomView=val;
+                            closeModal();
+                        }
+                        function getElementsReady(){
+                        camera.position.z = 3000;
+
+                        i=1;
+                                
                <c:forEach items="${elements}" var="element">
                         {
                    			var element = document.createElement( 'div' );
@@ -68,10 +94,24 @@
 					details.className = 'details';
 					details.innerHTML = "${element.getName()}" + '<br>' + "${element.getMolarMass()}";
 					element.appendChild( details );
+                                        element.k="${element.getK()}";
+                                        element.l="${element.getL()}";
+                                        element.m="${element.getM()}";
+                                        element.n="${element.getN()}";
+                                        element.o="${element.getO()}";
+                                        element.p="${element.getP()}";
+                                        element.q="${element.getQ()}";
+                                        element.an="${element.getAtomicNumber()}";
+                                        element.setAttribute("onclick", "addAtom("+element.an+","+element.k+","+element.l+","+element.m+","+element.n+","+element.n+","+element.o+","+element.p+","+element.q+",2)");
+
+
+                                        //element.onclick=addAtom(element.an,element.k,element.l,element.m,element.n,element.n,element.o,element.p,element.q,2);
+                                        ++objectCount;
 					var object = new THREE.CSS3DObject( element );
 					object.position.x = Math.random() * 4000 - 2000;
 					object.position.y = Math.random() * 4000 - 2000;
 					object.position.z = Math.random() * 4000 - 2000;
+                                        object.name=objectCount;
 					scene.add( object );
 					objects.push( object );
 					var object = new THREE.Object3D();
@@ -82,25 +122,35 @@
                     }
                 </c:forEach>
                 
+                        }
+                function initTable(val) {
+                camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 10000 );
+                scene = new THREE.Scene();
+               // getElementsReady();	
+                if(val==1)
+                renderer = new THREE.CSS3DRenderer();
+                else
+                renderer = new THREE.WebGLRenderer();   
+                renderer.setSize( window.innerWidth, window.innerHeight );
+                renderer.domElement.style.position = 'absolute';
+                document.getElementById( 'container' ).innerHTML='';
+                document.getElementById( 'container' ).appendChild( renderer.domElement );
+
+                controls = new THREE.TrackballControls( camera, renderer.domElement );
+                controls.rotateSpeed = 0.5;
+                //controls.minDistance = 500;
+                //controls.maxDistance = 6000;
+                controls.addEventListener( 'change', renderTable );
+                window.addEventListener('resize', onWindowResize, false);
+                onWindowResize();
+                var light = new THREE.AmbientLight( 0xffffff ); // white light
+                scene.add( light );	
+                var directionalLight = new THREE.DirectionalLight( 0xffffff );
+                directionalLight.position.set( 0, 10, 10 ).normalize();
+                scene.add(directionalLight);
 
 
-				
-				renderer = new THREE.CSS3DRenderer();
-				renderer.setSize( window.innerWidth, window.innerHeight );
-				renderer.domElement.style.position = 'absolute';
-				document.getElementById( 'container' ).appendChild( renderer.domElement );
-				
-				controls = new THREE.TrackballControls( camera, renderer.domElement );
-				controls.rotateSpeed = 0.5;
-				controls.minDistance = 500;
-				controls.maxDistance = 6000;
-				controls.addEventListener( 'change', render );
-				var button = document.getElementById( 'table' );
-				button.addEventListener( 'click', function ( event ) {
-					transform( targets.table, 2000 );
-				}, false );
-				
-			}
+        }
 			function transform( targets, duration ) {
 				TWEEN.removeAll();
 				for ( var i = 0; i < objects.length; i ++ ) {
@@ -117,23 +167,104 @@
 				}
 				new TWEEN.Tween( this )
 					.to( {}, duration * 2 )
-					.onUpdate( render )
+					.onUpdate( renderTable )
 					.start();
 			}
 			function onWindowResize() {
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
 				renderer.setSize( window.innerWidth, window.innerHeight );
-				render();
+				renderTable();
 			}
-			function animate() {
-				requestAnimationFrame( animate );
+			function animate1() {
+				requestAnimationFrame( animate1 );
 				TWEEN.update();
 				controls.update();
 			}
-			function render() {
+                        function animate2() {
+				requestAnimationFrame( animate2 );
+				controls.update();
+                                
+			}
+
+
+			function renderTable() {
 				renderer.render( scene, camera );
 			}
+
+                        function addAtom(atomicNumber, k, l, m, n, o, p, q) {
+                        ca.an=atomicNumber;
+                        ca.k=k;
+                        ca.l=l;
+                        ca.m=m;
+                        ca.n=n;
+                        ca.o=o;
+                        ca.p=p;
+                        ca.q=q;
+                        
+                        
+                        callAtom();
+                        
+                }
+                function callAtom()
+                {
+                        deleteObjects() ;
+                        initTable(2);
+                        animate2();                        
+                        camera.position.z = 8;  
+                        var ob = new Atom(ca.an, ca.k, ca.l, ca.m, ca.n, ca.o, ca.p, ca.q, atomView) ;
+                        var shape ;
+                        if(atomView == 1) {
+                                shape = ob.firstModel() ;
+                        } else if(atomView == 2) {
+                                shape = ob.thirdModel() ;
+                        } else {
+                                shape = ob.secondModel() ;
+                        }
+                        ++objectCount ;
+                        shape.name = objectCount ;                    
+                        console.log("Object count ",objectCount);
+                        scene.add(shape) ;
+                        document.getElementById( 'table' ).visibility="visible";
+                }
+                
+                function deleteObjects() {
+	while(objectCount > 0) {
+		scene.remove(scene.getObjectByName(objectCount)) ;
+		--objectCount ;
+	}
+    }
+     
+    var button = document.getElementById( 'table' );
+    button.addEventListener( 'click', function ( event ) {
+            deleteObjects();
+            initTable(1);
+            animate1();
+            getElementsReady();
+            transform( targets.table, 2000 );
+    button.visibility="hidden";
+    }, false );
+    var viewButton = document.getElementById( 'atom' );
+    viewButton.addEventListener( 'click', function ( event ) {
+        openModal();
+    }, false );
+                                
+                                
+     span.onclick = function () {
+            modal.style.display = "none";
+            callAtom();
+        };
+        function closeModal() {
+            modal.style.display = "none";
+            deleteObjects();
+            callAtom();
+            button.visibility="visible";
+            
+        };
+
+            function openModal(val) {
+            modal.style.display = "block";
+          }
 		</script>
 	</body>
 </html>

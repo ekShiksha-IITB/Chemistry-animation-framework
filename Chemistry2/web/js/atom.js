@@ -59,6 +59,7 @@ function firstModel() {
 }
 function secondModel() {
 	/*electrons distribution*/
+        console.log("Hey second model");
 	var noOfElectrons = this.atomicNumber ;
 	var group = new THREE.Group() , i = 1, r = 0.9;
 	var nucleus = new THREE.Group() ;
@@ -114,6 +115,8 @@ function secondModel() {
 	return group ;	
 }
 function thirdModel() {
+            console.log("Hey there");
+
 	var noOfElectrons = this.atomicNumber ;
 	var group = new THREE.Group() , i = 1, r = 0.9;
 	var nucleus = new THREE.Mesh(

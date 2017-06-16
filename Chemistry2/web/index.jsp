@@ -4,12 +4,50 @@
     Author     : abhi
 --%>
 
+<%@page import="DAO.SubtopicDAO"%>
 <%@page import="Objects.Subtopic"%>
 <%@page import="Objects.Topic"%>
 <%@page import="java.util.*"%>
 <%@page import="DAO.TopicDAO"%>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    int count = -1;
+    if(request.getParameter("option")!=null)
+     count=Integer.parseInt(request.getParameter("option"));
+    String sidebar="sidebars/generic.jsp";
+    String description="xyz";
+    String tip="No tip";
+    try{
+    SubtopicDAO subtopicDAO=new SubtopicDAO();
+           Subtopic subtopic=subtopicDAO.getSubtopicWithId(count);
+           description=subtopic.getDescription();
+           if(description==null)
+               description="No content available";
+           
+           tip=subtopic.getTip();
+           if(count==1)
+    {
+        sidebar="sidebars/atom.jsp";
+    }
+    else if(count==3)
+    {
+        sidebar="sidebars/sidebar.jsp";
+    }
+    else if(count==4)
+    {
+        sidebar="sidebars/sidebar2.jsp";
+    }
+    else
+    {
+        sidebar="sidebars/generic.jsp";
+    }
+    }
+    catch(Exception e)
+    {
+        e.printStackTrace();
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,11 +70,7 @@
     <link rel="stylesheet" href="index.css">
   </head>
   <body onload="init()">
-      <%  
-session.setAttribute("somePage","sidebars/generic.jsp");  
-session.setAttribute("descBox","descriptions/generic.jsp");  
 
-    %>
   <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -74,7 +108,7 @@ session.setAttribute("descBox","descriptions/generic.jsp");
           <span class="visible-xs navbar-brand">Choose your topic</span>
         </div>
          <div class="navbar-collapse collapse sidebar-navbar-collapse">
-         <form method="Get" action="DemoServlet">
+         <form method="Get" action="index.jsp">
             <table>
             <%  
                     TopicDAO topicDAO=new TopicDAO();
@@ -90,7 +124,6 @@ session.setAttribute("descBox","descriptions/generic.jsp");
             {
                 %>
                 <tr>
-                    <!--<td><p><li><input type="image" src="Images/button.png" height="38" width="38" value="<%=subtopics.get(j).getSubId()%>" name="option" type="submit" ><%= subtopics.get(j).getSubtopicName()%><li></p></td>-->
                     <td><p><li><button type="submit" name="option" value="<%=subtopics.get(j).getSubId()%>"> <img src="Images/button.png" height="38" width="38" ></button><%= subtopics.get(j).getSubtopicName()%><li></p></td>
                 <tr>  
                 </tr>
@@ -110,7 +143,7 @@ session.setAttribute("descBox","descriptions/generic.jsp");
           <div class="modal-content">
             <span class="close">&times;</span>
             <p id="modalinnerContent">
-                <c:out value="${tip}"/>
+                <%= tip %>
            </p>
           </div>
 
@@ -132,7 +165,7 @@ session.setAttribute("descBox","descriptions/generic.jsp");
 
       <div class="navbar-collapse collapse sidebar-navbar-collapse"  id="sidebar">
                 <!--Content goes here -->
-                <jsp:include page="${somePage}" flush="true"/>  
+                <jsp:include page="<%= sidebar %>" flush="true"/>  
         </div>
 
       </div>
@@ -140,8 +173,10 @@ session.setAttribute("descBox","descriptions/generic.jsp");
   </div>
 </div>
             <div id="desc">
-            <jsp:include page="${descBox}" flush="true"/> 
-            
+                <p>
+<strong>Description:</strong>
+       <%= description %>       
+            </p>      
         </div>  
 </div>
  <script type = "text/javascript" src="js/appFunctions.js"></script>         

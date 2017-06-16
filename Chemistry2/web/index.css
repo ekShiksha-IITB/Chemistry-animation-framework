@@ -119,53 +119,35 @@ width:200px;
                     color: rgba(255,255,0,0.75);
             }
             button {
+                    color: rgba(255,255,0,0.75);
                     background: transparent;
                     border: 0px;
                     padding: 5px 10px;
                     cursor: pointer;
             }
-   
-    
-    
-            #table{
-                   color: rgba(255,255,0,0.75);
+           #table,#atom {
+                    color: rgba(255,255,0,0.75);
                     background: transparent;
-                   outline: 1px solid rgba(255,255,0,0.75);
+                    outline: 1px solid rgba(255,255,0,0.75);
                     border: 0px;
                     padding: 5px 10px;
                     cursor: pointer;
             }
-            #table:hover {
-                    background-color: rgba(255,255,0,0.5);
-            }
-            #table:active {
-                    color: #000000;
-                    background-color: rgba(255,255,0,0.75);
-            }
-    
-    
-    
-            /*for description*/
 
-            #desc{
-                background-color:#E7ECEE;
-              margin-top:-230px;
-              margin-left:240px;
-              width:50%;
-              text-align:center;
+/*for description*/
 
-               border-radius: 12px;
-               border: 2px solid #B7B9B0;
-            }
+#desc{
+    background-color:#E7ECEE;
+  margin-top:-230px;
+  margin-left:240px;
+  width:50%;
+  text-align:center;  
+   border-radius: 12px;
+   border: 2px solid #B7B9B0;
+}
 
-            /* for question button */
-            .question{
-                margin-left: 120px;
-                margin-bottom: 20px;
-               }
-
-               /* for button */
-            .bullet{
-                width:38px;
-               height: 38px;
-               }
+/* for question button */
+.question{
+    margin-left: 120px;
+    margin-bottom: 20px;
+   }
