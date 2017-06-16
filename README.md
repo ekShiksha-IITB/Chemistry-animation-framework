@@ -27,7 +27,7 @@ Features
 Supports animations on the following topics in Chemistry
 1) Structure of an atom : Different properties of elements, view of a periodic table<br />
 2) Chemical bonding     : The different shapes of the VSEPR theory<br />
-3) Crystal structure    : The different Bravais structures<br />
+3) Crystal structure    : The different Bravais lattices<br />
 
 Acknowledgments
 
