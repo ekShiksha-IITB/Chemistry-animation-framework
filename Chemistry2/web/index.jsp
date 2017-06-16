@@ -32,6 +32,11 @@
     <link rel="stylesheet" href="index.css">
   </head>
   <body onload="init()">
+      <%  
+session.setAttribute("somePage","sidebars/generic.jsp");  
+session.setAttribute("descBox","descriptions/generic.jsp");  
+
+    %>
   <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -85,7 +90,8 @@
             {
                 %>
                 <tr>
-                    <td><p><li><input value="<%=subtopics.get(j).getSubId()%>" name="option" type="submit" ><%= subtopics.get(j).getSubtopicName()%><li></p></td>
+                    <!--<td><p><li><input type="image" src="Images/button.png" height="38" width="38" value="<%=subtopics.get(j).getSubId()%>" name="option" type="submit" ><%= subtopics.get(j).getSubtopicName()%><li></p></td>-->
+                    <td><p><li><button type="submit" name="option" value="<%=subtopics.get(j).getSubId()%>"> <img src="Images/button.png" height="38" width="38" ></button><%= subtopics.get(j).getSubtopicName()%><li></p></td>
                 <tr>  
                 </tr>
                 <%}}%>

@@ -7,12 +7,17 @@
 <%@page import="ConnectionUtil.ConnectionFactory"%>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Objects.Subtopic"%>
+<%@page import="Objects.Topic"%>
+<%@page import="java.util.*"%>
+<%@page import="DAO.TopicDAO"%>
+<%@page import="DAO.SubtopicDAO"%>
 <!DOCTYPE html>
 
         <center>
             <label>Compounds<br><br></label>
         
-            <select class="form-control" id="compound" onchange="createVSEPRShapes(this.value)">
+            <select class="form-control" id="compound" onchange="createVSEPRShapes(this.value,this.value2)">
             <option value="-1">Choose compound</option>
             
             <%
@@ -24,7 +29,7 @@
             while(myRs.next())
             {
             %>
-            <option value="<%=myRs.getInt("shape_id")%>" ><%=myRs.getString("compound_name")%></option>
+            <option value="<%=myRs.getInt("shape_id")%>"><%=myRs.getString("compound_name")%></option>
             
             <%
             }
@@ -53,5 +58,4 @@
                   </div>
           
           </div>
-
-  <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48" height="48">
+         <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48" height="48">

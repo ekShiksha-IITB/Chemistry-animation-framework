@@ -69,8 +69,8 @@
                  addMonoclinicLattice(val);
         }
 
-        function createVSEPRShapes(val){
-            var lonepairs=1;
+        function createVSEPRShapes(val,lonepairs){
+            lonepairs=1;
             if(val==1)
                 addLinearGeometry();
             else if(val==2)
