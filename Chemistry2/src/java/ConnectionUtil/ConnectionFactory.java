@@ -13,8 +13,8 @@ public class ConnectionFactory {
     //static reference to itself
     private static ConnectionFactory instance = new ConnectionFactory();
     public static final String URL = "jdbc:mysql://localhost/Chemistry2";
-    public static final String USER = "root";
-    public static final String PASSWORD = "shoot";
+    public static final String USER = "chemistry";
+    public static final String PASSWORD = "chemistry123";
     public static final String DRIVER_CLASS = "com.mysql.jdbc.Driver"; 
      
     //private constructor

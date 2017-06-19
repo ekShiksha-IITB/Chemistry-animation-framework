@@ -53,6 +53,7 @@ public class VSEPRServlet extends HttpServlet {
         request.getRequestDispatcher("index.jsp?option=3").forward(request, response);
                 }
             catch (Exception e){
+                response.sendRedirect("index.jsp?option=3");
             pw.println(e);
             }
           }
