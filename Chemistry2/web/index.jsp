@@ -9,6 +9,7 @@
 <%@page import="Objects.Topic"%>
 <%@page import="java.util.*"%>
 <%@page import="DAO.TopicDAO"%>
+<%@page import="DAO.VSEPRDAO"%>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -48,6 +49,7 @@
         e.printStackTrace();
     }
 %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -141,6 +143,7 @@
         <div id="myModal" class="modal">
           <!-- Modal content -->
           <div class="modal-content">
+          
             <span class="close">&times;</span>
             <p id="modalinnerContent">
                 <%= tip %>
@@ -148,8 +151,31 @@
           </div>
 
         </div>
-  </div>
+           
+           
+            <div id="id01" class="modal">
+                <div class="modal-content">
+      <span class="close">&times;</span>
+     
+      <p id="modalinnerContent">
+          
+          <form method="post" action="VSEPRServlet">
+            <table>
+            <tr><td>Compound name:</td><td><input type="text" name="cname"></td></tr>
+            <tr><td>Total electron pairs:</td><td><input type="number" name="ep"></td></tr>
+            <tr><td>Lone pairs:</td><td><input type="number" name="lp"></td></tr>
+            <tr><td>Shape:</td><td><input type="text" name="shape"></td></tr>
+            <tr><td></td><td><input type="submit" value="Submit"></td></tr>
+            </table>
+            </form>
+          <c:out value="${message}"/>
+       </p>
+       </div>
+</div>
+</div>
   
+           
+           
    <div class="col-sm-3">
     <div class="sidebar-nav2">
       <div class="navbar navbar-default" role="navigation">

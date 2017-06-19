@@ -1,4 +1,3 @@
-
 var scene = new THREE.Scene();
 var objectCount = 0 ;
 function init() {
@@ -60,7 +59,6 @@ function init() {
 	//deleteObjects() ;
 }
 function addAtom(atomicNumber, k, l, m, n, o, p, q, model) {
-        objectCount
 	deleteObjects() ;
         console.log(atomicNumber,k,l);
 	var ob = new Atom(atomicNumber, k, l, m, n, o, p, q, model) ;
@@ -170,4 +168,5 @@ function deleteObjects() {
 		--objectCount ;
 	}
 }
+
 

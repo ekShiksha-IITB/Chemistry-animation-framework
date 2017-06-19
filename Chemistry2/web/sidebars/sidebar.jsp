@@ -14,6 +14,7 @@
 <%@page import="DAO.SubtopicDAO"%>
 <!DOCTYPE html>
         <center>
+            <input type="image" class="plus" onclick="openModal(2)" src="Images/plus.png" alt="Submit" width="40" height="40">
             <label>Compounds<br><br></label>
         
             <select class="form-control" id="compound" onchange="createVSEPRShapes(this.value)">
@@ -58,3 +59,4 @@
           
           </div>
          <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48" height="48">
+         

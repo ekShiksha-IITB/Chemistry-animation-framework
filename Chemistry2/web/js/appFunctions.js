@@ -9,6 +9,13 @@
         span.onclick = function closeModal() {
             modal.style.display = "none";
         };
+        
+        var modal1 = document.getElementById('id01');
+        var span1 = document.getElementsByClassName("close")[1];
+        span1.onclick = function closeModal() {
+            modal1.style.display = "none";
+        };
+        
 
         function getAtom(val)
         {
@@ -69,7 +76,7 @@
                  addMonoclinicLattice(val);
         }
 
-               function createVSEPRShapes(val){
+        function createVSEPRShapes(val){
             
             var lonepairs=val%10;
             var value=parseInt(val/10); 
@@ -94,7 +101,10 @@
           createShapes(value);
           }
         function openModal(val) {
+            if(val==1)
             modal.style.display = "block";
+            else if(val==2)
+              document.getElementById('id01').style.display='block';
           }
 
     
