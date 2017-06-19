@@ -7,71 +7,57 @@ package Servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import DAO.SubtopicDAO;
-import Objects.Subtopic;
-
+import ConnectionUtil.ConnectionFactory;
+import DAO.VSEPRDAO;
 /**
  *
- * @author abhi
+ * @author aishwarya
  */
-public class DemoServlet extends HttpServlet {
+public class VSEPRServlet extends HttpServlet {
 
-     int count=-1;
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
-        System.out.print("In here");
-    if(request.getParameter("option")!=null)
-     count=Integer.parseInt(request.getParameter("option"));
-    String sidebar="sidebars/generic.jsp";
-    String descBox="descriptions/generic.jsp";
-    String description="xyz";
-    String tip="No tip";
-    try{
-        System.out.print("Trying");
-    SubtopicDAO subtopicDAO=new SubtopicDAO();
-           Subtopic subtopic=subtopicDAO.getSubtopicWithId(count);
-           description=subtopic.getDescription();
-           
-           tip=subtopic.getTip();
-           
-    }
-    catch(Exception e)
-    {
-        e.printStackTrace();
-        System.out.print("Catching");
-    }
-    if(count==1)
-    {
-        sidebar="sidebars/atom.jsp";
-    }
-    else if(count==3)
-    {
-        sidebar="sidebars/sidebar.jsp";
-    }
-    else if(count==4)
-    {
-        sidebar="sidebars/sidebar2.jsp";
-    }
-    else
-    {
-        sidebar="sidebars/generic.jsp";
-    }
-    
+        String message="NULL";
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter pw = response.getWriter()) {
+            try{
+            String cname = request.getParameter("cname");
+            int ep = Integer.parseInt(request.getParameter("ep"));
+            int lp = Integer.parseInt(request.getParameter("lp"));
+            String shape=request.getParameter("shape");
+            VSEPRDAO vseprDAO=new VSEPRDAO();
             
-           
-            request.setAttribute("tip",tip );
-           
-    
-            request.setAttribute("descBox",descBox );
-            request.setAttribute("description",description);
-            request.setAttribute("somePage",sidebar );
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            int status=vseprDAO.addCompound(cname, ep, lp,shape);
             
+            if(status!=0)
+            message="Data is successfully inserted!";
+            else{
+            message="Failed to insert the data";
+            }
+            request.setAttribute("message",message);
+        request.getRequestDispatcher("index.jsp?option=3").forward(request, response);
+                }
+            catch (Exception e){
+            pw.println(e);
+            }
+          }
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
