@@ -1,4 +1,4 @@
- 
+
   .sidebar-nav .navbar ul {
     float: none;
     display: block;
@@ -26,6 +26,16 @@ width:200px;
     padding-top: 12px;
     padding-bottom: 12px;
   }
+  
+  .navbar-collapse collapse sidebar-navbar-collapse
+  {
+      background-color: #8bc1c3; 
+  }
+  
+  
+  #sidebar{
+       background-color: #8bc1c3; 
+  }
                       /* The Modal (background) */
         .modal {
             display: none; /* Hidden by default */
@@ -41,7 +51,7 @@ width:200px;
         }
         /* Modal Content/Box */
         .modal-content {
-            background-color: #fefefe;
+            background-color: #8bc1c3;
             margin: 15% auto; /* 15% from the top and centered */
             padding: 20px;
             border: 1px solid #888;
@@ -134,8 +144,8 @@ width:200px;
             /*for description*/
 
             #desc{
-                background-color:#E7ECEE;
-              margin-top:-230px;
+              background-color: #8bc1c3; 
+              margin-top:-400px;
               margin-left:240px;
               width:50%;
               text-align:center;

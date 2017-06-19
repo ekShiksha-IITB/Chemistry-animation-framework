@@ -27,10 +27,14 @@
                description="No content available";
            
            tip=subtopic.getTip();
-           if(count==1)
+    if(count==1)
     {
-        sidebar="sidebars/atom.jsp";
+       sidebar="sidebars/atom.jsp";
     }
+    else if(count==2)
+           {
+              sidebar="sidebars/sidebarEE.jsp"; 
+           }
     else if(count==3)
     {
         sidebar="sidebars/sidebar.jsp";
@@ -48,6 +52,7 @@
     {
         e.printStackTrace();
     }
+    
 %>
 
 <!DOCTYPE html>
@@ -71,7 +76,7 @@
     <%@include file="jspFunctions.jsp"%>
     <link rel="stylesheet" href="index.css">
   </head>
-  <body onload="init()">
+  <body onload="init()" background="Images/back.jpg">
 
   <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -154,6 +159,7 @@
            
            
             <div id="id01" class="modal">
+                
                 <div class="modal-content">
       <span class="close">&times;</span>
      
@@ -171,6 +177,7 @@
           <c:out value="${message}"/>
        </p>
        </div>
+              
 </div>
 </div>
   
@@ -199,8 +206,8 @@
   </div>
 </div>
             <div id="desc">
-                <p>
-<strong>Description:</strong>
+                <p style="font-size: 18px">
+        <strong>Description:</strong>
        <%= description %>       
             </p>      
         </div>  

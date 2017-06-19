@@ -7,11 +7,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <script type = "text/javascript" src = "js/animations.js"> </script>
-
+    <body bgcolor="#8bc1c3">
 <form method="Post" action="ElementServlet" >
 Atomic Number: <input type="number" name="atomic_number">
-        <input type='submit' value="Go" />
-        
+        <input type='submit' value="Go" />    
         <br><br> Details<br>
        Name: <c:out value="${element.name}" /><br>
      Symbol: <c:out value="${element.symbol}" /><br>
@@ -37,3 +36,4 @@ Atomic Number: <input type="number" name="atomic_number">
         <input type="submit" value="Get Periodic table">
     </form>
    <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48" height="48">
+    </body>

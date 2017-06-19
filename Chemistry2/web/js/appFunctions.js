@@ -16,6 +16,14 @@
             modal1.style.display = "none";
         };
         
+        function excitation()
+        {
+            var l1=document.getElementById("l1").value;
+            l1=parseInt(l1);
+            var l2=document.getElementById("l2").value;
+            l2=parseInt(l2);
+            alert(l1+l2);
+        }
 
         function getAtom(val)
         {
