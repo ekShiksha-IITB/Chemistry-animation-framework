@@ -114,7 +114,7 @@
           </button>
           <span class="visible-xs navbar-brand">Choose your topic</span>
         </div>
-         <div class="navbar-collapse collapse sidebar-navbar-collapse">
+         <div class="navbar-collapse collapse sidebar-navbar-collapse" style="background-color: #8bc1c3">
          <form method="Get" action="index.jsp">
             <table>
             <%  

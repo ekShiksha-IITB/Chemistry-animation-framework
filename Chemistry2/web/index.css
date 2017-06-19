@@ -1,5 +1,4 @@
-
-  .sidebar-nav .navbar ul {
+.sidebar-nav .navbar ul {
     float: none;
     display: block;
   }
@@ -182,3 +181,15 @@ width:200px;
                     padding: 5px 10px;
                     cursor: pointer;
             }
+#tooltip{
+    position: absolute;
+    color: #fed528;
+    display: none;
+    z-index: 1900;
+    font-family: Verdana, sans-serif;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+}
+
+           

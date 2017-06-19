@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : sidebarEE
     Created on : 19 Jun, 2017, 1:17:45 PM
@@ -12,6 +13,3 @@
     Level 2:<input type="number" id="l2" name="level_2">
     <input type='submit' value="Go" onclick="excitation()" />   
         <br><br>
-
-        
-

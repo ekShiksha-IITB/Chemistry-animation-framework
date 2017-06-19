@@ -40,11 +40,9 @@ function Atom(atomicNumber, k, l, m, n, o, p, q) {
 function firstModel() {
 	var noOfElectrons = this.atomicNumber ;
 	var group = new THREE.Group() , i = 1, r = 0.9;
-        var material = new THREE.MeshPhongMaterial( { ambient: 0x050505, color: 0xffdae30, specular: 0x555555, shininess: 30 } );
-	
 	var nucleus = new THREE.Mesh(
 		new THREE.SphereBufferGeometry(0.4, 32, 32),
-		material
+		new THREE.MeshBasicMaterial({color : 0xffdae3})
 	);
 	++objectCount ;
 	nucleus.name = objectCount ;
@@ -61,6 +59,7 @@ function firstModel() {
 }
 function secondModel() {
 	/*electrons distribution*/
+        console.log("Hey second model");
 	var noOfElectrons = this.atomicNumber ;
 	var group = new THREE.Group() , i = 1, r = 0.9;
 	var nucleus = new THREE.Group() ;
@@ -116,6 +115,8 @@ function secondModel() {
 	return group ;	
 }
 function thirdModel() {
+            console.log("Hey there");
+
 	var noOfElectrons = this.atomicNumber ;
 	var group = new THREE.Group() , i = 1, r = 0.9;
 	var nucleus = new THREE.Mesh(

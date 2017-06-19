@@ -1,3 +1,4 @@
+
 var scene = new THREE.Scene();
 var objectCount = 0 ;
 function init() {
@@ -59,6 +60,7 @@ function init() {
 	//deleteObjects() ;
 }
 function addAtom(atomicNumber, k, l, m, n, o, p, q, model) {
+        objectCount
 	deleteObjects() ;
         console.log(atomicNumber,k,l);
 	var ob = new Atom(atomicNumber, k, l, m, n, o, p, q, model) ;
@@ -73,6 +75,12 @@ function addAtom(atomicNumber, k, l, m, n, o, p, q, model) {
 	++objectCount ;
 	shape.name = objectCount ;
 	scene.add(shape) ;
+        function atom_rotation() {
+                        shape.rotation.z += 0.01 ;
+                        requestAnimationFrame(atom_rotation) ;
+                     //   render() ;
+                }
+                atom_rotation() ;
 }
 function addLinearGeometry() {
 	deleteObjects() ;
@@ -168,5 +176,4 @@ function deleteObjects() {
 		--objectCount ;
 	}
 }
-
 

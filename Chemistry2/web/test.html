@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+       <style type="text/css">
+  #div1, #div2, #div3 {  
+    visibility: hidden;  
+  }
+</style>
+<script>
+  function show(id) {
+    document.getElementById(id).style.visibility = "visible";
+  }
+  function hide(id) {
+    document.getElementById(id).style.visibility = "hidden";
+  }
+</script>
+
+<div onMouseOver="show('div1')" onMouseOut="hide('div1')">Click to see div 1
+  <div id="div1">Div 1 Content</div>
+</div>
+<div onMouseOver="show('div2')" onMouseOut="hide('div2')">Click to see div 2
+  <div id="div2">Div 2 Content</div>
+</div>
+<div onMouseOver="show('div3')" onMouseOut="hide('div3')">Click to see div 3
+  <div id="div3">Div 3 Content</div>
+</div>
+
+    </body>
+</html>

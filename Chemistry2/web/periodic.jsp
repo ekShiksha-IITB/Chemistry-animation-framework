@@ -3,6 +3,7 @@
 	<head>
 		<title>Periodic table</title>
 		<meta charset="utf-8">
+
 		<link rel="stylesheet" href="index.css">
                 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
                 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -38,6 +39,7 @@
                     <input type="radio" name="option" onclick="setAtomView(2)"> Valence shell view                   
                   </div>
                 </div>
+                <span id="tooltip"></span>
 
 
                 <div id="container">
@@ -53,6 +55,7 @@
 
 		<script>
 		
+
 			var camera, scene, renderer;
 			var controls;
 			var objects = [];
@@ -62,6 +65,7 @@
                         var ca={an:1,k:1,l:0,m:0,n:0,o:0,p:0,q:0};//current atom
                         var modal = document.getElementById('myModal');
                         var span = document.getElementsByClassName("close")[0];
+
 			//initTable(1);
 			//animate1();
                         function setAtomView(val)
@@ -69,50 +73,76 @@
                             atomView=val;
                             closeModal();
                         }
+                        function showTooltip(element) {
+                        document.getElementById("tooltip").innerHTML=element.name+" ("+element.symbol+")<br>";
+                        document.getElementById("tooltip").innerHTML+= "Group:  "+element.group+"<br>";
+                        document.getElementById("tooltip").innerHTML+= "Period: "+element.period+"<br>";
+                        document.getElementById("tooltip").innerHTML+= "Mass:   "+element.mass+"<br>";
+                        document.getElementById("tooltip").innerHTML+= "Electronic <br>";
+                        document.getElementById("tooltip").innerHTML+= "Configuration: "+element.k+","+element.l+","+element.m+","+element.n+","+element.o+","+element.p+","+element.q+"<br>";
+
+                        document.getElementById("tooltip").style.display="block";
+                       }
+
+                       function hideTooltip() {
+                        document.getElementById("tooltip").style.display="none";
+                       }
                         function getElementsReady(){
                         camera.position.z = 3000;
+
                         i=1;
                                 
                <c:forEach items="${elements}" var="element">
                         {
-                   			var element = document.createElement( 'div' );
-					element.className = 'element';
-					//element.style.backgroundColor = 'rgba(127,127,0,' + ( Math.random() * 0.5 + 0.25 ) + ')';
-					element.style.backgroundColor = 'rgba(255,127,0,0.75)';
-					var number = document.createElement( 'div' );
-					number.className = 'number';
-					number.textContent =i;
-					element.appendChild( number );
-					var symbol = document.createElement( 'div' );
-					symbol.className = 'symbol';
-					symbol.textContent = "${element.getSymbol()}";
-					element.appendChild( symbol );
-					var details = document.createElement( 'div' );
-					details.className = 'details';
-					details.innerHTML = "${element.getName()}" + '<br>' + "${element.getMolarMass()}";
-					element.appendChild( details );
-                                        element.k="${element.getK()}";
-                                        element.l="${element.getL()}";
-                                        element.m="${element.getM()}";
-                                        element.n="${element.getN()}";
-                                        element.o="${element.getO()}";
-                                        element.p="${element.getP()}";
-                                        element.q="${element.getQ()}";
-                                        element.an="${element.getAtomicNumber()}";
-                                        element.setAttribute("onclick", "addAtom("+element.an+","+element.k+","+element.l+","+element.m+","+element.n+","+element.n+","+element.o+","+element.p+","+element.q+",2)");
-                                        //element.onclick=addAtom(element.an,element.k,element.l,element.m,element.n,element.n,element.o,element.p,element.q,2);
-                                        ++objectCount;
-					var object = new THREE.CSS3DObject( element );
-					object.position.x = Math.random() * 4000 - 2000;
-					object.position.y = Math.random() * 4000 - 2000;
-					object.position.z = Math.random() * 4000 - 2000;
-                                        object.name=objectCount;
-					scene.add( object );
-					objects.push( object );
-					var object = new THREE.Object3D();
-					object.position.x = ( "${element.getTableGroup()}" * 140 ) - 1330;
-					object.position.y = - ( "${element.getTablePeriod()}" * 180 ) + 990;
-					targets.table.push( object );
+                        var element = document.createElement( 'div' );
+                        element.className = 'element tooltip';
+                        element.k="${element.getK()}";
+                        element.l="${element.getL()}";
+                        element.m="${element.getM()}";
+                        element.n="${element.getN()}";
+                        element.o="${element.getO()}";
+                        element.p="${element.getP()}";
+                        element.q="${element.getQ()}";
+                        element.an="${element.getAtomicNumber()}";
+                        element.type="${element.getType()}";
+                        element.group="${element.getGroup()}"
+                        element.period="${element.getPeriod()}";
+                        element.mass="${element.getMolarMass()}";
+                        element.name="${element.getName()}";
+                        element.symbol="${element.getSymbol()}";
+
+                        //element.style.backgroundColor = 'rgba(127,127,0,' + ( Math.random() * 0.5 + 0.25 ) + ')';
+                        element.style.backgroundColor = 'rgba(' + (parseInt(250/(19-element.group)) ) + ',' + (  (18-element.group)*15 ) + ',' + (parseInt((18-element.group)*(18-element.group)/0.9)) + ',' + ( 0.75) + ')';
+                        var number = document.createElement( 'div' );
+                        number.className = 'number';
+                        number.textContent =i;
+                        element.appendChild( number );
+                        var symbol = document.createElement( 'div' );
+                        symbol.className = 'symbol';
+                        symbol.textContent = "${element.getSymbol()}";
+                        element.appendChild( symbol );
+                        var details = document.createElement( 'div' );
+                        details.className = 'details';
+                        details.innerHTML = "${element.getName()}" + '<br>' + "${element.getMolarMass()}";
+                        element.appendChild( details );
+                        
+                        element.setAttribute("onMouseOver","showTooltip(this)");
+                        element.setAttribute("onMouseOut","hideTooltip()");
+                        element.setAttribute("onclick", "addAtom("+element.an+","+element.k+","+element.l+","+element.m+","+element.n+","+element.n+","+element.o+","+element.p+","+element.q+",2)");
+
+
+                        ++objectCount;
+                        var object = new THREE.CSS3DObject( element );
+                        object.position.x = Math.random() * 4000 - 2000;
+                        object.position.y = Math.random() * 4000 - 2000;
+                        object.position.z = Math.random() * 4000 - 2000;
+                        object.name=objectCount;
+                        scene.add( object );
+                        objects.push( object );
+                        var object = new THREE.Object3D();
+                        object.position.x = ( "${element.getTableGroup()}" * 140 ) - 1330;
+                        object.position.y = - ( "${element.getTablePeriod()}" * 180 ) + 990;
+                        targets.table.push( object );
                         i++;
                     }
                 </c:forEach>
@@ -130,6 +160,7 @@
                 renderer.domElement.style.position = 'absolute';
                 document.getElementById( 'container' ).innerHTML='';
                 document.getElementById( 'container' ).appendChild( renderer.domElement );
+
                 controls = new THREE.TrackballControls( camera, renderer.domElement );
                 controls.rotateSpeed = 0.5;
                 //controls.minDistance = 500;
@@ -142,6 +173,8 @@
                 var directionalLight = new THREE.DirectionalLight( 0xffffff );
                 directionalLight.position.set( 0, 10, 10 ).normalize();
                 scene.add(directionalLight);
+
+
         }
 			function transform( targets, duration ) {
 				TWEEN.removeAll();
@@ -174,13 +207,18 @@
 				controls.update();
 			}
                         function animate2() {
-				requestAnimationFrame( animate2 );
-				controls.update();
-                                
+			controls.update();
+                        //scene.getObjectByName(objectCount).rotation.z+=0.01;  
+                        //renderer.render(scene, camera);
+                        requestAnimationFrame( animate2 );                                
 			}
+
+
+
 			function renderTable() {
 				renderer.render( scene, camera );
 			}
+
                         function addAtom(atomicNumber, k, l, m, n, o, p, q) {
                         ca.an=atomicNumber;
                         ca.k=k;
@@ -199,7 +237,6 @@
                 {
                         deleteObjects() ;
                         initTable(2);
-                        animate2();                        
                         camera.position.z = 8;  
                         var ob = new Atom(ca.an, ca.k, ca.l, ca.m, ca.n, ca.o, ca.p, ca.q, atomView) ;
                         var shape ;
@@ -212,8 +249,17 @@
                         }
                         ++objectCount ;
                         shape.name = objectCount ;                    
-                        console.log("Object count ",objectCount);
+                        //console.log("Object count ",objectCount);
                         scene.add(shape) ;
+                        function atom_rotation() {
+                        shape.rotation.z += 0.01 ;
+                        requestAnimationFrame(atom_rotation) ;
+                        renderer.render(scene,camera) ;
+                         }
+                        atom_rotation() ;
+                        animate2();                        
+
+                        
                         document.getElementById( 'table' ).visibility="visible";
                 }
                 
@@ -250,6 +296,7 @@
             button.visibility="visible";
             
         };
+
             function openModal(val) {
             modal.style.display = "block";
           }
