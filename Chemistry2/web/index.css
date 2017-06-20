@@ -211,7 +211,7 @@ width:200px;
 .tool .tooltext {
     visibility: hidden;
     width: 200px;
-    font-size: 16px;
+    font-size: 14px;
     background-color: black;
     color: #fff;
     text-align: center;
@@ -227,4 +227,15 @@ width:200px;
 
 .tool:hover .tooltext {
     visibility: visible;
+}
+
+.tool .tooltext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* To the left of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
 }

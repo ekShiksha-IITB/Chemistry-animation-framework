@@ -60,4 +60,6 @@
           </div>
 
          <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48" height="48">
-         
+          <div class="tool"><input type="image" class="hint" src="Images/hint.png" height="38px" width="38px">
+             <span class="tooltext" id="help">Hint</span>
+</div>

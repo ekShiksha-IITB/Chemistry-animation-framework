@@ -110,6 +110,7 @@
                 addOctahedralGeometry(lonepairs);
             else if(value==6)
                 addPentagonalBipyramidalGeometry(lonepairs);
+            document.getElementById("help").innerHTML="Nice geometry";
         }
         function getParams()
         {
