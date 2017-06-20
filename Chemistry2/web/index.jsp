@@ -27,34 +27,30 @@
                description="No content available";
            
            tip=subtopic.getTip();
-    if(count==1)
-    {
-       sidebar="sidebars/atom.jsp";
-    }
-    else if(count==2)
-           {
-              sidebar="sidebars/sidebarEE.jsp"; 
-           }
-    else if(count==3)
-    {
-        sidebar="sidebars/sidebar.jsp";
-    }
-    else if(count==4)
-    {
-        sidebar="sidebars/sidebar2.jsp";
-    }
-    else
-    {
-        sidebar="sidebars/generic.jsp";
-    }
+    if(count>-1)
+       sidebar="sidebars/sidebar"+count+".jsp";
+   /* else if(count==2)    
+              sidebar="sidebars/sidebarEE.jsp";            
+    else if(count==3)    
+        sidebar="sidebars/sidebar.jsp";    
+    else if(count==4)    
+        sidebar="sidebars/sidebar2.jsp";    
+    else if(count==5)    
+        sidebar="sidebars/sidebar3.jsp";    
+    else if(count==6)    
+        sidebar="sidebars/sidebarD.jsp";    
+    else if(count==7)    
+        sidebar="sidebars/sidebarE.jsp";    
+    else if(count==8)    
+        sidebar="sidebars/sidebarF.jsp";    
+    else    
+        sidebar="sidebars/generic.jsp";*/
     }
     catch(Exception e)
     {
         e.printStackTrace();
     }
-    
 %>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -69,6 +65,7 @@
     <script type = "text/javascript" src = "js/atom.js"> </script>
     <script type = "text/javascript" src = "js/geometry.js"> </script>
     <script type = "text/javascript" src = "js/lattice.js"> </script>
+    <script type = "text/javascript" src = "js/reaction.js"> </script>
     <script type = "text/javascript" src = "js/OrbitControls.js"> </script>
     <script type = "text/javascript" src = "js/TrackballControls.js"> </script>
     <script type = "text/javascript" src = "js/animations.js"> </script>
@@ -77,7 +74,6 @@
     <link rel="stylesheet" href="index.css">
   </head>
   <body onload="init()" background="Images/back.jpg">
-
   <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -102,7 +98,7 @@
 </nav>
  <div class="container">
  <div class="row">
-  <div class="col-sm-2">
+  <div class="col-sm-3">
     <div class="sidebar-nav">
       <div class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
@@ -138,33 +134,32 @@
         </table>  
          </form>
         </div>
-        
       </div>
     </div>
   </div>
   <div class="col-sm-6">
       <div width="700px" height ="800px" id="animationCanvas"></div>
+      <center>
+      <div style="position: relative; margin-top: 5%;" id="desc" style="font-size: 18px">
+        <strong>Description:</strong>
+       <%= description %>       
+      </div>
+      </center>
             <!-- The Modal -->
         <div id="myModal" class="modal">
           <!-- Modal content -->
-          <div class="modal-content">
-          
+          <div class="modal-content">          
             <span class="close">&times;</span>
             <p id="modalinnerContent">
                 <%= tip %>
            </p>
           </div>
-
-        </div>
-           
-           
-            <div id="id01" class="modal">
-                
-                <div class="modal-content">
-      <span class="close">&times;</span>
-     
-      <p id="modalinnerContent">
-          
+        </div>           
+<!--other modal was here-->                   
+     <div id="id01" class="modal">                
+     <div class="modal-content">
+      <span class="close">&times;</span>     
+      <p id="modalinnerContent">          
           <form method="post" action="VSEPRServlet">
             <table>
             <tr><td>Compound name:</td><td><input type="text" name="cname"></td></tr>
@@ -176,15 +171,11 @@
             </form>
           <c:out value="${message}"/>
        </p>
-       </div>
-              
+       </div>              
 </div>
-</div>
-  
-           
-           
-   <div class="col-sm-3">
-    <div class="sidebar-nav2">
+</div> 
+   <div class="col-sm-2">
+       <div class="sidebar-nav2">
       <div class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
@@ -195,23 +186,15 @@
           </button>
           <span class="visible-xs navbar-brand">Choose options</span>
         </div>
-
       <div class="navbar-collapse collapse sidebar-navbar-collapse"  id="sidebar">
                 <!--Content goes here -->
                 <jsp:include page="<%= sidebar %>" flush="true"/>  
         </div>
-
       </div>
-    </div>
   </div>
-</div>
-            <div id="desc">
-                <p style="font-size: 18px">
-        <strong>Description:</strong>
-       <%= description %>       
-            </p>      
-        </div>  
-</div>
+   </div>
+ </div>
+ </div>
  <script type = "text/javascript" src="js/appFunctions.js"></script>         
 </body>
 </html>

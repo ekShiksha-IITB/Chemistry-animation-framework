@@ -1,44 +1,63 @@
 <%-- 
-    Document   : sidebar3
-    Created on : 12 Jun, 2017, 2:45:05 PM
+    Document   : sidebar.jsp
+    Created on : 8 Jun, 2017, 3:21:37 PM
     Author     : abhi
 --%>
 
-<%--@page import="java.util.List"%>
-<%@page import="Objects.Element"%>
-
+<%@page import="ConnectionUtil.ConnectionFactory"%>
+<%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<table id="myTable" border="0" cellspacing="0" style="border-spacing:0; width:100%;border-collapse: collapse;">
-            <%
-                List<Object> object = (List<Object>)request.getAttribute("myContact");
-        for(int i=0;i<object.size();i++){
-                MyModel myModel = (MyModel)object.get(i);
-                String mail = myModel.getmail()!=null ? myModel.getmail().toString().trim() : "";
-                String title = myModel.gettitle()!=null ? myModel.gettitle().toString().trim() : "";
-                String name = myModel.getname()!=null ? myModel.getname().toString().trim() : "";               
+<%@page import="Objects.Subtopic"%>
+<%@page import="Objects.Topic"%>
+<%@page import="java.util.*"%>
+<%@page import="DAO.TopicDAO"%>
+<%@page import="DAO.SubtopicDAO"%>
+<!DOCTYPE html>
+        <center>
+            <input type="image" class="plus" onclick="openModal(2)" src="Images/plus.png" alt="Submit" width="40" height="40">
+            <label>Compounds<br><br></label>
+        
+            <select class="form-control" id="compound" onchange="createVSEPRShapes(this.value)">
+            <option value="-1">Choose compound</option>            
+            <%               
+                try
+                {
+                   Connection connection = ConnectionFactory.getConnection();
+            Statement statement = connection.createStatement();
+                    ResultSet myRs=statement.executeQuery("select * from VSEPR");
+            while(myRs.next())
+            {
             %>
+     
+            <option value="<%=myRs.getInt("shape_id")*10+myRs.getInt("lonepairs")%>"><%=myRs.getString("compound_name")%></option>
+            
+            <%
+            }
+                }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+            
+            %>
+        </select>
+         </center>
 
+          <div class="nav navbar-nav">
+		  <h2>Shapes</h2>
+                  <div id='options'>
+                  <ul class=" navbar-nav">
+            <li id="linear" onclick="createVSEPRShapes(10)"><a href='#'>Linear</a></li>
+            <li id="trigonal" onclick="createVSEPRShapes(20)"><a href='#'>Trigonal Planar</a></li>
+            <li id="tetrahedral" onclick="createVSEPRShapes(30)"><a href='#'>Tetrahedral</a></li>
+            <li id="pyramidal" onclick="createVSEPRShapes(40)"><a href='#'>Trigonal Bipyramidal</a></li>
+            <li id="octahedral" onclick="createVSEPRShapes(50)"><a href='#'>Octahedral</a></li>
+            <li id="pentpy" onclick="createVSEPRShapes(60)"><a href='#'>Pentagonal Bipyramidal</a></li>
+            </ul>
+                      
+                  </div>
+          
+          </div>
 
-            <tr>
-            <td class="table-border-bottom"><label for="name">Name:</label></td>
-            <td class="table-border-bottom"><input id="name" type="text" value='<%=name%>' name="name" class="required" style="height: 17px;"/>
-            </td>
-            <td class="table-border-bottom"><label for="contactTitle">Title:</label></td>
-            <td class="table-border-bottom"> <input id="title" type="text" value='<%=title%>' name="title" class="required" style="height: 17px;"/>
-
-            </td>
-            <td class="table-border-bottom"><label for="mail">Email:</label></td>
-            <td class="table-border-bottom"><input id="mail" type="text" value='<%=mail%>' name="mail" class="required email" style="height: 17px; "/>
-
-            </td>
-            </tr>
-
-    <% } %>
-
-            <tr align="center">
-            <td valign="bottom" colspan="6" style="height: 45px; ">
-            <input type="button" id="submit" name="submit" value="Save" style="width: 80px ; height:24px; text-align: center;border-radius: 10px 10px 10px 10px;"/> 
-            <input type="button" id="revert" name="revert" value="Revert" style="width: 80px ; height:24px;text-align: center;border-radius: 10px 10px 10px 10px;"/></td>
-            </tr>
-
-      </table>   --%>
+         <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48" height="48">
+         

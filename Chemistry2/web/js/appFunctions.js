@@ -22,7 +22,7 @@
             l1=parseInt(l1);
             var l2=document.getElementById("l2").value;
             l2=parseInt(l2);
-            alert(l1+l2);
+            showExcitation(l1,l2);
         }
 
         function getAtom(val)

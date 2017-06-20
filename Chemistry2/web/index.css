@@ -15,7 +15,7 @@
   }
  .sidebar-nav2{
 width:200px;
- margin-left:160px;}
+ margin-left:50px;}
  
  .sidebar-nav2 .navbar li {
     float: none;
@@ -144,9 +144,9 @@ width:200px;
 
             #desc{
               background-color: #8bc1c3; 
-              margin-top:-400px;
+              /*margin-top:-400px;
               margin-left:240px;
-              width:50%;
+              width:50%;*/
               text-align:center;
 
                border-radius: 12px;
@@ -161,8 +161,8 @@ width:200px;
 
                /* for button */
             .bullet{
-                width:38px;
-               height: 38px;
+                width:28px;
+               height: 28px;
                }
                
                

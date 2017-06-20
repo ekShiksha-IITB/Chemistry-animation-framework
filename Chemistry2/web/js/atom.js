@@ -137,3 +137,55 @@ function thirdModel() {
 	}
 	return group ;
 }
+var ph, e, e_flag = 1, ypoint;
+function Excitation(f, s) {
+	points = [ [-10, -3, 0], [10, -3, 0], [-10, 0, 0], [10, 0, 0], [-10, 2, 0], [10, 2, 0]]
+	for(var i = 0; i < 3; i++) {
+		var l = makeLine(points[2*i], points[2*i+1]) ;
+		l.name = ++objectCount ;
+		scene.add(l) ;
+	}
+	s == 2 ? ypoint = 0 : ypoint = 2 ;
+	var geometry = new THREE.SphereGeometry( 0.4, 32, 32 );
+	var material = new THREE.MeshPhongMaterial( { ambient: 0x050505, color: 'springgreen', specular: 0x555555, shininess: 30 } );
+	e = new THREE.Mesh(geometry, material) ;
+	e.name = ++objectCount ;
+	e.position.set(0, -3, 0) ;
+	scene.add(e) ;
+	var geometry = new THREE.SphereGeometry( 0.3, 32, 32 );
+	var material = new THREE.MeshPhongMaterial( { ambient: 0x050505, color: 'blue', specular: 0x555555, shininess: 30 } );	
+	ph = new THREE.Mesh(geometry, material) ;
+	ph.name = ++objectCount ;
+	ph.position.set(2, -1, 0) ;
+	scene.add(ph) ;
+	animateExcitation() ;
+}
+function makeLine(pointX, pointY) {
+	var material = new THREE.LineBasicMaterial({ color: Math.random()*0xff1493, width : 10 });
+	var geometry = new THREE.Geometry();
+	geometry.vertices.push(
+		new THREE.Vector3( pointX[0], pointX[1], pointX[2]),
+		new THREE.Vector3( pointY[0], pointY[1], pointY[2])
+	);	
+	var line = new THREE.Line(geometry, material) ;
+	return line ;
+}
+function animateExcitation() {
+	if(ph.position.x > 0) {
+		ph.position.x -= 0.02 ;
+		ph.position.y -= 0.02 ;
+	} else {
+		if(e_flag && e.position.y < ypoint) {
+			e.position.y += 0.01 ;
+			ph.position.y += 0.01 ;
+		} else {
+			e_flag = 0 ;
+			if(ph.position.y > -3) {
+				ph.position.y -= 0.01 ;
+				e.position.y -= 0.01 ;
+			}
+		}
+	}
+	requestAnimationFrame(animateExcitation) ;
+	renderer.render(scene,camera);
+}

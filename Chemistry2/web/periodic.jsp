@@ -78,8 +78,9 @@
                         document.getElementById("tooltip").innerHTML+= "Group:  "+element.group+"<br>";
                         document.getElementById("tooltip").innerHTML+= "Period: "+element.period+"<br>";
                         document.getElementById("tooltip").innerHTML+= "Mass:   "+element.mass+"<br>";
-                        document.getElementById("tooltip").innerHTML+= "Electronic <br>";
-                        document.getElementById("tooltip").innerHTML+= "Configuration: "+element.k+","+element.l+","+element.m+","+element.n+","+element.o+","+element.p+","+element.q+"<br>";
+                        document.getElementById("tooltip").innerHTML+= "Type:   "+element.type+"<br>";
+                        document.getElementById("tooltip").innerHTML+= "Electronic configuration: <br>";
+                        document.getElementById("tooltip").innerHTML+= element.k+","+element.l+","+element.m+","+element.n+","+element.o+","+element.p+","+element.q+"<br>";
 
                         document.getElementById("tooltip").style.display="block";
                        }
@@ -273,6 +274,8 @@
     var button = document.getElementById( 'table' );
     button.addEventListener( 'click', function ( event ) {
             deleteObjects();
+            document.getElementById('tooltip').innerHTML='';
+
             initTable(1);
             animate1();
             getElementsReady();

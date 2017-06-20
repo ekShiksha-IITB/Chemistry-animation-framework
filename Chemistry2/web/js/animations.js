@@ -19,7 +19,7 @@ function init() {
 	scene.add(directionalLight);
 
 	
-	camera.position.z = 8;
+	camera.position.z = 5;
 	var render = function () {
 
 		requestAnimationFrame( render );
@@ -170,6 +170,27 @@ function addTetragonalLattice(param) {
 	shape.name = objectCount ;
 	scene.add(shape) ;		
 }
+function showExcitation(f, s) {
+	deleteObjects() ;
+	Excitation(f, s) ;
+}
+function showCombination() {
+	deleteObjects() ;
+	Combination() ;
+}
+function showDecomposition() {
+	deleteObjects() ;
+	Decomposition() ;
+}
+function showSingleDisplacement() {
+	deleteObjects() ;
+	SingleDisplacement() ;
+}
+function showDoubleDisplacement() {
+	deleteObjects() ;
+	DoubleDisplacement() ;
+}
+
 function deleteObjects() {
 	while(objectCount > 0) {
 		scene.remove(scene.getObjectByName(objectCount)) ;
