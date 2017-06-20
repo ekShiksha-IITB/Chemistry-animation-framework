@@ -23,7 +23,6 @@ function Bond(r, h) {
 	this.shape = group ;
 }
 function Linear(r, h) {
-    
 	this.type = "Linear" ;
 	var group = new THREE.Group() ;
 	var material = new THREE.MeshPhongMaterial( { ambient: 0x050505, color: 0xFF1493, specular: 0x555555, shininess: 30 } );
@@ -40,7 +39,6 @@ function Linear(r, h) {
 	this.shape = group ;
 }
 function Octahedral(r, h, noOfLonePair) {
-    console.log("Octahedral");
 	this.type = "Octahedral" ;	
 	var points = [ [0, 0, -0.4], [0, 0, +0.4], [+0.4, 0, 0], [-0.4, 0, 0]] ;
 	var shape = new THREE.Group() ;
@@ -67,7 +65,6 @@ function Octahedral(r, h, noOfLonePair) {
 		ob2instance.rotation.x = Math.PI/2 ;
 		shape.add(ob2instance) ;
 		for(var i = 0; i < noOfLonePair; i++) {
-			
 			var lonepair = makeLonePair() ;
 			lonepair.position.set(points[i][0], points[i][1], points[i][2]) ;
 			shape.add(lonepair) ;
@@ -105,23 +102,11 @@ function Octahedral(r, h, noOfLonePair) {
 	this.shape = shape ;
 }
 function makeLonePair() {
-	var group = new THREE.Group() ;
-	var material1 = new THREE.MeshLambertMaterial({color: 0xffff00, transparent: true, opacity: 0.5});
-	var material = new THREE.MeshPhongMaterial( { ambient: 0x050505, color: 'white', specular: 0x555555, shininess: 30 } );
-	var lonepair = new THREE.Mesh(new THREE.SphereBufferGeometry(0.3, 32, 32),material1);
-	group.add(lonepair) ;
-	var dot1 = new THREE.Mesh(new THREE.SphereBufferGeometry(0.05, 32, 32),material);
-	dot1.position.y -= 0.1 ;
-	group.add(dot1) ;
-	var dot2 = new THREE.Mesh(new THREE.SphereBufferGeometry(0.05, 32, 32),material);
-	dot2.position.y += 0.1 ;
-	group.add(dot2) ;
-
-	return group ;		
+	var material = new THREE.MeshPhongMaterial( { ambient: 0x050505, color: 0xffff00, specular: 0x555555, shininess: 30 } );
+	var lonepair = new THREE.Mesh(new THREE.SphereBufferGeometry(0.3, 32, 32),material);
+	return lonepair ;		
 }
-function PentagonalBipyramidal(r, h, noOfLonePair) {
-        console.log("Pent1");
-
+function PentagonalBipyramidal(r, h) {
 	this.type = "PentagonalBipyramidal" ;
 	var group = new THREE.Group() ;
 	/*central one*/
@@ -129,20 +114,9 @@ function PentagonalBipyramidal(r, h, noOfLonePair) {
 	var sphere = new THREE.Mesh(new THREE.SphereBufferGeometry(0.3, 32, 32), material);
 	group.add(sphere) ;	
 	/*end*/
-	if(noOfLonePair == 0) {
-		var l = new Linear(r, h) ;
-		l.shape.rotation.x = Math.PI/2 ;
-		group.add(l.shape) ;		
-	} else if(noOfLonePair == 1) {
-		var l = new Bond(r, h) ;
-		l.shape.rotation.x = Math.PI/2 ;
-		group.add(l.shape) ;
-		
-		var material = new THREE.MeshPhongMaterial( { ambient: 0x050505, color: 0xffff00, specular: 0x555555, shininess: 30 } );
-		var lonepair = makeLonePair() ;
-		lonepair.position.z -= 0.4 ;
-		group.add(lonepair) ;	
-	}
+	var l = new Linear(r, h) ;
+	l.shape.rotation.x = Math.PI/2 ;
+	group.add(l.shape) ;
 	
 	var angle = (2*Math.PI)/5 ;
 	for(var i = 0; i < (2*Math.PI); i += angle) {
@@ -156,8 +130,6 @@ function PentagonalBipyramidal(r, h, noOfLonePair) {
 }
 function Tetrahedral(r, h, noOfLonePair) {
 	/*yet to complete*/
-            console.log("Tetr");
-
 	this.type = "Tetrahedral" ;
 	//alert('in') ;	
 	var group = new THREE.Group() ;
@@ -223,8 +195,6 @@ function Tetrahedral(r, h, noOfLonePair) {
 	this.shape = group ;
 }
 function TrigonalBipyramidal(r, h, noOfLonePair) {
-        console.log("Tripy");
-
 	this.type = "TrigonalBipyramidal" ;
 	var group = new THREE.Group() ;
 	/*central one*/
@@ -252,7 +222,8 @@ function TrigonalBipyramidal(r, h, noOfLonePair) {
 			shape.rotation.z += i ;
 			group.add(shape) ;
 		}
-		var lonepair = makeLonePair() ;
+		var material = new THREE.MeshPhongMaterial( { ambient: 0x050505, color: 0xffff00, specular: 0x555555, shininess: 30 } );
+		var lonepair = new THREE.Mesh(new THREE.SphereBufferGeometry(0.3, 32, 32),material);
 		lonepair.position.set(points[0][0], points[0][1], points[0][2]) ;
 		group.add(lonepair) ;		
 	} else if(noOfLonePair == 2) {
@@ -263,29 +234,29 @@ function TrigonalBipyramidal(r, h, noOfLonePair) {
 			shape.rotation.z += i ;
 			group.add(shape) ;
 		}
-		var lonepair1 = makeLonePair() ;
-		lonepair1.position.set(sphere.position.x, sphere.position.y+0.5, sphere.position.z) ;
-		group.add(lonepair1) ;	
-		var lonepair2 = makeLonePair() ;
-		lonepair2.position.set(sphere.position.x-0.5, sphere.position.y-0.2, sphere.position.z) ;
-		group.add(lonepair2) ;				
+		var material = new THREE.MeshPhongMaterial( { ambient: 0x050505, color: 0xffff00, specular: 0x555555, shininess: 30 } );
+		var lonepair = new THREE.Mesh(new THREE.SphereBufferGeometry(0.3, 32, 32),material);
+		lonepair.position.set(sphere.position.x, sphere.position.y+0.5, sphere.position.z) ;
+		group.add(lonepair) ;	
+		var lonepair = new THREE.Mesh(new THREE.SphereBufferGeometry(0.3, 32, 32),material);
+		lonepair.position.set(sphere.position.x-0.5, sphere.position.y-0.2, sphere.position.z) ;
+		group.add(lonepair) ;				
 	} else if(noOfLonePair == 3) {
-		var lonepair1 = makeLonePair() ;
-		lonepair1.position.set(sphere.position.x, sphere.position.y+0.5, sphere.position.z) ;
-		group.add(lonepair1) ;	
-		var lonepair2 = makeLonePair() ;
-		lonepair2.position.set(sphere.position.x-0.5, sphere.position.y-0.2, sphere.position.z) ;
-		group.add(lonepair2) ;		
-		var lonepair3 = makeLonePair() ;
-		lonepair3.position.set(sphere.position.x+0.5, sphere.position.y-0.2, sphere.position.z) ;
-		group.add(lonepair3) ;
+		var material = new THREE.MeshPhongMaterial( { ambient: 0x050505, color: 0xffff00, specular: 0x555555, shininess: 30 } );
+		var lonepair = new THREE.Mesh(new THREE.SphereBufferGeometry(0.3, 32, 32),material);
+		lonepair.position.set(sphere.position.x, sphere.position.y+0.5, sphere.position.z) ;
+		group.add(lonepair) ;	
+		var lonepair = new THREE.Mesh(new THREE.SphereBufferGeometry(0.3, 32, 32),material);
+		lonepair.position.set(sphere.position.x-0.5, sphere.position.y-0.2, sphere.position.z) ;
+		group.add(lonepair) ;		
+		var lonepair = new THREE.Mesh(new THREE.SphereBufferGeometry(0.3, 32, 32),material);
+		lonepair.position.set(sphere.position.x+0.5, sphere.position.y-0.2, sphere.position.z) ;
+		group.add(lonepair) ;
 	}
 	group.rotation.x += Math.PI/2 ;
 	this.shape = group ;
 }
 function TrigonalPlanar(r, h, noOfLonePair) {
-        console.log("TriPla");
-
 	this.type = "TrigonalPlanar" ;
 	var group = new THREE.Group() ;
 	/*central one*/
@@ -308,7 +279,8 @@ function TrigonalPlanar(r, h, noOfLonePair) {
 			shape.rotation.z += i ;
 			group.add(shape) ;
 		}
-		var lonepair = makeLonePair() ;
+		var material = new THREE.MeshPhongMaterial( { ambient: 0x050505, color: 0xffff00, specular: 0x555555, shininess: 30 } );
+		var lonepair = new THREE.Mesh(new THREE.SphereBufferGeometry(0.3, 32, 32),material);
 		lonepair.position.set(sphere.position.x, sphere.position.y+0.5, sphere.position.z) ;
 		group.add(lonepair) ;
 	}

@@ -1,4 +1,3 @@
-
 var scene = new THREE.Scene();
 var objectCount = 0 ;
 function init() {
@@ -197,4 +196,3 @@ function deleteObjects() {
 		--objectCount ;
 	}
 }
-

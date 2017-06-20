@@ -22,6 +22,16 @@
             l1=parseInt(l1);
             var l2=document.getElementById("l2").value;
             l2=parseInt(l2);
+            var energy=(-13.6)*((1/l2)*(1/l2)-(1/l1)*(1/l1));
+            var message=" ";
+            if(energy<0)
+            {
+                message="emitted";
+                energy=-energy;
+            }
+            else if(energy>0)
+                message="absorbed";
+            document.getElementById("energy").innerHTML="Energy: "+energy+"eV "+message;
             showExcitation(l1,l2);
         }
 
@@ -116,4 +126,5 @@
           }
 
     
+
 

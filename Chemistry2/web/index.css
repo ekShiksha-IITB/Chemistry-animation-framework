@@ -15,7 +15,7 @@
   }
  .sidebar-nav2{
 width:200px;
- margin-left:50px;}
+ margin-left:50%;}
  
  .sidebar-nav2 .navbar li {
     float: none;
@@ -192,4 +192,39 @@ width:200px;
     padding: 5px 0;
 }
 
-           
+#energy{
+    font-size: 18px;
+}
+
+.hint{
+    margin-bottom: 50px;
+}
+
+/*for the hint tooltips*/
+
+.tool {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tool .tooltext {
+    visibility: hidden;
+    width: 200px;
+    font-size: 16px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 105%;
+}
+
+.tool:hover .tooltext {
+    visibility: visible;
+}

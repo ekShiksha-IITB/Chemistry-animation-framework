@@ -55,7 +55,6 @@
 
 		<script>
 		
-
 			var camera, scene, renderer;
 			var controls;
 			var objects = [];
@@ -65,7 +64,6 @@
                         var ca={an:1,k:1,l:0,m:0,n:0,o:0,p:0,q:0};//current atom
                         var modal = document.getElementById('myModal');
                         var span = document.getElementsByClassName("close")[0];
-
 			//initTable(1);
 			//animate1();
                         function setAtomView(val)
@@ -81,16 +79,13 @@
                         document.getElementById("tooltip").innerHTML+= "Type:   "+element.type+"<br>";
                         document.getElementById("tooltip").innerHTML+= "Electronic configuration: <br>";
                         document.getElementById("tooltip").innerHTML+= element.k+","+element.l+","+element.m+","+element.n+","+element.o+","+element.p+","+element.q+"<br>";
-
                         document.getElementById("tooltip").style.display="block";
                        }
-
                        function hideTooltip() {
                         document.getElementById("tooltip").style.display="none";
                        }
                         function getElementsReady(){
                         camera.position.z = 3000;
-
                         i=1;
                                 
                <c:forEach items="${elements}" var="element">
@@ -111,7 +106,6 @@
                         element.mass="${element.getMolarMass()}";
                         element.name="${element.getName()}";
                         element.symbol="${element.getSymbol()}";
-
                         //element.style.backgroundColor = 'rgba(127,127,0,' + ( Math.random() * 0.5 + 0.25 ) + ')';
                         element.style.backgroundColor = 'rgba(' + (parseInt(250/(19-element.group)) ) + ',' + (  (18-element.group)*15 ) + ',' + (parseInt((18-element.group)*(18-element.group)/0.9)) + ',' + ( 0.75) + ')';
                         var number = document.createElement( 'div' );
@@ -130,8 +124,6 @@
                         element.setAttribute("onMouseOver","showTooltip(this)");
                         element.setAttribute("onMouseOut","hideTooltip()");
                         element.setAttribute("onclick", "addAtom("+element.an+","+element.k+","+element.l+","+element.m+","+element.n+","+element.n+","+element.o+","+element.p+","+element.q+",2)");
-
-
                         ++objectCount;
                         var object = new THREE.CSS3DObject( element );
                         object.position.x = Math.random() * 4000 - 2000;
@@ -161,7 +153,6 @@
                 renderer.domElement.style.position = 'absolute';
                 document.getElementById( 'container' ).innerHTML='';
                 document.getElementById( 'container' ).appendChild( renderer.domElement );
-
                 controls = new THREE.TrackballControls( camera, renderer.domElement );
                 controls.rotateSpeed = 0.5;
                 //controls.minDistance = 500;
@@ -174,8 +165,6 @@
                 var directionalLight = new THREE.DirectionalLight( 0xffffff );
                 directionalLight.position.set( 0, 10, 10 ).normalize();
                 scene.add(directionalLight);
-
-
         }
 			function transform( targets, duration ) {
 				TWEEN.removeAll();
@@ -213,13 +202,9 @@
                         //renderer.render(scene, camera);
                         requestAnimationFrame( animate2 );                                
 			}
-
-
-
 			function renderTable() {
 				renderer.render( scene, camera );
 			}
-
                         function addAtom(atomicNumber, k, l, m, n, o, p, q) {
                         ca.an=atomicNumber;
                         ca.k=k;
@@ -259,7 +244,6 @@
                          }
                         atom_rotation() ;
                         animate2();                        
-
                         
                         document.getElementById( 'table' ).visibility="visible";
                 }
@@ -275,7 +259,6 @@
     button.addEventListener( 'click', function ( event ) {
             deleteObjects();
             document.getElementById('tooltip').innerHTML='';
-
             initTable(1);
             animate1();
             getElementsReady();
@@ -299,7 +282,6 @@
             button.visibility="visible";
             
         };
-
             function openModal(val) {
             modal.style.display = "block";
           }
