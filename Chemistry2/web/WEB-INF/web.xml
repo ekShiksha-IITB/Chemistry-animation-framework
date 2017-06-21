@@ -16,6 +16,10 @@
         <servlet-name>VSEPRServlet</servlet-name>
         <servlet-class>Servlets.VSEPRServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HydrocarbonServlet</servlet-name>
+        <servlet-class>Servlets.HydrocarbonServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ElementServlet</servlet-name>
         <url-pattern>/ElementServlet</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>VSEPRServlet</servlet-name>
         <url-pattern>/VSEPRServlet</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>HydrocarbonServlet</servlet-name>
+        <url-pattern>/HydrocarbonServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

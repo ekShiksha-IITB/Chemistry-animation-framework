@@ -29,22 +29,7 @@
            tip=subtopic.getTip();
     if(count>-1)
        sidebar="sidebars/sidebar"+count+".jsp";
-   /* else if(count==2)    
-              sidebar="sidebars/sidebarEE.jsp";            
-    else if(count==3)    
-        sidebar="sidebars/sidebar.jsp";    
-    else if(count==4)    
-        sidebar="sidebars/sidebar2.jsp";    
-    else if(count==5)    
-        sidebar="sidebars/sidebar3.jsp";    
-    else if(count==6)    
-        sidebar="sidebars/sidebarD.jsp";    
-    else if(count==7)    
-        sidebar="sidebars/sidebarE.jsp";    
-    else if(count==8)    
-        sidebar="sidebars/sidebarF.jsp";    
-    else    
-        sidebar="sidebars/generic.jsp";*/
+
     }
     catch(Exception e)
     {
@@ -70,7 +55,6 @@
     <script type = "text/javascript" src = "js/TrackballControls.js"> </script>
     <script type = "text/javascript" src = "js/animations.js"> </script>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@include file="jspFunctions.jsp"%>
     <link rel="stylesheet" href="index.css">
   </head>
   <body onload="init()" background="Images/back.jpg">
@@ -128,7 +112,7 @@
                 %>
                 <tr>
                     <td><p><li><button type="submit" name="option" value="<%=subtopics.get(j).getSubId()%>"> <img src="Images/button.png" height="38" width="38" ></button><%= subtopics.get(j).getSubtopicName()%><li></p></td>
-                <tr>  
+                </tr>  
                 </tr>
                 <%}}%>
         </table>  
@@ -138,7 +122,7 @@
     </div>
   </div>
   <div class="col-sm-6">
-      <div width="700px" height ="800px" id="animationCanvas"></div>
+      <div height ="800px" id="animationCanvas"></div>
       <center>
       <div style="position: relative; margin-top: 5%;" id="desc" style="font-size: 18px">
         <strong>Description:</strong>

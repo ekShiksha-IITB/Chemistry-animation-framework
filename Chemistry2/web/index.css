@@ -15,7 +15,7 @@
   }
  .sidebar-nav2{
 width:200px;
- margin-left:50%;}
+ margin-left: 50%;}
  
  .sidebar-nav2 .navbar li {
     float: none;
@@ -29,7 +29,6 @@ width:200px;
   .navbar-collapse collapse sidebar-navbar-collapse
   {
       background-color: #8bc1c3; 
-      margin-left: 10%;
   }
   
   
@@ -129,10 +128,6 @@ width:200px;
                     color: rgba(255,255,0,0.75);
             }
             
-            #table{
-                margin-top:10%;
-            }
-            
     
             
             #table:hover,#atom:hover {
@@ -197,6 +192,46 @@ width:200px;
     padding: 5px 0;
 }
 
+.hintLeft {
+    position: relative;
+    display: inline-block;
+}
+
+.hintLeft .toolLeft {
+    visibility: hidden;
+    width: 200px;
+    background-color: #28515B;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+     top: -5px;
+    right: 105%; 
+}
+
+.hintLeft:hover .toolLeft {
+    visibility: visible;
+}
+.hintLeft .toolLeft::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 100%; /* To the right of the tooltip */
+    margin-top: -7px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent transparent transparent #28515B;
+}
+.hintLeft #atomDetails::after{
+    top:5%;
+}
+.choice:hover  {
+    color:#921b2c;
+    cursor:pointer;
+}
 #energy{
     font-size: 18px;
 }

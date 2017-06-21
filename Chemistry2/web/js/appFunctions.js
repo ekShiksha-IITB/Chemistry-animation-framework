@@ -94,7 +94,7 @@
                  addMonoclinicLattice(val);
         }
 
-        function createVSEPRShapes(val){
+               function createVSEPRShapes(val){
             
             var lonepairs=val%10;
             var value=parseInt(val/10); 
@@ -184,5 +184,4 @@
           }
 
     
-
 
