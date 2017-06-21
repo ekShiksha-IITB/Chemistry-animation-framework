@@ -1,6 +1,6 @@
 
 <%-- 
-    Document   : sidebarEE
+    Document   : sidebar2
     Created on : 19 Jun, 2017, 1:17:45 PM
     Author     : aishwarya
 --%>

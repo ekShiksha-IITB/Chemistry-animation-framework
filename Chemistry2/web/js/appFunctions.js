@@ -110,7 +110,64 @@
                 addOctahedralGeometry(lonepairs);
             else if(value==6)
                 addPentagonalBipyramidalGeometry(lonepairs);
-            document.getElementById("help").innerHTML="Nice geometry";
+            var message;
+            if(lonepairs==0)
+            {
+                switch(value)
+                {
+                    case 1: message="Linear";
+                        break;
+                    case 2: message="Trigonal Planar";
+                        break;
+                    case 3: message="Tetrahedral";
+                        break;
+                     case 4: message="Trigonal Bipyramidal";
+                        break;
+                     case 5: message="Octahedral";
+                        break;
+                     case 6: message="Pentagonal Bipyramidal";
+                        break;
+                }
+            }
+            else if(lonepairs==1)
+            {
+                switch(value)
+                {
+                case 2: message="Bent Shape";
+                        break;
+                    case 3: message="Pyramidal";
+                        break;
+                     case 4: message="SeeSaw Shape";
+                        break;
+                     case 5: message="Square Pyramidal";
+                        break;
+            }
+        }
+        else if(lonepairs==2)
+            {
+                switch(value)
+                {
+                
+                    case 3: message="Bent Shape";
+                        break;
+                     case 4: message="T-Shape";
+                        break;
+                     case 5: message="Square Planar";
+                        break;
+            }
+        }
+        else if(lonepairs==3)
+            {
+                switch(value)
+                {
+                
+                     case 4: message="Linear";
+                        break;
+ 
+            }
+        }
+        else message="Geometry";
+            document.getElementById("help").innerHTML=message;
         }
         function getParams()
         {

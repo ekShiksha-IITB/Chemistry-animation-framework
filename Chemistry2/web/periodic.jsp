@@ -28,6 +28,13 @@
 		<script src="js/TrackballControls.js"></script>
 		<script src="js/CSS3DRenderer.js"></script>
                 <script src="js/atom.js"></script>
+                <div id="menu">
+			<button id="table">CREATE TABLE</button>
+                        <button id="atom">ATOM VIEW</button>
+
+			
+		</div>
+
                  <!-- The Modal -->
                 <div id="myModal" class="modal">
                   <!-- Modal content -->
@@ -46,13 +53,7 @@
 
                 </div>
 		
-		<div id="menu">
-			<button id="table">CREATE TABLE</button>
-                        <button id="atom">ATOM VIEW</button>
-
-			
-		</div>
-
+		
 		<script>
 		
 			var camera, scene, renderer;

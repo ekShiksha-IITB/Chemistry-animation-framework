@@ -29,6 +29,7 @@ width:200px;
   .navbar-collapse collapse sidebar-navbar-collapse
   {
       background-color: #8bc1c3; 
+      margin-left: 10%;
   }
   
   
@@ -126,6 +127,10 @@ width:200px;
                     right: 0px;
                     font-size: 12px;
                     color: rgba(255,255,0,0.75);
+            }
+            
+            #table{
+                margin-top:10%;
             }
             
     
