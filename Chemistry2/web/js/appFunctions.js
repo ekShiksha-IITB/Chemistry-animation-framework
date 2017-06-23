@@ -15,7 +15,14 @@
         span1.onclick = function closeModal() {
             modal1.style.display = "none";
         };
+
+  var modal2 = document.getElementById('id02');
+        var span2 = document.getElementsByClassName("close")[2];
+        span2.onclick = function closeModal() {
+            modal2.style.display = "none";
+        };
         
+
         function excitation()
         {
             var l1=document.getElementById("l1").value;
@@ -44,6 +51,14 @@
         }
        function setShape(val)
         {
+            for(i=1;i<=7;i++)
+            {
+            var opt=document.getElementById("lattice"+i);
+            opt.style.color="BLACK";
+            }
+            var option=document.getElementById("lattice"+val);
+            option.style.color="RED";
+            option.strong=true;
             crystal=val;
                 document.getElementById("Simple").style.visibility="hidden";
                 document.getElementById("FCC").style.visibility="hidden";
@@ -94,7 +109,7 @@
                  addMonoclinicLattice(val);
         }
 
-               function createVSEPRShapes(val){
+        function createVSEPRShapes(val){
             
             var lonepairs=val%10;
             var value=parseInt(val/10); 
@@ -181,7 +196,10 @@
             modal.style.display = "block";
             else if(val==2)
               document.getElementById('id01').style.display='block';
+            else if(val==3)
+                document.getElementById('id02').style.display='block';
           }
 
     
+
 

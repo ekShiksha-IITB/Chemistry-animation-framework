@@ -29,7 +29,6 @@
            tip=subtopic.getTip();
     if(count>-1)
        sidebar="sidebars/sidebar"+count+".jsp";
-
     }
     catch(Exception e)
     {
@@ -84,7 +83,7 @@
  <div class="row">
   <div class="col-sm-3">
     <div class="sidebar-nav">
-      <div class="navbar navbar-default" role="navigation">
+      <div id="topics" class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -92,11 +91,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <span class="visible-xs navbar-brand">Choose your topic</span>
+          <span class="visible-xs navbar-brand">Topics</span>
         </div>
          <div class="navbar-collapse collapse sidebar-navbar-collapse" style="background-color: #8bc1c3">
          <form method="Get" action="index.jsp">
             <table>
+                <h2>
+                    Topics
+                </h2>
             <%  
                     TopicDAO topicDAO=new TopicDAO();
                     List<Topic> topics=topicDAO.getTopic();
@@ -153,10 +155,35 @@
             <tr><td></td><td><input type="submit" value="Submit"></td></tr>
             </table>
             </form>
-          <c:out value="${message}"/>
        </p>
        </div>              
 </div>
+       
+       
+       <div id="id02" class="modal">                
+     <div class="modal-content">
+      <span class="close">&times;</span>     
+      <p id="modalinnerContent">          
+          <form method="post" action="ExampleServlet">
+            <table>
+            <tr><td>Example Name:</td><td><input type="text" name="ename"></td></tr>
+            <tr><td>Lattice type:</td><td><input type="text" name="lname"></td></tr>
+            <tr><td></td><td><input type="submit" value="Submit"></td></tr>
+            </table>
+            </form>
+       </p>
+       </div>              
+</div>
+       <% String message = (String)request.getAttribute("message");%>
+
+       <script type="text/javascript">
+            var message="null";
+            msg = "<%=message%>";
+            if(msg!="null")
+            {
+            alert(msg);
+        }
+        </script>
 </div> 
    <div class="col-sm-2">
        <div class="sidebar-nav2">
@@ -168,7 +195,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <span class="visible-xs navbar-brand">Choose options</span>
+          <span class="visible-xs navbar-brand"></span>
         </div>
       <div class="navbar-collapse collapse sidebar-navbar-collapse"  id="sidebar">
                 <!--Content goes here -->

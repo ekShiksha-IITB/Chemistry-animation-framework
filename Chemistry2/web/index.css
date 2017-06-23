@@ -15,7 +15,9 @@
   }
  .sidebar-nav2{
 width:200px;
- margin-left: 50%;}
+ margin-left: 50%;
+ /*overflow-y: auto;
+ height:570px;*/}
  
  .sidebar-nav2 .navbar li {
     float: none;
@@ -34,6 +36,7 @@ width:200px;
   
   #sidebar{
        background-color: #8bc1c3; 
+
   }
                       /* The Modal (background) */
         .modal {
@@ -207,7 +210,7 @@ width:200px;
     padding: 5px 0;
     /* Position the tooltip */
     position: absolute;
-    z-index: 1;
+    z-index: 10;
      top: -5px;
     right: 105%; 
 }
@@ -215,6 +218,11 @@ width:200px;
 .hintLeft:hover .toolLeft {
     visibility: visible;
 }
+.lattices :hover{
+    color:#921b2c;
+    cursor:pointer;
+}
+
 .hintLeft .toolLeft::after {
     content: " ";
     position: absolute;
@@ -243,7 +251,7 @@ width:200px;
 /*for the hint tooltips*/
 
 .tool {
-    position: relative;
+    position: positive;
     display: inline-block;
     border-bottom: 1px dotted black;
 }
@@ -278,4 +286,9 @@ width:200px;
     border-width: 5px;
     border-style: solid;
     border-color: transparent black transparent transparent;
+}
+
+#topics{
+    overflow-y: auto;
+    height:570px;
 }

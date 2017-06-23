@@ -1,4 +1,3 @@
-
 var scene = new THREE.Scene();
 var objectCount = 0 ;
 function init() {
@@ -190,20 +189,10 @@ function showDoubleDisplacement() {
 	deleteObjects() ;
 	DoubleDisplacement() ;
 }
-function addHybridisation(model) {
-	deleteObjects() ;
-	if(model == 1) {
-		SP3Hybridization() ;
-	} else if(model == 2) {
-		SP2Hybridization() ;
-	} else {
-		SPHybridization() ;
-	}
-}
+
 function deleteObjects() {
 	while(objectCount > 0) {
 		scene.remove(scene.getObjectByName(objectCount)) ;
 		--objectCount ;
 	}
 }
-

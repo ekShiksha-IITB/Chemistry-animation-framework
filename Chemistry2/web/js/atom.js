@@ -187,4 +187,5 @@ function animateExcitation() {
 		}
 	}
 	requestAnimationFrame(animateExcitation) ;
+	renderer.render(scene,camera);
 }
