@@ -41,6 +41,7 @@ public class ElementServlet extends HttpServlet {
             //request.getRequestDispatcher("/DemoServlet?option=1").forward(request, response);
             request.getRequestDispatcher("/index.jsp?option=1").forward(request, response);
         } catch (Exception e) {
+             response.sendRedirect("index.jsp?option=1");
             e.printStackTrace();
         } 
     }
