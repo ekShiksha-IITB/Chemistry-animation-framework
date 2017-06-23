@@ -199,7 +199,13 @@
             else if(val==3)
                 document.getElementById('id02').style.display='block';
           }
-
-    
+          function talk(description)
+          {
+              responsiveVoice.speak( description, 'UK English Male',{rate: 0.85});
+          }
+          function stop()
+          { 
+                responsiveVoice.cancel();
+          }
 
 

@@ -42,6 +42,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -127,7 +128,10 @@
       <div height ="800px" id="animationCanvas"></div>
       <center>
       <div style="position: relative; margin-top: 5%;" id="desc" style="font-size: 18px">
-        <strong>Description:</strong>
+        <input type="image" class="audio" onclick="talk('<%= description %>')" src="Images/voice.png" alt="Submit" width="35" height="35">
+         <input type="image" class="audio" onclick="stop()" src="Images/stop.png" alt="Submit" width="35" height="35">
+           
+          <strong>Description:</strong>
        <%= description %>       
       </div>
       </center>
@@ -137,6 +141,8 @@
           <div class="modal-content">          
             <span class="close">&times;</span>
             <p id="modalinnerContent">
+                <input type="image" class="audio" onclick="talk('<%= tip %>')" src="Images/voice.png" alt="Submit" width="35" height="35">
+         <input type="image" class="audio" onclick="stop()" src="Images/stop.png" alt="Submit" width="35" height="35">
                 <%= tip %>
            </p>
           </div>
