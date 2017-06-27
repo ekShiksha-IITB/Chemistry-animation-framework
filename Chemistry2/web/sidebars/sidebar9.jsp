@@ -10,9 +10,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <script type = "text/javascript" src = "js/animations.js"  > </script>
     <script type = "text/javascript" src = "js/hybridisation.js"  > </script>
+    <script type = "text/javascript" src = "js/Hydrocarbon.js"  > </script>
     <center>
     <h3>Hydrocarbons</h3>
-    </center>
+    <form action="HydrocarbonServlet">
+    <select class="form-control" name="item">
+        <option value="-1">Select hydrocarbon</option>  
             <%
                 try
                 {
@@ -22,7 +25,7 @@
                     while(myRs.next())
                     {
                     %>
-                    <option value="<%=myRs.getInt("hydro_id")%>" >Enter <%=myRs.getInt("hydro_id")%> for <%=myRs.getString("hydro_name")%></option>
+                    <option value="<%=myRs.getInt("hydro_id")%>" ><%=myRs.getInt("hydro_id")%>.<%=myRs.getString("hydro_name")%></option>
                     <%
                     }
                 }
@@ -31,28 +34,69 @@
                     e.printStackTrace();
                 }
             %>
+    </select>
+    <input type="submit" value="Submit">
+    <div class="nav navbar-nav">
+        <ul class=" navbar-nav"> 
+            <li onclick="addHybridisation('${hy}')"><font color="magenta"><a href='#'>Show Animation</a></font></li>
+        </ul>
+    </div>
+    </form>
+    <br>
+   
     
-<form method="Post" action="HydrocarbonServlet" >
-    <input type="number" name="hydro_id">
-    <input type='submit' value="Go" />
-    <br><br> <h3>Properties</h3><br>
-                              <strong>Hydrocarbon:</strong> <c:out value="${hydrocarbon.hydro_name}" /><br>
-                              <strong>Hybrid Type:</strong> <c:out value="${hydrocarbon.hybrid_type}" /><br>
-                          <strong>Atomic Orbitals:</strong> <c:out value="${hydrocarbon.atomic_orbitals}" /><br>
-                       <strong> No. of s orbitals: </strong><c:out value="${hydrocarbon.s_orbitals}" /><br>
-                        <strong>No. of p orbitals: </strong><c:out value="${hydrocarbon.p_orbitals}" /><br>
-   <strong> No. of groups attached to carbon atom:</strong> <c:out value="${hydrocarbon.groups_attached_to_carbon}" /><br>
-     <strong> Angle between each pair of orbitals(in Degrees): </strong><c:out value="${hydrocarbon.angle_beetween_each_pair}" /><br>
-                      <strong>Spatial arrangement: </strong><c:out value="${hydrocarbon.spatial_arrangement}" /><br>
-                  <strong> Percent of s character:</strong> <c:out value="${hydrocarbon.s_character}" /><br>
-                  <strong> Percent of p character: </strong><c:out value="${hydrocarbon.p_character}" /><br>
-                                   <strong> Shape:</strong> <c:out value="${hydrocarbon.shape}" /><br>
-                                 <strong> Example: </strong><c:out value="${hydrocarbon.example}" /><br>
-</form>
-<div class="nav navbar-nav">
-            <ul class=" navbar-nav">
-                <li onclick="addHybridisation('${hy}')"><font color="magenta"><a href='#'>Show Animation</a></li>
-            </ul>
-</div>
+    
+    <form action="CompoundServlet"><br>
+    <select class="form-control" name="example">
+        <option value="-1">Choose compound</option>  
+         <% 
+            if (request.getParameter("item") != null && request.getParameter("item") != "") 
+            {
+                long num = Long.parseLong(request.getParameter("item"));
+                    try
+                    {
+                        Connection connection = ConnectionFactory.getConnection();
+                        Statement statement = connection.createStatement();
+                        ResultSet myRs=statement.executeQuery("select * from organic_compounds where type=" +num);
+                        while(myRs.next())
+                        {
+                        %>
+                        <option value="<%=myRs.getInt("id")%>" ><%=myRs.getString("name")%></option>
+                        <%
+                        }
+                    }
+                    catch(Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+            }
+        %>
+    </select>
+    
+    
+    <input type="submit" value="Submit">
+    <div class="nav navbar-nav">
+        <ul class=" navbar-nav">
+            <li onclick="Hydrocarbon('${alkanes.carbons}', '${alkanes.hydrogen}', '${alkanes.bond1}' , '${alkanes.bond2}', '${alkanes.type}')"><font color="magenta"><a href='#'>Show Structure</a></font></li>           
+        </ul>
+    </div>
+    </form>
+</center>
+<br>
                   
+<div class="hintLeft"><input type="image" class="hint" src="Images/hint.png" height="38px" width="38px">
+    <span class="toolLeft" id="atomDetails" style="top:10%">
+    <br><h3><strong>Properties</strong></h3><br>
+                                       <strong>Hydrocarbon:</strong><c:out value="${hydrocarbon.hydro_name}" /><br>
+                                       <strong>Hybrid Type:</strong><c:out value="${hydrocarbon.hybrid_type}" /><br>
+                                   <strong>Atomic Orbitals:</strong><c:out value="${hydrocarbon.atomic_orbitals}" /><br>
+                               <strong> No. of s orbitals: </strong><c:out value="${hydrocarbon.s_orbitals}" /><br>
+                                <strong>No. of p orbitals: </strong><c:out value="${hydrocarbon.p_orbitals}" /><br>
+            <strong> No. of groups attached to carbon atom:</strong><c:out value="${hydrocarbon.groups_attached_to_carbon}" /><br>
+  <strong> Angle between each pair of orbitals(in Degrees):</strong><c:out value="${hydrocarbon.angle_beetween_each_pair}" /><br>
+                              <strong>Spatial arrangement: </strong><c:out value="${hydrocarbon.spatial_arrangement}" /><br>
+                           <strong> Percent of s character:</strong><c:out value="${hydrocarbon.s_character}" /><br>
+                          <strong> Percent of p character: </strong><c:out value="${hydrocarbon.p_character}" /><br>                                             <strong> Shape:</strong><c:out value="${hydrocarbon.shape}" /><br>
+                                         <strong> Example: </strong><c:out value="${hydrocarbon.example}" /><br>
+    </span>
 <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48" height="48">
