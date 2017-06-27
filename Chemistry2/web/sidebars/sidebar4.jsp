@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : sidebar2.jsp
     Created on : 8 Jun, 2017, 3:40:10 PM
@@ -11,12 +12,9 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
-          <div>
-              <input type="image" class="plus" onclick="openModal(3)" src="Images/plus.png" alt="Submit" width="40" height="40">
+<input type="image" class="plus" onclick="openModal(3)" src="Images/plus.png" alt="Submit" width="40px" height="40px">
            
 		  <h2>Crystal structures</h2>
-                  
                   
         <label>Examples<br><br></label>
         
@@ -62,22 +60,16 @@
              }
              %>
         </ul> 
-<div>
-  
-    
+ <div class="hintLeft">
+     <span><input style="visibility:hidden"></span>
+</div> 
     <div id="SCC" style="visibility: hidden" onclick="getLattice(3)"><span class="choice">End-centered</span></div>
     <div id="Simple" style="visibility: hidden" onclick="getLattice(0)"><span class="choice">Simple</span></div>
     <div id="BCC" style="visibility: hidden" onclick="getLattice(1)"><span class="choice">Body-centered</span></div>
     <div id="FCC" style="visibility: hidden" onclick="getLattice(2)"><span class="choice">Face-centered</span></div>
-            
 
-        <br>
-       </div>
-
-         <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48" height="48">
-          <div class="tool"><input type="image" class="hint" src="Images/hint.png" height="38px" width="38px">
-             <span class="tooltext" id="help">Hint</span>
-</div>
-
-        
-       
+  <div class="hintLeft">
+    <input type="image" class="hint" src="Images/hint.png" height="38px" width="38px">
+    <span class="toolLeft" id="help">Hint</span>
+    <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48px" height="48px">
+</div>   

@@ -44,22 +44,19 @@
          </center>
 
           <div class="nav navbar-nav">
-		  <h2>Shapes</h2>
+		  <h3>Shapes</h3>
                   <div id='options'>
                   <ul class=" navbar-nav">
-            <li id="linear" onclick="createVSEPRShapes(10)"><a href='#'>Linear</a></li>
-            <li id="trigonal" onclick="createVSEPRShapes(20)"><a href='#'>Trigonal Planar</a></li>
-            <li id="tetrahedral" onclick="createVSEPRShapes(30)"><a href='#'>Tetrahedral</a></li>
-            <li id="pyramidal" onclick="createVSEPRShapes(40)"><a href='#'>Trigonal Bipyramidal</a></li>
-            <li id="octahedral" onclick="createVSEPRShapes(50)"><a href='#'>Octahedral</a></li>
-            <li id="pentpy" onclick="createVSEPRShapes(60)"><a href='#'>Pentagonal Bipyramidal</a></li>
-            </ul>
-                      
+            <li class="choice" id="linear" onclick="createVSEPRShapes(10)">Linear</li>
+            <li class="choice" id="trigonal" onclick="createVSEPRShapes(20)">Trigonal Planar</li>
+            <li class="choice" id="tetrahedral" onclick="createVSEPRShapes(30)">Tetrahedral</li>
+            <li class="choice" id="pyramidal" onclick="createVSEPRShapes(40)">Trigonal Bipyramidal</li>
+            <li class="choice" id="octahedral" onclick="createVSEPRShapes(50)">Octahedral</li>
+            <li class="choice" id="pentpy" onclick="createVSEPRShapes(60)">Pentagonal Bipyramidal</li>
+            </ul>   
                   </div>
-          
           </div>
-
-         <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48" height="48">
-          <div class="tool"><input type="image" class="hint" src="Images/hint.png" height="38px" width="38px">
-             <span class="tooltext" id="help">Hint</span>
-</div>
+          <div class="hintLeft"><input type="image" class="hint" src="Images/hint.png" height="38px" width="38px">
+             <span class="toolLeft" id="help">Hint</span>
+             <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48px" height="48px">
+          </div>

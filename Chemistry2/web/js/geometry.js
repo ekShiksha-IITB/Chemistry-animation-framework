@@ -40,7 +40,6 @@ function Linear(r, h) {
 	this.shape = group ;
 }
 function Octahedral(r, h, noOfLonePair) {
-    console.log("Octahedral");
 	this.type = "Octahedral" ;	
 	var points = [ [0, 0, -0.4], [0, 0, +0.4], [+0.4, 0, 0], [-0.4, 0, 0]] ;
 	var shape = new THREE.Group() ;
@@ -120,7 +119,6 @@ function makeLonePair() {
 	return group ;		
 }
 function PentagonalBipyramidal(r, h, noOfLonePair) {
-        console.log("Pent1");
 
 	this.type = "PentagonalBipyramidal" ;
 	var group = new THREE.Group() ;
@@ -156,7 +154,6 @@ function PentagonalBipyramidal(r, h, noOfLonePair) {
 }
 function Tetrahedral(r, h, noOfLonePair) {
 	/*yet to complete*/
-            console.log("Tetr");
 
 	this.type = "Tetrahedral" ;
 	//alert('in') ;	
@@ -223,7 +220,6 @@ function Tetrahedral(r, h, noOfLonePair) {
 	this.shape = group ;
 }
 function TrigonalBipyramidal(r, h, noOfLonePair) {
-        console.log("Tripy");
 
 	this.type = "TrigonalBipyramidal" ;
 	var group = new THREE.Group() ;
@@ -284,7 +280,6 @@ function TrigonalBipyramidal(r, h, noOfLonePair) {
 	this.shape = group ;
 }
 function TrigonalPlanar(r, h, noOfLonePair) {
-        console.log("TriPla");
 
 	this.type = "TrigonalPlanar" ;
 	var group = new THREE.Group() ;

@@ -17,6 +17,34 @@
         <servlet-class>Servlets.VSEPRServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>HydrocarbonServlet</servlet-name>
+        <servlet-class>Servlets.HydrocarbonServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CRServlet</servlet-name>
+        <servlet-class>Servlets.CRServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DRServlet</servlet-name>
+        <servlet-class>Servlets.DRServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DisplacementServlet</servlet-name>
+        <servlet-class>Servlets.DisplacementServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DDisplacmentServlet</servlet-name>
+        <servlet-class>Servlets.DDisplacmentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DDisplacementServlet</servlet-name>
+        <servlet-class>Servlets.DDisplacementServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DoubleDisServlet</servlet-name>
+        <servlet-class>Servlets.DoubleDisServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ExampleServlet</servlet-name>
         <servlet-class>Servlets.ExampleServlet</servlet-class>
     </servlet>
@@ -35,6 +63,30 @@
     <servlet-mapping>
         <servlet-name>VSEPRServlet</servlet-name>
         <url-pattern>/VSEPRServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HydrocarbonServlet</servlet-name>
+        <url-pattern>/HydrocarbonServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CRServlet</servlet-name>
+        <url-pattern>/CRServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DRServlet</servlet-name>
+        <url-pattern>/DRServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplacementServlet</servlet-name>
+        <url-pattern>/DisplacementServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DDisplacmentServlet</servlet-name>
+        <url-pattern>/DDisplacmentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoubleDisServlet</servlet-name>
+        <url-pattern>/DoubleDisServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ExampleServlet</servlet-name>

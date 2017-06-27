@@ -54,9 +54,11 @@ public class VSEPRServlet extends HttpServlet {
                 }
             catch (Exception e){
                 response.sendRedirect("index.jsp?option=3");
-            System.out.println(e);
+            pw.println(e);
             }
           }
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -97,4 +99,5 @@ public class VSEPRServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }

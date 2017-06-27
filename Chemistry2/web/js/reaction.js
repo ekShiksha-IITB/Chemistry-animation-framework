@@ -1,8 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 var m1, m2, m3, m4, c_flag = 1;
 function Combination() {
 	var geometry = new THREE.SphereGeometry( 0.4, 32, 32 );
@@ -45,7 +40,6 @@ function animateCombinationReaction() {
 		c_flag = 0 ;
 	}
 	requestAnimationFrame(animateCombinationReaction) ;
-	render() ;
 }
 var a1, a2, a3, a4, a5, d_flag = 1, cnt = 0;
 function Decomposition() {
@@ -99,7 +93,7 @@ function animateDecompositionReaction() {
 	}
 	cnt++ ;
 	requestAnimationFrame(animateDecompositionReaction) ;
-	render() ;
+
 }
 var c1, c2, c3, c4, c5, c6, c7, cnt = 0, flag = 0;
 function DoubleDisplacement() {
@@ -173,7 +167,7 @@ function animateDoubleDisplacement() {
 		}
 	}
 	requestAnimationFrame(animateDoubleDisplacement) ;
-	render() ;
+
 }
 var d1, d2, d3, d4, d5, d6, d7;
 function SingleDisplacement() {
@@ -229,6 +223,5 @@ function animateSingleDisplacement() {
 		}
 	}
 	requestAnimationFrame(animateSingleDisplacement) ;
-	render() ;
-}
 
+}

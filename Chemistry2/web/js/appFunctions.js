@@ -207,5 +207,3 @@
           { 
                 responsiveVoice.cancel();
           }
-
-
