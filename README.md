@@ -21,13 +21,16 @@ Contributors
 Aishwarya Nair      https://github.com/MayTune<br />
 Abhinaya S.B        https://github.com/grangergirl<br />
 Srikanth Chekuri    https://github.com/srikanthchekuri<br />
+Shreya Govil        https://github.com/codher23<br />
 
 Features
 
 Supports animations on the following topics in Chemistry
-1) Structure of an atom : Different properties of elements, view of a periodic table<br />
-2) Chemical bonding     : The different shapes of the VSEPR theory<br />
-3) Crystal structure    : The different Bravais lattices<br />
+1) Structure of an atom      : Different properties of elements, view of a periodic table<br />
+2) Chemical bonding          : The different shapes of the VSEPR theory<br />
+3) Crystal structure         : The different Bravais lattices<br />
+4) Hybridization of Orbitals : Hybridization of orbitals in hydrocarbons, structure of various hydrocarbons and its properties.<br />
+5) Organic Reactions         : Mechanism of different organic reactions.<br />
 
 Acknowledgments
 
