@@ -8,11 +8,11 @@
 <%@page import="ConnectionUtil.ConnectionFactory"%>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-    <script type = "text/javascript" src = "js/animations.js"  > </script>
-    <script type = "text/javascript" src = "js/hybridisation.js"  > </script>
-    <script type = "text/javascript" src = "js/Hydrocarbon.js"  > </script>
+<input type="image" class="plus" onclick="openModal(8)" src="Images/plus.png" alt="Submit" width="40px" height="40px">
+                             
+<label >Hydrocarbons<br><br></label>
+
     <center>
-    <h3>Hydrocarbons</h3>
     <form action="HydrocarbonServlet">
     <select class="form-control" name="item">
         <option value="-1">Select hydrocarbon</option>  
@@ -34,17 +34,12 @@
                     e.printStackTrace();
                 }
             %>
-    </select>
-    <input type="submit" value="Submit">
-    <div class="nav navbar-nav">
-        <ul class=" navbar-nav"> 
-            <li onclick="addHybridisation('${hy}')"><font color="magenta"><a href='#'>Show Animation</a></font></li>
-        </ul>
-    </div>
+    </select><br>
+    <input type="submit" value="Go" class="btn btn-default reaction"/>
+            <p class="choice" onclick="addHybridisation('${hy}')">Show Animation</p>
+
     </form>
     <br>
-   
-    
     
     <form action="CompoundServlet"><br>
     <select class="form-control" name="example">
@@ -71,15 +66,10 @@
                     }
             }
         %>
-    </select>
-    
-    
-    <input type="submit" value="Submit">
-    <div class="nav navbar-nav">
-        <ul class=" navbar-nav">
-            <li onclick="Hydrocarbon('${alkanes.carbons}', '${alkanes.hydrogen}', '${alkanes.bond1}' , '${alkanes.bond2}', '${alkanes.type}')"><font color="magenta"><a href='#'>Show Structure</a></font></li>           
-        </ul>
-    </div>
+    </select><br>
+      <input type="submit" value="Go" class="btn btn-default reaction"/>
+            <p class="choice" onclick="Hydrocarbon('${alkanes.carbons}', '${alkanes.hydrogen}', '${alkanes.bond1}' , '${alkanes.bond2}', '${alkanes.type}')">Show Structure</p>
+
     </form>
 </center>
 <br>
@@ -99,4 +89,5 @@
                           <strong> Percent of p character: </strong><c:out value="${hydrocarbon.p_character}" /><br>                                             <strong> Shape:</strong><c:out value="${hydrocarbon.shape}" /><br>
                                          <strong> Example: </strong><c:out value="${hydrocarbon.example}" /><br>
     </span>
-<input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48" height="48">
+    <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48px" height="48px">
+</div>

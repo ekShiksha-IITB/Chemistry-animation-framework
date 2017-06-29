@@ -7,14 +7,16 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<input type="image" class="plus" onclick="openModal(4)" src="Images/plus.png" alt="Submit" width="40px" height="40px">
+                             
+<label style="cursor:pointer" >Combination reactions <i onclick="ReactionsDemo(1)" class="glyphicon glyphicon-play-circle"></i><br><br></label>
 <div>
-    Combination reactions<br><br>
     <center> <button class="reaction btn btn-default" onclick="showCombination()">Show</button></center>
 </div>
 <center><br>
             <label>Reactants<br><br></label>  
               <form method="Get" action="CRServlet">
-               <input name="reactant1" list="reactant_1">
+               <input class="form-control" name="reactant1" list="reactant_1">
             <datalist  id="reactant_1" >
             <%               
             try
@@ -35,7 +37,7 @@
             }            
             %>
             </datalist><br>
-              <input name="reactant2" list="reactant_2">
+              <input class="form-control" name="reactant2" list="reactant_2">
         <datalist  id="reactant_2">
             <%               
             try
@@ -55,9 +57,9 @@
                 e.printStackTrace();
             }            
             %>
-        </datalist>
+        </datalist><br>
     
-           <input class="btn btn-default" type="submit"/>
+           <input value="Go" class="btn btn-default" type="submit"/>
         </form>
                        <c:forEach items="${reactions}" var="reaction">
                        <span class="choice">  <c:out value="${reaction.reaction}" /></span><br>

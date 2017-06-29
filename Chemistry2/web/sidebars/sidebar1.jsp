@@ -9,17 +9,25 @@
     <script type = "text/javascript" src = "js/animations.js"> </script>
     <center>
     <form method="Get" action="PeriodicServlet"><br>
-        <input type="submit" class="btn btn-default" value="Periodic table">
+        <div class="input-group" style="z-index: 0">
+        <button type="submit" class="btn btn-default" value="Periodic table"><i class="glyphicon glyphicon-th"> Periodic-Table</i></button>
+
+         </div>
     </form>
     </center>
     <br>
-<form method="Post" action="ElementServlet" >
-    <input type="number" placeholder="Enter atomic number" name="atomic_number">
-    <center>   <input type='submit'class="btn btn-default" value="Go" />  </center> 
- <ul class=" navbar-nav">
-   <li class="choice" onclick="addAtom('${an}','${element.k}','${element.l}','${element.m}','${element.n}','${element.o}','${element.p}','${element.q}', 2)">Full View</li>
-  <li class="choice" onclick="addAtom('${an}','${element.k}','${element.l}','${element.m}','${element.n}','${element.o}','${element.p}','${element.q}', 1)">Electron view</li>
-  <li class="choice" onclick="addAtom('${an}','${element.k}','${element.l}','${element.m}','${element.n}','${element.o}','${element.p}','${element.q}', 3)">Valence shell view</li>
+    <form class="navbar-form" method="Post" action="ElementServlet" >
+        <div class="input-group">
+        <input class="form-control" type="number" placeholder="Enter atomic number" name="atomic_number">
+        <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-circle-arrow-right"></i></button>
+            </div>
+        </div>
+        <br><br>
+ <ul class="nav navbar-nav">
+     <li class="choice" onclick="addAtom('${an}','${element.k}','${element.l}','${element.m}','${element.n}','${element.o}','${element.p}','${element.q}', 2)">Full View</li><br>
+     <li class="choice" onclick="addAtom('${an}','${element.k}','${element.l}','${element.m}','${element.n}','${element.o}','${element.p}','${element.q}', 1)">Electron view</li><br>
+     <li class="choice" onclick="addAtom('${an}','${element.k}','${element.l}','${element.m}','${element.n}','${element.o}','${element.p}','${element.q}', 3)">Valence shell view</li><br>
   </ul>
 </form>
    <div class="hintLeft"><input type="image" class="hint" src="Images/hint.png" height="38px" width="38px">

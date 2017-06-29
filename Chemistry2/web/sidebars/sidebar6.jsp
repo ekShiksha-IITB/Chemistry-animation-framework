@@ -7,14 +7,16 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<input type="image" class="plus" onclick="openModal(5)" src="Images/plus.png" alt="Submit" width="40px" height="40px">
+                             
+<label style="cursor:pointer" >Decomposition reactions <i onclick="ReactionsDemo(2)" class="glyphicon glyphicon-play-circle"></i><br><br></label>
 <div>
-    Decomposition reactions<br><br>
     <center> <button class="reaction btn btn-default" onclick="showDecomposition()">Show</button></center>
 </div>
 <center><br>
             <label>Reactants<br><br></label>  
               <form method="Get" action="DRServlet">
-               <input name="reactant" list="reactant">
+               <input class="form-control" name="reactant" list="reactant">
             <datalist  id="reactant" >
             <%               
             try
@@ -35,8 +37,8 @@
             }            
             %>
             </datalist><br>
-             
-           <input class="btn btn-default" type="submit"/>
+    
+           <input value="Go" class="btn btn-default" type="submit"/>
         </form>
                        <c:forEach items="${reactions}" var="reaction">
                        <span class="choice">  <c:out value="${reaction.reaction}" /></span><br>

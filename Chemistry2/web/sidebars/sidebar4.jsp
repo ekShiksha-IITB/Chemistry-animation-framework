@@ -14,7 +14,6 @@
 <!DOCTYPE html>
 <input type="image" class="plus" onclick="openModal(3)" src="Images/plus.png" alt="Submit" width="40px" height="40px">
            
-		  <h2>Crystal structures</h2>
                   
         <label>Examples<br><br></label>
         
@@ -41,7 +40,9 @@
             }
             
             %>
-        </select>
+            </select><br>
+        <label style="font-size: 14px">Crystal Structures<br></label>
+
                    <ul class=" navbar-nav">
             <%  
          
@@ -54,7 +55,7 @@
                             
                     <li id="lattice<%= lattices.get(i).getId()%>" class="hintLeft lattices" onclick="setShape(<%= lattices.get(i).getId()%>)" style="cursor:pointer"><%= lattices.get(i).getName()%>
                         <span class="toolLeft"><%= lattices.get(i).getSideConstraint()+"<br>"+lattices.get(i).getAngleConstraint() %></span> 
-                    </li>
+                    </li><br>
         
              <%  
              }

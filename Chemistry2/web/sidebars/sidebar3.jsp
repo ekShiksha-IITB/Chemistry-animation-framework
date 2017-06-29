@@ -13,12 +13,15 @@
 <%@page import="DAO.TopicDAO"%>
 <%@page import="DAO.SubtopicDAO"%>
 <!DOCTYPE html>
-        <center>
-            <input type="image" class="plus" onclick="openModal(2)" src="Images/plus.png" alt="Submit" width="40" height="40">
-            <label>Compounds<br><br></label>
+
+<input type="image" class="plus" onclick="openModal(3)" src="Images/plus.png" alt="Submit" width="40px" height="40px">
+                             
+        <label>Compounds<br><br></label>
         
             <select class="form-control" id="compound" onchange="createVSEPRShapes(this.value)">
-            <option value="-1">Choose compound</option>            
+            <option value="-1">Choose compound</option>    
+        
+                 
             <%               
                 try
                 {
@@ -43,16 +46,17 @@
         </select>
          </center>
 
-          <div class="nav navbar-nav">
-		  <h3>Shapes</h3>
+         <div><br>
+        <label style="font-size: 14px">Shapes<br></label>
+
                   <div id='options'>
                   <ul class=" navbar-nav">
-            <li class="choice" id="linear" onclick="createVSEPRShapes(10)">Linear</li>
-            <li class="choice" id="trigonal" onclick="createVSEPRShapes(20)">Trigonal Planar</li>
-            <li class="choice" id="tetrahedral" onclick="createVSEPRShapes(30)">Tetrahedral</li>
-            <li class="choice" id="pyramidal" onclick="createVSEPRShapes(40)">Trigonal Bipyramidal</li>
-            <li class="choice" id="octahedral" onclick="createVSEPRShapes(50)">Octahedral</li>
-            <li class="choice" id="pentpy" onclick="createVSEPRShapes(60)">Pentagonal Bipyramidal</li>
+            <li class="choice" id="linear" onclick="createVSEPRShapes(10)">Linear</li><br>
+            <li class="choice" id="trigonal" onclick="createVSEPRShapes(20)">Trigonal Planar</li><br>
+            <li class="choice" id="tetrahedral" onclick="createVSEPRShapes(30)">Tetrahedral</li><br>
+            <li class="choice" id="pyramidal" onclick="createVSEPRShapes(40)">Trigonal Bipyramidal</li><br>
+            <li class="choice" id="octahedral" onclick="createVSEPRShapes(50)">Octahedral</li><br>
+            <li class="choice" id="pentpy" onclick="createVSEPRShapes(60)">Pentagonal Bipyramidal</li><br>
             </ul>   
                   </div>
           </div>

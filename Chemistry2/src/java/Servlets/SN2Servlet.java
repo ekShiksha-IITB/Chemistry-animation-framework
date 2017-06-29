@@ -10,14 +10,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import DAO.CompoundDAO;
-import Objects.Compound;
+import DAO.SN2DAO;
+import Objects.SN2;
 
 /**
  *
  * @author shreya
  */
-public class CompoundServlet extends HttpServlet {
+public class SN2Servlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,11 +31,11 @@ public class CompoundServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {           
             try {   
-                int example = Integer.parseInt((String) request.getParameter("example"));
-                CompoundDAO alkanesDao = new CompoundDAO();
-                Compound alkanes = alkanesDao.getAlkanes(example);
-                request.setAttribute("alkanes", alkanes); // Will be available as ${alkanes} in JSP
-                request.getRequestDispatcher("/index.jsp?option=9").forward(request, response);
+                int organic_reaction_ID = Integer.parseInt((String) request.getParameter("options"));
+                SN2DAO sn2Dao = new SN2DAO();
+                SN2 sn2 = sn2Dao.getSN2(organic_reaction_ID);
+                request.setAttribute("sn2", sn2); // Will be available as ${hydrocarbon} in JSP
+                request.getRequestDispatcher("/index.jsp?option=11").forward(request, response);
             } 
             catch (Exception e) {
                 e.printStackTrace();

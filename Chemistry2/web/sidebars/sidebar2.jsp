@@ -6,12 +6,12 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<h3>Electron excitation</h3>
+<label style="font-size: 14px">Electronic Excitation<br></label><br>
 
-    Level 1 (n1) : <input type="number" id="l1" name="level_1"/>
-    Level 2 (n2) : <input type="number" id="l2" name="level_2"/>
+    Level 1 (n1) : <input class="form-control" type="number" id="l1" name="level_1"/>
+    Level 2 (n2) : <input class="form-control" type="number" id="l2" name="level_2"/>
     <br><br>
-    <input type='submit' value="Go" onclick="excitation()" />   
+    <input class="btn btn-default reaction" type='submit' value="Go" onclick="excitation()" />   
         <br><br>
         <div id="energy"></div>
 

@@ -225,3 +225,153 @@ function animateSingleDisplacement() {
 	requestAnimationFrame(animateSingleDisplacement) ;
 
 }
+var ballA, ballB, ballC, ballD
+function ReactionsDemo(type) {
+	ballA = getBall(0.3, Math.random()*0xFF1493) ;
+	ballA.name = ++objectCount ;
+
+	ballB = getBall(0.3, Math.random()*0xFF1493) ;
+	ballB.name = ++objectCount ;
+	
+	ballC = getBall(0.3, Math.random()*0xFF1493) ;
+	ballC.name = ++objectCount ;
+	
+	ballD = getBall(0.3, Math.random()*0xFF1493) ;
+	ballD.name = ++objectCount ;
+
+	setPositions() ;
+
+	if(type == 1) {
+		scene.add(ballA) ;
+		scene.add(ballC) ;
+	} else if(type == 2) {
+		scene.add(ballA) ;
+		scene.add(ballC) ;
+		ballA.position.set(-1, +0.5, 0) ;
+		ballC.position.set(+1, +0.5, 0) ;
+		var material = new THREE.LineBasicMaterial({color: 'yellow', linewidth : 5 });
+
+		var geometry = new THREE.Geometry();
+		geometry.vertices.push(new THREE.Vector3( -1, +0.5, 0 ), new THREE.Vector3( +1, +0.5, 0 ));
+		var l1 = new THREE.Line(geometry, material) ;		
+		l1.name = 'l1' ;	
+		scene.add(l1) ;		
+	} else if(type == 3) {
+		scene.add(ballA) ;
+		scene.add(ballB) ;
+		scene.add(ballC) ;
+		var material = new THREE.LineBasicMaterial({color: 'yellow', linewidth : 5 });
+
+		var geometry = new THREE.Geometry();
+		geometry.vertices.push(new THREE.Vector3( -3, -0.5, 0 ), new THREE.Vector3( -3, +0.5, 0 ));
+		var l1 = new THREE.Line(geometry, material) ;		
+		l1.name = 'l1' ;	
+		scene.add(l1) ;		
+	} else {
+		scene.add(ballA) ;
+		scene.add(ballB) ;
+		scene.add(ballC) ;
+		scene.add(ballD) ;
+		var material = new THREE.LineBasicMaterial({color: 'yellow', linewidth : 5 });
+
+		var geometry = new THREE.Geometry();
+		geometry.vertices.push(new THREE.Vector3( -3, -0.5, 0 ), new THREE.Vector3( -3, +0.5, 0 ));
+		var l1 = new THREE.Line(geometry, material) ;		
+		l1.name = 'l1' ;	
+		scene.add(l1) ;	
+
+		var material = new THREE.LineBasicMaterial({color: 'yellow', linewidth : 5 });
+
+		var geometry = new THREE.Geometry();
+		geometry.vertices.push(new THREE.Vector3( +3, -0.5, 0 ), new THREE.Vector3( +3, +0.5, 0 ));
+		var l1 = new THREE.Line(geometry, material) ;		
+		l1.name = 'l2' ;	
+		scene.add(l1) ;	
+	}
+	var l_f = 1 ;
+	var animate = function () {
+		requestAnimationFrame( animate );
+		
+		if(type == 1) {
+			if(ballA.position.x <= -1) {
+				ballA.position.x += 0.01 ;
+				ballC.position.x -= 0.01 ;
+			} else if(l_f){
+				var geometry = new THREE.Geometry();
+				var material = new THREE.LineBasicMaterial({color: 'yellow', linewidth : 5 });
+				geometry.vertices.push(new THREE.Vector3( -1, +0.5, 0 ), new THREE.Vector3( +1, +0.5, 0 ));
+				var l1 = new THREE.Line(geometry, material) ;		
+				l1.name = ++objectCount ;	
+				scene.add(l1) ;
+				l_f = 0 ;
+			}
+		} else if(type == 2) {
+			if(ballA.position.x >= -3) {
+				ballA.position.x -= 0.01 ;
+				ballC.position.x += 0.01 ;
+			}
+			if(ballA.position.x <= -1.4) {
+				scene.remove(scene.getObjectByName('l1')) ;
+			}
+		} else if(type == 3) {
+			if(ballA.position.x <= -1) {
+				ballA.position.x += 0.01 ;
+				ballB.position.x += 0.01 ;
+				ballC.position.x -= 0.01 ;
+				var ob = scene.getObjectByName('l1') ;
+				ob.position.x += 0.01 ;
+			} else if(l_f){
+				var geometry = new THREE.Geometry();
+				var material = new THREE.LineBasicMaterial({color: 'yellow', linewidth : 5 });
+				geometry.vertices.push(new THREE.Vector3( -1, +0.5, 0 ), new THREE.Vector3( +1, +0.5, 0 ));
+				var l1 = new THREE.Line(geometry, material) ;		
+				l1.name = ++objectCount ;	
+				scene.add(l1) ;	
+				scene.remove(scene.getObjectByName('l1')) ;
+				l_f = 0 ;			
+			}
+		} else {
+			
+			if(ballA.position.x <= -1) {
+				ballA.position.x += 0.01 ;
+				ballB.position.x += 0.01 ;
+				ballC.position.x -= 0.01 ;
+				ballD.position.x -= 0.01 ;
+				var ob = scene.getObjectByName('l1') ;
+				var ob1 = scene.getObjectByName('l2') ;
+				ob.position.x += 0.01 ;
+				ob1.position.x -= 0.01 ;
+			} else if(l_f) {
+				scene.remove(scene.getObjectByName('l1')) ;
+				scene.remove(scene.getObjectByName('l2')) ;
+				var geometry = new THREE.Geometry();
+				var material = new THREE.LineBasicMaterial({color: 'yellow', linewidth : 5 });
+				geometry.vertices.push(new THREE.Vector3( -1, +0.5, 0 ), new THREE.Vector3( +1, +0.5, 0 ));
+				var l1 = new THREE.Line(geometry, material) ;		
+				l1.name = ++objectCount ;	
+				scene.add(l1) ;	
+				var geometry = new THREE.Geometry();
+				var material = new THREE.LineBasicMaterial({color: 'yellow', linewidth : 5 });
+				geometry.vertices.push(new THREE.Vector3( -1, -0.5, 0 ), new THREE.Vector3( +1, -0.5, 0 ));
+				var l1 = new THREE.Line(geometry, material) ;		
+				l1.name = ++objectCount ;	
+				scene.add(l1) ;									
+				l_f = 0 ;
+			}
+		}
+		
+	};
+	animate();	
+}
+function setPositions() {
+	ballA.position.set(-3, +0.5, 0) ;
+	ballB.position.set(-3, -0.5, 0) ;
+	ballC.position.set(+3, +0.5, 0) ;
+	ballD.position.set(+3, -0.5, 0) ;
+}
+function getBall(radius, col) {
+	var geometry = new THREE.SphereGeometry( radius, 32, 32 );
+	var material = new THREE.MeshPhongMaterial( { ambient: 0x050505, color: col, specular: 0x555555, shininess: 30 } );
+	var sphere = new THREE.Mesh( geometry, material );	
+	return sphere ;
+}

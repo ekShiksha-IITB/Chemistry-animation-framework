@@ -68,10 +68,10 @@ public class Hydrocarbon {
     {
         return example;
     }
-        
+     
     public void setAll(String hydro_name,String hybrid_type,String atomic_orbitals,int s_orbitals, int p_orbitals,int groups_attached_to_carbon,int angle_beetween_each_pair,String spatial_arrangement,int s_character,int p_character,String shape,String example)
     {
-        this.hydro_name=hydro_name;
+      this.hydro_name=hydro_name;
       this.hybrid_type=hybrid_type;
       this.atomic_orbitals=atomic_orbitals;
       this.s_orbitals=s_orbitals;

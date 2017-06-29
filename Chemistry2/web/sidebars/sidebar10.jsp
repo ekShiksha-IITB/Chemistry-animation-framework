@@ -1,5 +1,5 @@
 <%-- 
-    Document   : sidebar5.jsp
+    Document   : sidebar10.jsp
     Created on : 16 Jun, 2017, 2:46:12 PM
     Author     : shreya
 --%>
@@ -14,8 +14,6 @@
             <label>Substitution Nucleophilic Unimolecular Reactions<br><br></label>
     </center>
         <div id='options'>
-                  
-            
                     <%
                     try
                     {
@@ -25,8 +23,8 @@
                         while(myRs.next())
                        {
                         %>
-                        <a href="#"><option value="<%=myRs.getInt("organic_reaction_ID")%>" >(<%=myRs.getInt("organic_reaction_ID")%>)<%=myRs.getString("Reactants")%><br>--><%=myRs.getString("Products")%></option>
-                        </a><br>
+                        <li class="choice" value="<%=myRs.getInt("organic_reaction_ID")%>" ><%=myRs.getString("Reactants")%> --> <br><%=myRs.getString("Products")%></li>
+                       
                         <%
                         }
                     }
@@ -35,9 +33,11 @@
                         e.printStackTrace();
                     }   
                     %>
-                      
-                  
         </div>
     
-    <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48" height="48">
-               
+
+<div class="hintLeft">
+    <input type="image" class="hint" src="Images/hint.png" height="38px" width="38px">
+    <span class="toolLeft" id="help">Hint</span>
+    <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48px" height="48px">
+</div>               

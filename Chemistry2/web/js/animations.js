@@ -6,8 +6,8 @@ function init() {
 	var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize( window.innerWidth, window.innerHeight );
-        var canvas=document.getElementById("animationCanvas");
-	canvas.appendChild( renderer.domElement );	
+        var canvas=document.getElementById("animationCanvas");        
+	canvas.appendChild( renderer.domElement );
 	var controls = new THREE.OrbitControls(camera, renderer.domElement);
 	var cont = new THREE.TrackballControls(camera, renderer.domElement);        
         window.addEventListener('resize', onWindowResize, false);
@@ -30,7 +30,18 @@ function init() {
         function onWindowResize() {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth/2, 3*window.innerHeight/4);
+        if (window.innerWidth<=767)
+        {
+            console.log("Yes "+window.innerWidth);
+            renderer.setSize(window.innerWidth*0.9, 3*window.innerHeight/4);
+        }
+        else
+        {
+       console.log("No "+window.innerWidth);
+
+        renderer.setSize(window.innerWidth*0.4, 3*window.innerHeight/4);
+   
+        }
         };
 	render();
 	//addAtom(34, 2, 8, 18, 6, 7, 0, 0, 2) ;
@@ -172,7 +183,9 @@ function addTetragonalLattice(param) {
 }
 function showExcitation(f, s) {
 	deleteObjects() ;
-	Excitation(f, s) ;
+        var m=s>f?s:f;
+        if(m<10)m=10;
+	Excitation(f, s,m) ;
 }
 function showCombination() {
 	deleteObjects() ;

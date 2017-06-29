@@ -11,35 +11,35 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import ConnectionUtil.ConnectionFactory;
 import ConnectionUtil.DBUtil;
-import Objects.Hydrocarbon;
+import Objects.SN2;
 
  
-public class HydrocarbonDAO {
+public class SN2DAO {
     
     private Connection connection;
     private Statement statement;
  
-    public HydrocarbonDAO() { }
+    public SN2DAO() { }
  
-    public Hydrocarbon getHydrocarbon(int item) throws SQLException {
-        String query = "SELECT * FROM properties WHERE hydro_id=" + item;
+    public SN2 getSN2(int options) throws SQLException {
+        String query = "SELECT * FROM organic_sn2 WHERE organic_reaction_ID=" + options;
         ResultSet rs = null;
-        Hydrocarbon hydrocarbon = null;
+        SN2 sn2 = null;
         try {
             connection = ConnectionFactory.getConnection();
             statement = connection.createStatement();
             rs = statement.executeQuery(query);
             if (rs.next()) {
-                hydrocarbon = new Hydrocarbon();
-                hydrocarbon.setAll( rs.getString("hydro_name"), rs.getString("hybrid_type"), rs.getString("atomic_orbitals"), rs.getInt("s_orbitals"),rs.getInt("p_orbitals") , rs.getInt("groups_attached_to_carbon"), rs.getInt("angle_beetween_each_pair"),rs.getString("spatial_arrangement") , rs.getInt("s_character"), rs.getInt("p_character") ,rs.getString("shape"),rs.getString("example"));
+                sn2 = new SN2();
+                sn2.setAll( rs.getString("Grp1"), rs.getString("Grp2"), rs.getString("Grp3"), rs.getString("Leaving_group"), rs.getString("Grp4"),rs.getString("Adding_group"));
             }
         } finally {
             DBUtil.close(rs);
             DBUtil.close(statement);
             DBUtil.close(connection);
         }
-        System.out.print(hydrocarbon+" is the hydrocarbon");
-        return hydrocarbon;
+        System.out.print(sn2+" is the sn2");
+        return sn2;
     }
     
 }

@@ -5,19 +5,19 @@
  */
 package Servlets;
 
+import DAO.CReactionDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import DAO.CompoundDAO;
-import Objects.Compound;
 
 /**
  *
- * @author shreya
+ * @author aishwarya
  */
-public class CompoundServlet extends HttpServlet {
+public class CRInputServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,18 +29,38 @@ public class CompoundServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {           
-            try {   
-                int example = Integer.parseInt((String) request.getParameter("example"));
-                CompoundDAO alkanesDao = new CompoundDAO();
-                Compound alkanes = alkanesDao.getAlkanes(example);
-                request.setAttribute("alkanes", alkanes); // Will be available as ${alkanes} in JSP
-                request.getRequestDispatcher("/index.jsp?option=9").forward(request, response);
-            } 
-            catch (Exception e) {
-                e.printStackTrace();
-            } 
+            throws ServletException, IOException {
+        String message="NULL";
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            try{
+            String reactant_1 = request.getParameter("reactant_1");
+            String reactant_2 = request.getParameter("reactant_2");
+            String product = request.getParameter("product");
+            String reaction = request.getParameter("reaction");
+            int n1 = Integer.parseInt(request.getParameter("n1"));
+            int n2 = Integer.parseInt(request.getParameter("n2"));
+            int p = Integer.parseInt(request.getParameter("p"));
+            CReactionDAO creactionDAO=new CReactionDAO();
+            
+            int status=creactionDAO.addReaction(reactant_1,n1,reactant_2,n2,product,p,reaction);
+            
+            if(status!=0)
+            message="Data is successfully inserted!";
+            else{
+            message="Failed to insert the data";
+            }
+            request.setAttribute("message",message);
+        request.getRequestDispatcher("index.jsp?option=5").forward(request, response);
+                }
+            catch (Exception e){
+                response.sendRedirect("index.jsp?option=5");
+            System.out.println(e);
+            }
+        }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -79,4 +99,5 @@ public class CompoundServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }

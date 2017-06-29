@@ -8,10 +8,6 @@
         <servlet-name>DemoServlet</servlet-name>
         <servlet-class>Servlets.DemoServlet</servlet-class>
     </servlet>
-     <servlet>
-        <servlet-name>CompoundServlet</servlet-name>
-        <servlet-class>Servlets.CompoundServlet</servlet-class>
-    </servlet>
     <servlet>
         <servlet-name>PeriodicServlet</servlet-name>
         <servlet-class>Servlets.PeriodicServlet</servlet-class>
@@ -24,19 +20,63 @@
         <servlet-name>HydrocarbonServlet</servlet-name>
         <servlet-class>Servlets.HydrocarbonServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CRServlet</servlet-name>
+        <servlet-class>Servlets.CRServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DRServlet</servlet-name>
+        <servlet-class>Servlets.DRServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DisplacementServlet</servlet-name>
+        <servlet-class>Servlets.DisplacementServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DDisplacmentServlet</servlet-name>
+        <servlet-class>Servlets.DDisplacmentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DDisplacementServlet</servlet-name>
+        <servlet-class>Servlets.DDisplacementServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DoubleDisServlet</servlet-name>
+        <servlet-class>Servlets.DoubleDisServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExampleServlet</servlet-name>
+        <servlet-class>Servlets.ExampleServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CompoundServlet</servlet-name>
+        <servlet-class>Servlets.CompoundServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SN2Servlet</servlet-name>
+        <servlet-class>Servlets.SN2Servlet</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>CRInputServlet</servlet-name>
+        <servlet-class>Servlets.CRInputServlet</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>DDisInputServlet</servlet-name>
+        <servlet-class>Servlets.DDisInputServlet</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>DisInputServlet</servlet-name>
+        <servlet-class>Servlets.DisInputServlet</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>DRInputServlet</servlet-name>
+        <servlet-class>Servlets.DRInputServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ElementServlet</servlet-name>
         <url-pattern>/ElementServlet</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CompoundServlet</servlet-name>
-        <url-pattern>/CompoundServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DemoServlet</servlet-name>
-        <url-pattern>/DemoServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
+       <servlet-mapping>
         <servlet-name>PeriodicServlet</servlet-name>
         <url-pattern>/PeriodicServlet</url-pattern>
     </servlet-mapping>
@@ -44,9 +84,57 @@
         <servlet-name>VSEPRServlet</servlet-name>
         <url-pattern>/VSEPRServlet</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>HydrocarbonServlet</servlet-name>
         <url-pattern>/HydrocarbonServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CRServlet</servlet-name>
+        <url-pattern>/CRServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DRServlet</servlet-name>
+        <url-pattern>/DRServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplacementServlet</servlet-name>
+        <url-pattern>/DisplacementServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DDisplacmentServlet</servlet-name>
+        <url-pattern>/DDisplacmentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoubleDisServlet</servlet-name>
+        <url-pattern>/DoubleDisServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExampleServlet</servlet-name>
+        <url-pattern>/ExampleServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CompoundServlet</servlet-name>
+        <url-pattern>/CompoundServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SN2Servlet</servlet-name>
+        <url-pattern>/SN2Servlet</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>CRInputServlet</servlet-name>
+        <url-pattern>/CRInputServlet</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>DDisInputServlet</servlet-name>
+        <url-pattern>/DDisInputServlet</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>DisInputServlet</servlet-name>
+        <url-pattern>/DisInputServlet</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>DRInputServlet</servlet-name>
+        <url-pattern>/DRInputServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

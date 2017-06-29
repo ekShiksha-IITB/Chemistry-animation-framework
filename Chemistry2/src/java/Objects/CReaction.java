@@ -10,9 +10,9 @@ package Objects;
  * @author abhi
  */
 public class CReaction {
-    private int id, reaction_id, r1,r2,p;
+    private int id,r1,r2,p;
     private String reactant1,reactant2,product;
-    private String type, reaction;
+    private String reaction;
    
       public CReaction()
     {
@@ -22,10 +22,7 @@ public class CReaction {
     {
         return this.id;
     }
-    public int getRId()
-    {
-        return this.reaction_id;
-    }
+    
     public int getReactant1Number()
     {
         return this.r1;
@@ -50,26 +47,21 @@ public class CReaction {
     {
         return this.product;
     }
-      public String getType()
-    {
-        return this.type;
-    }
+    
     public String getReaction()
     {
         return this.reaction;
     }
 
-    public void setAll(int id,int r_id,int r1,int r2,int p, String reactant1,String reactant2, String product,String type, String reaction)
+    public void setAll(int id,int r1,int r2,int p, String reactant1,String reactant2, String product,String reaction)
     {
         this.id=id;
-        this.reaction_id=r_id;
         this.r1=r1;
         this.r2=r2;
         this.p=p;
         this.reactant1=reactant1;
         this.reactant2=reactant2;
         this.product=product;
-        this.type=type;
         this.reaction=reaction;
     }
     

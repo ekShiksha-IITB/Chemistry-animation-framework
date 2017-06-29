@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
  var modal = document.getElementById('myModal');
         var span = document.getElementsByClassName("close")[0];
         var modalc,crystal;
@@ -21,7 +22,35 @@
         span2.onclick = function closeModal() {
             modal2.style.display = "none";
         };
+         var modal3 = document.getElementById('id03');
+        var span3 = document.getElementsByClassName("close")[3];
+        span3.onclick = function closeModal() {
+            modal3.style.display = "none";
+        };
         
+          var modal4 = document.getElementById('id04');
+        var span4 = document.getElementsByClassName("close")[4];
+        span4.onclick = function closeModal() {
+            modal4.style.display = "none";
+        };
+        
+           var modal5 = document.getElementById('id05');
+        var span5 = document.getElementsByClassName("close")[5];
+        span5.onclick = function closeModal() {
+            modal5.style.display = "none";
+        };
+        
+            var modal6 = document.getElementById('id06');
+        var span6 = document.getElementsByClassName("close")[6];
+        span6.onclick = function closeModal() {
+            modal6.style.display = "none";
+        };
+
+        var modal7 = document.getElementById('id07');
+        var span7 = document.getElementsByClassName("close")[7];
+        span7.onclick = function closeModal() {
+            modal7.style.display = "none";
+        };
 
         function excitation()
         {
@@ -54,7 +83,7 @@
             for(i=1;i<=7;i++)
             {
             var opt=document.getElementById("lattice"+i);
-            opt.style.color="BLACK";
+            opt.style.color="WHITE";
             }
             var option=document.getElementById("lattice"+val);
             option.style.color="RED";
@@ -192,12 +221,22 @@
           createShapes(value);
           }
         function openModal(val) {
-            if(val==1)
+if(val==1)
             modal.style.display = "block";
             else if(val==2)
               document.getElementById('id01').style.display='block';
             else if(val==3)
                 document.getElementById('id02').style.display='block';
+            else if(val==4)
+                document.getElementById('id03').style.display='block';
+            else if(val==5)
+                document.getElementById('id04').style.display='block';
+            else if(val==6)
+                document.getElementById('id05').style.display='block';
+            else if(val==7)
+                document.getElementById('id06').style.display='block';
+            else if(val==8)
+                document.getElementById('id07').style.display='block';
           }
           function talk(description)
           {

@@ -9,13 +9,12 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <script type = "text/javascript" src = "js/animations.js"> </script>
+     <script type = "text/javascript" src = "js/organic_reactions.js"> </script>
 
     <center>
             <label>Substitution Nucleophilic Bimolecular Reactions<br><br></label>
     </center>
-        <div id='options'>
-                  
-            
+      <div id='options'>
                     <%
                     try
                     {
@@ -25,8 +24,8 @@
                         while(myRs.next())
                        {
                         %>
-                        <a href="#"><option value="<%=myRs.getInt("organic_reaction_ID")%>" >(<%=myRs.getInt("organic_reaction_ID")%>)<%=myRs.getString("Reactants")%><br>--><%=myRs.getString("Products")%></option>
-                        </a><br>
+                        <li class="choice" onclick="showSN2('${sn2.Adding_group}','${sn2.Grp1}','C','${sn2.Grp4}','${sn2.Leaving_grp}')" value="<%=myRs.getInt("organic_reaction_ID")%>" ><%=myRs.getString("Reactants")%> -->  <br><%=myRs.getString("Products")%>
+                        <br></li>
                         <%
                         }
                     }
@@ -35,9 +34,11 @@
                         e.printStackTrace();
                     }   
                     %>
-                      
-                  
         </div>
     
-    <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48" height="48">
-               
+
+<div class="hintLeft">
+    <input type="image" class="hint" src="Images/hint.png" height="38px" width="38px">
+    <span class="toolLeft" id="help">Hint</span>
+    <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48px" height="48px">
+</div>               

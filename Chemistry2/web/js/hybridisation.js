@@ -45,7 +45,7 @@ function SP3Hybridization() {
 			g1.position.x += 0.01 ;
 			g2.position.x -= 0.01 ;
 		}
-		renderer.render(scene, camera);
+		
 	};
 
 	renderScene();
@@ -87,7 +87,7 @@ function SP2Hybridization() {
 				scene.add(cylinder) ;			
 			flag = 0 ;
 		}
-		renderer.render(scene, camera);
+		
 	};
 
 	render();

@@ -16,6 +16,7 @@
     int count = -1;
     if(request.getParameter("option")!=null)
      count=Integer.parseInt(request.getParameter("option"));
+    System.out.print(request.getParameter("option"));
     String sidebar="sidebars/generic.jsp";
     String description="xyz";
     String tip="No tip";
@@ -51,6 +52,9 @@
     <script type = "text/javascript" src = "js/geometry.js"> </script>
     <script type = "text/javascript" src = "js/lattice.js"> </script>
     <script type = "text/javascript" src = "js/reaction.js"> </script>
+    <script type = "text/javascript" src = "js/hybridisation.js"> </script>
+    <script type = "text/javascript" src = "js/hydrocarbon.js"> </script>
+    <script type = "text/javascript" src = "js/organic_reactions.js"> </script>
     <script type = "text/javascript" src = "js/OrbitControls.js"> </script>
     <script type = "text/javascript" src = "js/TrackballControls.js"> </script>
     <script type = "text/javascript" src = "js/animations.js"> </script>
@@ -82,12 +86,54 @@
 </nav>
  <div class="container">
  <div class="row">
-  <div class="col-sm-3">
-    <div class="sidebar-nav">
+  <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 align-self-start">
+      <nav class="navbar navbar-inverse" id="topicsbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myTopics">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Topics</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myTopics">
+        <form id="chooseTopics" method="Get" action="index.jsp">
+              <input type="hidden" name="option" id="topicId"/>
+
+              <ul class="nav navbar-nav" >
+            <%  
+                    TopicDAO topicDAO=new TopicDAO();
+                    List<Topic> topics=topicDAO.getTopic();
+                for(int i=0; i < topics.size(); i++)
+            {
+                %>
+                  <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" ><strong><%= topics.get(i).getTopicName()%></strong> <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                <%
+                        List<Subtopic> subtopics=topics.get(i).getSubtopics();
+                        for(int j=0; j < subtopics.size(); j++)
+            {
+                %>
+               
+                <%--<li><button type="submit" name="option" value="<%=subtopics.get(j).getSubId()%>"> <img src="Images/button.png" height="38" width="38" ></button><%= subtopics.get(j).getSubtopicName()%></li>--%>
+                <li><a href="" onclick="javascript:document.getElementById('topicId').value=<%=subtopics.get(j).getSubId()%>;document.forms['chooseTopics'].submit(); return false" value="<%=subtopics.get(j).getSubId()%>"><%= subtopics.get(j).getSubtopicName()%></a></li>
+
+                <%} %>
+                </ul>
+                  </li>
+                  <%  }%>    
+      </ul>
+        </form>
+    </div>
+  </div>
+</nav>
+    <%--<div class="sidebar-nav">
       <div id="topics" class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
+            <span class="sr-only">Choose topics</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -106,34 +152,41 @@
                 for(int i=0; i < topics.size(); i++)
             {
                 %>
-                <tr>
-                    <td style="font-size: 16px;"><p><strong><%= topics.get(i).getTopicName()%></strong></p></td>
+                    <td style="font-size: 16px;"><strong><%= topics.get(i).getTopicName()%></strong></td>
                     <%
                         List<Subtopic> subtopics=topics.get(i).getSubtopics();
                         for(int j=0; j < subtopics.size(); j++)
             {
                 %>
                 <tr>
-                    <td><p><li><button type="submit" name="option" value="<%=subtopics.get(j).getSubId()%>"> <img src="Images/button.png" height="38" width="38" ></button><%= subtopics.get(j).getSubtopicName()%><li></p></td>
+                    <td><button type="submit" name="option" value="<%=subtopics.get(j).getSubId()%>"> <img src="Images/button.png" height="38" width="38" ></button><%= subtopics.get(j).getSubtopicName()%></td>
                 </tr>  
-                </tr>
                 <%}}%>
         </table>  
          </form>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-      <div height ="800px" id="animationCanvas"></div>
-      <center>
-      <div style="position: relative; margin-top: 5%;" id="desc" style="font-size: 18px">
-        <input type="image" class="audio" onclick="talk('<%= description %>')" src="Images/voice.png" alt="Submit" width="35" height="35">
-         <input type="image" class="audio" onclick="stop()" src="Images/stop.png" alt="Submit" width="35" height="35">
-           
-          <strong>Description:</strong>
-       <%= description %>       
+   </div>--%>
+ </div>
+  <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 align-self-center" id="canvasArea">
+          <center>
+      <div id="animationCanvas" width="100%"></div>
+  
+
+      <div class="panel panel-default" id="desc">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Description</a>
+        </h4>
       </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">
+           <input type="image" class="audio" onclick="talk('<%= description %>')" src="Images/voice.png" alt="Submit" width="35" height="35">
+         <input type="image" class="audio" onclick="stop()" src="Images/stop.png" alt="Submit" width="35" height="35">
+          <%= description %>    
+        </div>
+      </div>
+    </div>
       </center>
             <!-- The Modal -->
         <div id="myModal" class="modal">
@@ -180,6 +233,145 @@
        </p>
        </div>              
 </div>
+<div id="id03" class="modal">                
+     <div class="modal-content">
+      <span class="close">&times;</span>     
+      <p id="modalinnerContent">          
+          <form method="post" action="CRInputServlet">
+            <table>
+            <tr>
+                <td>Coefficient of Reactant 1:</td><td><input type="number" name="n1"></td>
+                <td>Reactant 1:</td><td><input type="text" name="reactant_1"></td>
+            </tr>
+            <tr>
+                <td>Coefficient of Reactant 2:</td><td><input type="number" name="n2"></td>
+                <td>Reactant 2:</td><td><input type="text" name="reactant_2"></td>
+            </tr>
+            <tr>
+                <td>Coefficient of Product:</td><td><input type="number" name="p"></td>
+                <td>Product:</td><td><input type="text" name="product"></td>
+            </tr>
+            <tr>
+               <td>Reaction:</td><td><input type="text" name="reaction"></td>
+            </tr>
+            <tr><td></td><td><input type="submit" value="Submit"></td></tr>
+            </table>
+            </form>
+       </p>
+       </div>              
+</div>
+
+<div id="id04" class="modal">                
+     <div class="modal-content">
+      <span class="close">&times;</span>     
+      <p id="modalinnerContent">          
+          <form method="post" action="DRInputServlet">
+            <table>
+            <tr>
+                <td>Coefficient of Reactant:</td><td><input type="number" name="n"></td>
+                <td>Reactant:</td><td><input type="text" name="reactant"></td>
+            </tr>
+            <tr>
+                <td>Coefficient of Product 1:</td><td><input type="number" name="p1"></td>
+                <td>Product 1:</td><td><input type="text" name="product_1"></td>
+            </tr>
+            <tr>
+                <td>Coefficient of Product 2:</td><td><input type="number" name="p2"></td>
+                <td>Product 2:</td><td><input type="text" name="product_2"></td>
+            </tr>
+            <tr>
+               <td>Reaction:</td><td><input type="text" name="reaction"></td>
+            </tr>
+            <tr><td></td><td><input type="submit" value="Submit"></td></tr>
+            </table>
+            </form>
+       </p>
+       </div>              
+</div>
+
+<div id="id05" class="modal">                
+     <div class="modal-content">
+      <span class="close">&times;</span>     
+      <p id="modalinnerContent">          
+          <form method="post" action="DisInputServlet">
+            <table>
+            <tr>
+                <td>Coefficient of Reactant 1:</td><td><input type="number" name="n1"></td>
+                <td>Reactant 1:</td><td><input type="text" name="reactant_1"></td>
+            </tr>
+            <tr>
+                <td>Coefficient of Reactant 2:</td><td><input type="number" name="n2"></td>
+                <td>Reactant 2:</td><td><input type="text" name="reactant_2"></td>
+            </tr>
+            <tr>
+                <td>Coefficient of Product 1:</td><td><input type="number" name="p1"></td>
+                <td>Product 1:</td><td><input type="text" name="product_1"></td>
+            </tr>
+            <tr>
+                <td>Coefficient of Product 2:</td><td><input type="number" name="p2"></td>
+                <td>Product 2:</td><td><input type="text" name="product_2"></td>
+            </tr>
+            <tr>
+               <td>Reaction:</td><td><input type="text" name="reaction"></td>
+            </tr>
+            <tr><td></td><td><input type="submit" value="Submit"></td></tr>
+            </table>
+            </form>
+       </p>
+       </div>              
+</div>
+
+<div id="id06" class="modal">                
+     <div class="modal-content">
+      <span class="close">&times;</span>     
+      <p id="modalinnerContent">          
+          <form method="post" action="DDisInputServlet">
+            <table>
+            <tr>
+                <td>Coefficient of Reactant 1:</td><td><input type="number" name="n1"></td>
+                <td>Reactant 1:</td><td><input type="text" name="reactant_1"></td>
+            </tr>
+            <tr>
+                <td>Coefficient of Reactant 2:</td><td><input type="number" name="n2"></td>
+                <td>Reactant 2:</td><td><input type="text" name="reactant_2"></td>
+            </tr>
+            <tr>
+                <td>Coefficient of Product 1:</td><td><input type="number" name="p1"></td>
+                <td>Product 1:</td><td><input type="text" name="product_1"></td>
+            </tr>
+            <tr>
+                <td>Coefficient of Product 2:</td><td><input type="number" name="p2"></td>
+                <td>Product 2:</td><td><input type="text" name="product_2"></td>
+            </tr>
+            <tr>
+               <td>Reaction:</td><td><input type="text" name="reaction"></td>
+            </tr>
+            <tr><td></td><td><input type="submit" value="Submit"></td></tr>
+            </table>
+            </form>
+       </p>
+       </div>              
+</div>
+<div id="id07" class="modal">                
+    <div class="modal-content">
+      <span class="close">&times;</span>     
+      <p id="modalinnerContent">          
+          <form method="post" action="OrganicCompoundServlet">
+            <table>
+            <tr><td>Name of Hydrocarbon:</td><td><input type="text" name="name"></td></tr>
+            <tr><td>Number of Carbon atoms:</td><td><input type="number" name="carbons"></td></tr>
+            <tr><td>Number of Hydrogen atoms:</td><td><input type="number" name="hydrogen"></td></tr>
+            <tr><td>Type of Hydrocarbon(enter 1,2,3 for alkanes,alkenes,alkynes respectively):</td><td><input type="number" name="type"></td></tr>
+            <tr><td>Number of carbon atom from where double or triple bond starts(enter 0 for alkanes):</td><td><input type="number" name="bond1"></td></tr>
+            <tr><td>Number of carbon atom where the double or triple bond ends(enter 0 for alkanes):</td><td><input type="number" name="bond2"></td></tr>
+            <tr><td></td><td><input type="submit" value="Submit"></td></tr>
+            </table>
+          </form>
+          <c:out value="${message}"/>
+       </p>
+       </div>              
+</div>
+       
        <% String message = (String)request.getAttribute("message");%>
 
        <script type="text/javascript">
@@ -191,24 +383,22 @@
         }
         </script>
 </div> 
-   <div class="col-sm-2">
-       <div class="sidebar-nav2">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <span class="visible-xs navbar-brand"></span>
-        </div>
-      <div class="navbar-collapse collapse sidebar-navbar-collapse"  id="sidebar">
-                <!--Content goes here -->
+   <div class="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 align-self-end">
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mySidebar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+      <div class="collapse navbar-collapse" id="mySidebar" style="color:#ffffff">
                 <jsp:include page="<%= sidebar %>" flush="true"/>  
-        </div>
-      </div>
+
+    </div>
   </div>
+</nav>
    </div>
  </div>
  </div>

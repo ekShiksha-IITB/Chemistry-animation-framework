@@ -31,7 +31,7 @@ public class HydrocarbonServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {           
             try {   
-                int hydro_id = Integer.parseInt((String) request.getParameter("hydro_id"));
+                int hydro_id = Integer.parseInt((String) request.getParameter("item"));
                 HydrocarbonDAO hydrocarbonDao = new HydrocarbonDAO();
                 Hydrocarbon hydrocarbon = hydrocarbonDao.getHydrocarbon(hydro_id);
                 int hy=hydro_id;

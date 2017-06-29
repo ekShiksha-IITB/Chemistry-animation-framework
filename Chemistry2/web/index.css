@@ -1,4 +1,10 @@
-.sidebar-nav .navbar ul {
+
+  .sidebar-nav2 .navbar li {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  
+ .sidebar-nav .navbar ul {
     float: none;
     display: block;
   }
@@ -13,22 +19,17 @@
 .sidebar-nav .navbar li a:hover {
    background-color:#fed528;
   }
- .sidebar-nav2{
-width:200px;
- margin-left: 50%;}
  
  .sidebar-nav2 .navbar li {
     float: none;
     display: block;
   }
-  .sidebar-nav2 .navbar li {
-    padding-top: 12px;
-    padding-bottom: 12px;
-  }
+
   
   .navbar-collapse collapse sidebar-navbar-collapse
   {
       background-color: #8bc1c3; 
+      
   }
   
   
@@ -155,7 +156,7 @@ width:200px;
 
             /* for question button */
             .question{
-                margin-left: 60px;
+                margin-left: 100px;
                 margin-bottom: 10px;
                }
 
@@ -229,7 +230,7 @@ width:200px;
     top:5%;
 }
 .choice:hover  {
-    color:#921b2c;
+   color:#c4eb27;
     cursor:pointer;
 }
 #energy{
