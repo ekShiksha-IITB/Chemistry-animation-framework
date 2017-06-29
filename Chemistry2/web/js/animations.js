@@ -1,4 +1,3 @@
-
 var scene = new THREE.Scene();
 var objectCount = 0 ;
 function init() {
@@ -44,31 +43,7 @@ function init() {
         }
         };
 	render();
-	//addAtom(34, 2, 8, 18, 6, 7, 0, 0, 2) ;
 	
-	//addLinearGeometry() ;
-	
-	//addOctahedralGeometry(0) ;
-	
-	//addTrigonalPlanarGeometry(1) ;
-	
-	//addTrigonalBipyramidalGeometry(1) ;
-	
-	//addPenatagonalBipyramidalGeometry() ;
-	
-	//addTetrahedralGeometry(2) ;
-	
-	//addCubicLattice(0) ;
-	
-	//addHexagonalLattice() ;
-	
-	//addMonoclinicLattice(0) ;
-	
-	//addOrthorhombicLattice(0) ;
-	
-	//addTetragonalLattice(1) ;
-	
-	//deleteObjects() ;
 }
 function addAtom(atomicNumber, k, l, m, n, o, p, q, model) {
         objectCount
@@ -181,6 +156,22 @@ function addTetragonalLattice(param) {
 	shape.name = objectCount ;
 	scene.add(shape) ;		
 }
+function addTriclinicLattice() {
+	deleteObjects() ;
+	var ob = new Triclinic(1.5, 0.3) ;
+	++objectCount ;
+	var shape = ob.shape ;
+	shape.name = objectCount ;
+	scene.add(shape) ;		
+}
+function addRhombohedralLattice() {
+	deleteObjects() ;
+	var ob = new Rhombohedral(1.5, 0.3 ) ;
+	++objectCount ;
+	var shape = ob.shape ;
+	shape.name = objectCount ;
+	scene.add(shape) ;		
+}
 function showExcitation(f, s) {
 	deleteObjects() ;
         var m=s>f?s:f;
@@ -212,6 +203,29 @@ function addHybridisation(model) {
 	} else {
 		SPHybridization() ;
 	}
+}
+function callReactionsDemo(val)
+{
+    deleteObjects();
+    ReactionsDemo(val);
+    
+}
+function callSN1(t1,t2,t3,t4,t5)
+{
+    deleteObjects();
+    showSN1();
+    
+}
+function callSN2(t1,t2,t3,t4,t5)
+{
+    deleteObjects();
+    showSN2(t1,t2,t3,t4,t5);
+    
+}
+function callHydrocarbon(noOfCarbon, noOfHydrogen, firstCarbon, secondCarbon, type)
+{
+    deleteObjects();
+    Hydrocarbon(noOfCarbon, noOfHydrogen, firstCarbon, secondCarbon, type);
 }
 function deleteObjects() {
 	while(objectCount > 0) {

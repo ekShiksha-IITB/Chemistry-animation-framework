@@ -158,3 +158,49 @@ function Tetragonal(edgeLength, nodeRadius, param) {
     
     this.shape = shape ;
 }
+function Rhombohedral(edgeLength, nodeRadius) {
+	this.edgeLength = edgeLength ;
+	var shape = new THREE.Group() ;
+	var points = [	[+1.5*edgeLength, +edgeLength, +edgeLength], [+edgeLength, -edgeLength, +edgeLength],
+					[-0.5*edgeLength, +edgeLength, +edgeLength], [-edgeLength, -edgeLength, +edgeLength],
+					[+1.5*edgeLength, +edgeLength, -edgeLength], [+edgeLength, -edgeLength, -edgeLength],
+					[-0.5*edgeLength, +edgeLength, -edgeLength], [-edgeLength, -edgeLength, -edgeLength],
+					[-0.75*edgeLength, 0, 0], [1.25*edgeLength, 0, 0]] ;
+	var len = 8 ;
+	for(var i = 0; i < len; i++) {
+		var s = makeSphere(nodeRadius) ;
+		s.position.set(points[i][0], points[i][1], points[i][2]) ;
+		shape.add(s) ;
+	}
+
+	var co_ordinates = [[0, 1], [2, 3], [4, 5], [6, 7], [7, 5], [4, 0], [6, 2], [3, 1], [5, 1], [7, 3], [6, 4], [2, 0]] ;
+	for(var i = 0; i < 12; i++) {
+    	var l1 = getLine(points[co_ordinates[i][0]], points[co_ordinates[i][1]]) ;
+    	shape.add(l1) ;
+	}
+    shape.rotation.z -= Math.PI/2 ;
+    shape.rotation.x += Math.PI ;
+    this.shape = shape ;
+}
+function Triclinic(edgeLength, nodeRadius) {
+	this.edgeLength = edgeLength ;
+	var shape = new THREE.Group() ;
+	var points = [	[+3.5*edgeLength, +edgeLength, +edgeLength], [+1.5*edgeLength, -edgeLength, +edgeLength],
+					[1.5*edgeLength, +edgeLength, +edgeLength], [-edgeLength, -edgeLength, +edgeLength],
+					[+3.5*edgeLength, +edgeLength, -edgeLength], [+1.5*edgeLength, -edgeLength, -edgeLength],
+					[1.5*edgeLength, +edgeLength, -edgeLength], [-edgeLength, -edgeLength, -edgeLength],
+					[-0.85*edgeLength, 0, 0], [1.15*edgeLength, 0, 0]] ;
+	var len = 8 ;
+	for(var i = 0; i < len; i++) {
+		var s = makeSphere(nodeRadius) ;
+		s.position.set(points[i][0], points[i][1], points[i][2]) ;
+		shape.add(s) ;
+	}
+
+	var co_ordinates = [[0, 1], [2, 3], [4, 5], [6, 7], [7, 5], [4, 0], [6, 2], [3, 1], [5, 1], [7, 3], [6, 4], [2, 0]] ;
+	for(var i = 0; i < 12; i++) {
+    	var l1 = getLine(points[co_ordinates[i][0]], points[co_ordinates[i][1]]) ;
+    	shape.add(l1) ;
+	}
+    this.shape = shape ;
+}

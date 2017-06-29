@@ -23,7 +23,7 @@
                         while(myRs.next())
                        {
                         %>
-                        <li class="choice" value="<%=myRs.getInt("organic_reaction_ID")%>" ><%=myRs.getString("Reactants")%> --> <br><%=myRs.getString("Products")%></li>
+                        <li class="choice" onclick="callSN1()" value="<%=myRs.getInt("organic_reaction_ID")%>" ><%=myRs.getString("Reactants")%> --> <br><%=myRs.getString("Products")%></li>
                        
                         <%
                         }

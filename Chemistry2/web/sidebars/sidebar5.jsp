@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <input type="image" class="plus" onclick="openModal(4)" src="Images/plus.png" alt="Submit" width="40px" height="40px">
                              
-<label style="cursor:pointer" >Combination reactions <i onclick="ReactionsDemo(1)" class="glyphicon glyphicon-play-circle"></i><br><br></label>
+<label style="cursor:pointer" >Combination reactions <i onclick="callReactionsDemo(1)" class="glyphicon glyphicon-play-circle"></i><br><br></label>
 <div>
     <center> <button class="reaction btn btn-default" onclick="showCombination()">Show</button></center>
 </div>

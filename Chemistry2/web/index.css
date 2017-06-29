@@ -23,20 +23,17 @@
  .sidebar-nav2 .navbar li {
     float: none;
     display: block;
-  }
-
-  
+  }  
   .navbar-collapse collapse sidebar-navbar-collapse
   {
       background-color: #8bc1c3; 
       
-  }
-  
+  } 
   
   #sidebar{
        background-color: #8bc1c3; 
   }
-                      /* The Modal (background) */
+                     /* The Modal (background) */
         .modal {
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */

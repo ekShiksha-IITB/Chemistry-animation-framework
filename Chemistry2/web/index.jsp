@@ -129,45 +129,7 @@
     </div>
   </div>
 </nav>
-    <%--<div class="sidebar-nav">
-      <div id="topics" class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-            <span class="sr-only">Choose topics</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <span class="visible-xs navbar-brand">Topics</span>
-        </div>
-         <div class="navbar-collapse collapse sidebar-navbar-collapse" style="background-color: #8bc1c3">
-         <form method="Get" action="index.jsp">
-            <table>
-                <h2>
-                    Topics
-                </h2>
-            <%  
-                    TopicDAO topicDAO=new TopicDAO();
-                    List<Topic> topics=topicDAO.getTopic();
-                for(int i=0; i < topics.size(); i++)
-            {
-                %>
-                    <td style="font-size: 16px;"><strong><%= topics.get(i).getTopicName()%></strong></td>
-                    <%
-                        List<Subtopic> subtopics=topics.get(i).getSubtopics();
-                        for(int j=0; j < subtopics.size(); j++)
-            {
-                %>
-                <tr>
-                    <td><button type="submit" name="option" value="<%=subtopics.get(j).getSubId()%>"> <img src="Images/button.png" height="38" width="38" ></button><%= subtopics.get(j).getSubtopicName()%></td>
-                </tr>  
-                <%}}%>
-        </table>  
-         </form>
-        </div>
-      </div>
-   </div>--%>
- </div>
+    </div>
   <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 align-self-center" id="canvasArea">
           <center>
       <div id="animationCanvas" width="100%"></div>

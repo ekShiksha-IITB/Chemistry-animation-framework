@@ -120,7 +120,15 @@
             {
                 document.getElementById("Simple").style.visibility="visible";
                 document.getElementById("SCC").style.visibility="visible";
-            }            
+            }     
+            else if(val==6)
+            {
+                document.getElementById("Simple").style.visibility="visible";
+            }     
+            else if(val==7)
+            {
+                document.getElementById("Simple").style.visibility="visible";
+            }     
         }
         
     
@@ -136,6 +144,10 @@
                  addHexagonalLattice(val);
              else if(crystal==5)
                  addMonoclinicLattice(val);
+            else if(crystal==6)
+                 addTriclinicLattice();
+             else if(crystal==7)
+                 addRhombohedralLattice();
         }
 
         function createVSEPRShapes(val){
@@ -213,13 +225,7 @@
         else message="Geometry";
             document.getElementById("help").innerHTML=message;
         }
-        function getParams()
-        {
-          central_radius=document.getElementById('central').value;
-          bond_thickness=document.getElementById('bond').value;
-          modal.style.display = "none"; 
-          createShapes(value);
-          }
+
         function openModal(val) {
 if(val==1)
             modal.style.display = "block";

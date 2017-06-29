@@ -25,7 +25,7 @@
                     while(myRs.next())
                     {
                     %>
-                    <option value="<%=myRs.getInt("hydro_id")%>" ><%=myRs.getInt("hydro_id")%>.<%=myRs.getString("hydro_name")%></option>
+                    <option value="<%=myRs.getInt("hydro_id")%>" ><%=myRs.getString("hydro_name")%></option>
                     <%
                     }
                 }
@@ -68,7 +68,7 @@
         %>
     </select><br>
       <input type="submit" value="Go" class="btn btn-default reaction"/>
-            <p class="choice" onclick="Hydrocarbon('${alkanes.carbons}', '${alkanes.hydrogen}', '${alkanes.bond1}' , '${alkanes.bond2}', '${alkanes.type}')">Show Structure</p>
+            <p class="choice" onclick="callHydrocarbon('${alkanes.carbons}', '${alkanes.hydrogen}', '${alkanes.bond1}' , '${alkanes.bond2}', '${alkanes.type}')">Show Structure</p>
 
     </form>
 </center>

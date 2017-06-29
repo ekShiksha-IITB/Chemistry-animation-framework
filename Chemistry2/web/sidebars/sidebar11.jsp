@@ -24,7 +24,7 @@
                         while(myRs.next())
                        {
                         %>
-                        <li class="choice" onclick="showSN2('${sn2.Adding_group}','${sn2.Grp1}','C','${sn2.Grp4}','${sn2.Leaving_grp}')" value="<%=myRs.getInt("organic_reaction_ID")%>" ><%=myRs.getString("Reactants")%> -->  <br><%=myRs.getString("Products")%>
+                        <li class="choice" onclick="callSN2('${sn2.Adding_group}','${sn2.Grp1}','C','${sn2.Grp4}','${sn2.Leaving_grp}')" value="<%=myRs.getInt("organic_reaction_ID")%>" ><%=myRs.getString("Reactants")%> -->  <br><%=myRs.getString("Products")%>
                         <br></li>
                         <%
                         }

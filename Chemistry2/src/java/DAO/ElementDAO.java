@@ -68,35 +68,3 @@ public class ElementDAO {
 
 }
 
-/*
-public class ProductDAO {
-
-    private DataSource dataSource;
-
-    public ProductDAO(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-
-    public List<Product> list() throws SQLException {
-        List<Product> products = new ArrayList<Product>();
-
-        try (
-            Connection connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement("SELECT id, name, description, price FROM product");
-            ResultSet resultSet = statement.executeQuery();
-        ) {
-            while (resultSet.next()) {
-                Product product = new Product();
-                product.setId(resultSet.getLong("id"));
-                product.setName(resultSet.getString("name"));
-                product.setDescription(resultSet.getString("description"));
-                product.setPrice(resultSet.getBigDecimal("price"));
-                products.add(product);
-            }
-        }
-
-        return products;
-    }
-
-}
-*/
