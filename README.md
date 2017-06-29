@@ -4,7 +4,7 @@ The aim of this project is to create a web-application with fun, easy-to-use ani
 
 Getting Started
 
-This application is currently hosted at 10.129.28.187/Chemistry
+This application is currently hosted at http://chemistry.codebank.org.in/
 
 Prerequisites
 
