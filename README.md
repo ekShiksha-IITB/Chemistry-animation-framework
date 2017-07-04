@@ -29,8 +29,9 @@ Supports animations on the following topics in Chemistry
 1) Structure of an atom      : Different properties of elements, view of a periodic table<br />
 2) Chemical bonding          : The different shapes of the VSEPR theory<br />
 3) Crystal structure         : The different Bravais lattices<br />
-4) Hybridization of Orbitals : Hybridization of orbitals in hydrocarbons, structure of various hydrocarbons and its properties.<br />
-5) Organic Reactions         : Mechanism of different organic reactions.<br />
+4) Chemical reactions        : Combination, Decomposition, Single and Double displacement reactions<br />
+5) Hybridization of Orbitals : Hybridization of orbitals in hydrocarbons, structure of various hydrocarbons and its properties.<br />
+6) Organic Reactions         : Mechanism of different organic reactions.<br />
 
 Acknowledgments
 
