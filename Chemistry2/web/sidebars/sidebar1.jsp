@@ -17,7 +17,7 @@
     </center>
     <br>
     <form class="navbar-form" method="Post" action="ElementServlet" >
-        <div class="input-group">
+        <div class="input-group" style="z-index: 0">
         <input class="form-control" type="number" placeholder="Enter atomic number" name="atomic_number">
         <div class="input-group-btn">
                 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-circle-arrow-right"></i></button>
@@ -30,23 +30,13 @@
      <li class="choice" onclick="addAtom('${an}','${element.k}','${element.l}','${element.m}','${element.n}','${element.o}','${element.p}','${element.q}', 3)">Valence shell view</li><br>
   </ul>
 </form>
-   <div class="hintLeft"><input type="image" class="hint" src="Images/hint.png" height="38px" width="38px">
-       <span class="toolLeft" id="atomDetails" style="top:10%">
-                   <h3> Details</h3>
-        Name: <c:out value="${element.name}" /><br>
-     Symbol: <c:out value="${element.symbol}" /><br>
-       Type: <c:out value="${element.type}" /><br>
-    K-shell: <c:out value="${element.k}" /><br>
-    L-shell: <c:out value="${element.l}" /><br>
-    M-shell: <c:out value="${element.m}" /><br>
-    N-shell: <c:out value="${element.n}" /><br>
-    O-shell: <c:out value="${element.o}" /><br>
-    P-shell: <c:out value="${element.p}" /><br>
-    Q-shell: <c:out value="${element.q}" /><br>
-       </span>
-   <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48" height="48">
+   <div class="hintLeft">
+       
+       <img src="Images/hint.png" height="38" width="38" onclick="openModal('id01hint')" >
+<input type="image" class="question" onclick="openModal('id00')" src="Images/question.png" alt="Submit" width="48px" height="48px">
 
-</div>
-
+            <!--  <button class="btn btn-primary" data-toggle="modal" data-target="#tipModal"><img class="question"  src="Images/question.png" width="48" height="48">
+       </button> -->
+ </div>
 
 

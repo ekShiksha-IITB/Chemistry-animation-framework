@@ -14,7 +14,7 @@
 <%@page import="DAO.SubtopicDAO"%>
 <!DOCTYPE html>
 
-<input type="image" class="plus" onclick="openModal(3)" src="Images/plus.png" alt="Submit" width="40px" height="40px">
+<input type="image" class="plus" onclick="openModal('id01')" src="Images/plus.png" alt="Submit" width="40px" height="40px">
                              
         <label>Compounds<br><br></label>
         
@@ -60,7 +60,10 @@
             </ul>   
                   </div>
           </div>
-          <div class="hintLeft"><input type="image" class="hint" src="Images/hint.png" height="38px" width="38px">
+         <div class="hintLeft"><input type="image" class="hint" src="Images/hint.png" height="38px" width="38px">
              <span class="toolLeft" id="help">Hint</span>
-             <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48px" height="48px">
+             
           </div>
+         <div>
+             <input type="image" class="question" onclick="openModal('id00')" src="Images/question.png" alt="Submit" width="48px" height="48px">
+         </div>

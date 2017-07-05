@@ -1,14 +1,15 @@
 var scene = new THREE.Scene();
 var objectCount = 0 ;
-function init() {
-	
 	var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+var controls,cont;
+function init() {//initialize the Three.js canvas
+	
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize( window.innerWidth, window.innerHeight );
         var canvas=document.getElementById("animationCanvas");        
 	canvas.appendChild( renderer.domElement );
-	var controls = new THREE.OrbitControls(camera, renderer.domElement);
-	var cont = new THREE.TrackballControls(camera, renderer.domElement);        
+	 controls = new THREE.OrbitControls(camera, renderer.domElement);
+	cont = new THREE.TrackballControls(camera, renderer.domElement);        
         window.addEventListener('resize', onWindowResize, false);
         onWindowResize();
 	var light = new THREE.AmbientLight( 0xffffff ); // white light
@@ -31,20 +32,20 @@ function init() {
         camera.updateProjectionMatrix();
         if (window.innerWidth<=767)
         {
-            console.log("Yes "+window.innerWidth);
             renderer.setSize(window.innerWidth*0.9, 3*window.innerHeight/4);
         }
         else
         {
        console.log("No "+window.innerWidth);
 
-        renderer.setSize(window.innerWidth*0.4, 3*window.innerHeight/4);
+        renderer.setSize(window.innerWidth*0.6, 3*window.innerHeight/4);
    
         }
         };
 	render();
 	
 }
+/*List of functions that call the Chemistry animation framework*/
 function addAtom(atomicNumber, k, l, m, n, o, p, q, model) {
         objectCount
 	deleteObjects() ;
@@ -64,7 +65,6 @@ function addAtom(atomicNumber, k, l, m, n, o, p, q, model) {
         function atom_rotation() {
                         shape.rotation.z += 0.01 ;
                         requestAnimationFrame(atom_rotation) ;
-                     //   render() ;
                 }
                 atom_rotation() ;
 }
@@ -233,4 +233,3 @@ function deleteObjects() {
 		--objectCount ;
 	}
 }
-

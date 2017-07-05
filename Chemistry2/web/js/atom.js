@@ -16,7 +16,8 @@ function Shell(r, noOfElectrons) {
 	);
 	circle.rotation.x = Math.PI;
 	/*positioning the electrons*/
-	for(var i = 0; i < 2*Math.PI; i += angle) {
+        var start_angle = Math.random()*2 ;
+	for(var i = start_angle; i < 2*Math.PI+start_angle; i += angle) {
 		var electron = new THREE.Mesh(
 			new THREE.SphereBufferGeometry(0.05, 32, 32),
 			new THREE.MeshBasicMaterial({color: 'grey'})

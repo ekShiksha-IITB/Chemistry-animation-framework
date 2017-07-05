@@ -56,27 +56,31 @@
         <servlet-name>SN2Servlet</servlet-name>
         <servlet-class>Servlets.SN2Servlet</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>CRInputServlet</servlet-name>
         <servlet-class>Servlets.CRInputServlet</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>DDisInputServlet</servlet-name>
         <servlet-class>Servlets.DDisInputServlet</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>DisInputServlet</servlet-name>
         <servlet-class>Servlets.DisInputServlet</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>DRInputServlet</servlet-name>
         <servlet-class>Servlets.DRInputServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SN1Servlet</servlet-name>
+        <servlet-class>Servlets.SN1Servlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ElementServlet</servlet-name>
         <url-pattern>/ElementServlet</url-pattern>
     </servlet-mapping>
-       <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>PeriodicServlet</servlet-name>
         <url-pattern>/PeriodicServlet</url-pattern>
     </servlet-mapping>
@@ -120,25 +124,32 @@
         <servlet-name>SN2Servlet</servlet-name>
         <url-pattern>/SN2Servlet</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CRInputServlet</servlet-name>
         <url-pattern>/CRInputServlet</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DDisInputServlet</servlet-name>
         <url-pattern>/DDisInputServlet</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DisInputServlet</servlet-name>
         <url-pattern>/DisInputServlet</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>DRInputServlet</servlet-name>
         <url-pattern>/DRInputServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SN1Servlet</servlet-name>
+        <url-pattern>/SN1Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>home.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

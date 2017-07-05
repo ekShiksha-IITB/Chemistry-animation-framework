@@ -16,7 +16,9 @@
         <div id="energy"></div>
 
 
-        <div class="hintLeft"><input type="image" class="hint" src="Images/hint.png" height="38px" width="38px">
-             <span class="toolLeft">E= -13.6 eV [(<sup>1</sup>&frasl;<sub>n2</sub>)<sup>2</sup> - (<sup>1</sup>&frasl;<sub>n1</sub>)<sup>2</sup>]</span>
-             <input type="image" class="question" onclick="openModal(1)" src="Images/question.png" alt="Submit" width="48px" height="48px">
+        <div>
+       <img src="Images/hint.png" height="38" width="38" onclick="openModal('id02hint')" >
+             
+            <input type="image" class="question" onclick="openModal('id00')" src="Images/question.png" alt="Submit" width="48px" height="48px">
        </div>
+      

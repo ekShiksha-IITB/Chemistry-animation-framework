@@ -1,4 +1,76 @@
+/*Theme colours
+    grey: #dddfd4
+    light blue : #3fb0ac
+    dark blue: #173e43;
+    yellow : #fae596;
+*/
 
+#tipModal{
+    z-index: 20;
+}
+#AboutSection{
+    background: #3fb0ac;
+
+}
+#slides, #motivation{
+  background: #fae596;
+  color: #173e43;
+}
+#mainNav, #footerContent{
+    background-color: #173e43;
+}
+#mainNav{
+    padding-bottom: 12px;
+}
+#footerDetails{
+       background-color: #dddfd4;
+   color: #173e43;
+
+}
+#mainContainer{
+    background-color: #3fb0ac;
+}
+section.success {
+
+      border-top: 50px #fff solid;
+      
+}
+#headerPage .navbar-fixed-top .footer-below{
+    background:#173e43;
+    
+}
+ .carousel {
+      margin-bottom: 60px;
+            width:100%;
+
+    }
+
+    .carousel .container {
+      position: relative;
+      z-index: 9;
+    }
+
+    .carousel-control {
+
+      z-index: 10;
+    }
+
+    .carousel .item {
+      height: 500px;
+    }
+    .carousel img {
+      max-width: 100%;
+      width: auto   9;
+      height: auto;
+      vertical-align: middle;
+      border: 0;
+      position: relative;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      height: 500px;
+      max-width: none;
+    }
   .sidebar-nav2 .navbar li {
     padding-top: 12px;
     padding-bottom: 12px;
@@ -23,162 +95,179 @@
  .sidebar-nav2 .navbar li {
     float: none;
     display: block;
-  }  
+  } 
+ @media only screen and (max-width: 990px) {
+   canvas{width:500px;}
+   .sidebar-nav2{margin-left:50px;
+   width:200px;
+   display:inline-block;
+   max-width:250px;
+   padding:10px;
+   word-break:break-all;
+   }
+}
+
   .navbar-collapse collapse sidebar-navbar-collapse
   {
-      background-color: #8bc1c3; 
+      background-color: #fae596;
       
   } 
   
   #sidebar{
-       background-color: #8bc1c3; 
+   /*    background-color: #8bc1c3; */
+         background-color: #fae596;
+
   }
                      /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-        /* Modal Content/Box */
-        .modal-content {
-            background-color: #8bc1c3;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-        }
-        /* The Close Button */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
- input[type="radio"]{
-  margin: 0 10px 0 10px;
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Modal Content/Box */
+.modal-content {
+/*    background-color: #8bc1c3; */
+    background-color: #fae596;
+    color: #173e43;
+
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 70%; /* Could be more or less, depending on screen size */
+}
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+input[type="radio"]{
+margin: 0 10px 0 10px;
 }
 /*Periodic table*/
-    #info {
+#info {
+    position: absolute;
+    width: 100%;
+    color: #ffffff;
+    padding: 5px;
+    font-family: Monospace;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1;
+}
+    #menu {
             position: absolute;
+            bottom: 20px;
             width: 100%;
-            color: #ffffff;
-            padding: 5px;
-            font-family: Monospace;
-            font-size: 13px;
-            font-weight: bold;
             text-align: center;
-            z-index: 1;
     }
-            #menu {
-                    position: absolute;
-                    bottom: 20px;
-                    width: 100%;
-                    text-align: center;
-            }
-            .element {
-                    width: 120px;
-                    height: 160px;
-                    box-shadow: 0px 0px 12px rgba(255,127,0,0.5);
-                    border: 1px solid rgba(255,127,0,0.25);
-                    text-align: center;
-                    cursor: default;
-            }
-            .element:hover {
-                    box-shadow: 0px 0px 12px rgba(255,127,0,0.75);
-                    border: 1px solid rgba(127,255,255,0.75);
-            }
-            .element .number {
-                    position: absolute;
-                    top: 20px;
-                    right: 20px;
-                    font-size: 12px;
-                    color: rgba(255,255,0,0.75);
-            }
-            .element .symbol {
-                    position: absolute;
-                    top: 40px;
-                    left: 0px;
-                    right: 0px;
-                    font-size: 60px;
-                    font-weight: bold;
-                    color: rgba(255,255,0,0.75);
-                    text-shadow: 0 0 10px rgba(255,255,0,0.95);
-            }
-            .element .details {
-                    position: absolute;
-                    bottom: 15px;
-                    left: 0px;
-                    right: 0px;
-                    font-size: 12px;
-                    color: rgba(255,255,0,0.75);
-            }
-            
-    
-            
-            #table:hover,#atom:hover {
-                    background-color: rgba(255,255,0,0.5);
-            }
-            #table:active,#atom:active {
-                    color: #000000;
-                    background-color: rgba(255,255,0,0.75);
-            }
+    .element {
+            width: 120px;
+            height: 160px;
+            box-shadow: 0px 0px 12px rgba(255,127,0,0.5);
+            border: 1px solid rgba(255,127,0,0.25);
+            text-align: center;
+            cursor: default;
+    }
+    .element:hover {
+            box-shadow: 0px 0px 12px rgba(255,127,0,0.75);
+            border: 1px solid rgba(127,255,255,0.75);
+    }
+    .element .number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 12px;
+            color: rgba(255,255,0,0.75);
+    }
+    .element .symbol {
+            position: absolute;
+            top: 40px;
+            left: 0px;
+            right: 0px;
+            font-size: 60px;
+            font-weight: bold;
+            color: rgba(255,255,0,0.75);
+            text-shadow: 0 0 10px rgba(255,255,0,0.95);
+    }
+    .element .details {
+            position: absolute;
+            bottom: 15px;
+            left: 0px;
+            right: 0px;
+            font-size: 12px;
+            color: rgba(255,255,0,0.75);
+    }
+
+
+
+    #table:hover,#atom:hover {
+            background-color: rgba(255,255,0,0.5);
+    }
+    #table:active,#atom:active {
+            color: #000000;
+            background-color: rgba(255,255,0,0.75);
+    }
     
     
     
             /*for description*/
 
-            #desc{
-              background-color: #8bc1c3; 
-              /*margin-top:-400px;
-              margin-left:240px;
-              width:50%;*/
-              text-align:center;
+#desc{
+  background-color: #fae596; 
+  color:black;
+  /*margin-top:-400px;
+  margin-left:240px;
+  width:50%;*/
+  text-align:center;
 
-               border-radius: 12px;
-               border: 2px solid #B7B9B0;
-            }
+   border-radius: 12px;
+   border: 2px solid #B7B9B0;
+}
 
-            /* for question button */
-            .question{
-                margin-left: 100px;
-                margin-bottom: 10px;
-               }
+/* for question button */
+.question{
+    margin-left: 100px;
+    margin-bottom: 10px;
+   }
 
-               /* for button */
-            .bullet{
-                width:28px;
-               height: 28px;
-               }
+   /* for button */
+.bullet{
+    width:28px;
+   height: 28px;
+   }
                
                
-                button {
-                    color: rgba(255,255,0,0.75);
-                    background: transparent;
-                    border: 0px;
-                    padding: 5px 10px;
-                    cursor: pointer;
-            }
-           #table,#atom {
-                    color: rgba(255,255,0,0.75);
-                    background: transparent;
-                    outline: 1px solid rgba(255,255,0,0.75);
-                    border: 0px;
-                    padding: 5px 10px;
-                    cursor: pointer;
-            }
+button {
+        color: rgba(255,255,0,0.75);
+        background: transparent;
+        border: 0px;
+        padding: 5px 10px;
+        cursor: pointer;
+}
+#table,#atom {
+        color: rgba(255,255,0,0.75);
+        background: transparent;
+        outline: 1px solid rgba(255,255,0,0.75);
+        border: 0px;
+        padding: 5px 10px;
+        cursor: pointer;
+}
 #tooltip{
     position: absolute;
     color: #fed528;
@@ -189,7 +278,6 @@
     border-radius: 6px;
     padding: 5px 0;
 }
-
 .hintLeft {
     position: relative;
     display: inline-block;
@@ -197,32 +285,32 @@
 
 .hintLeft .toolLeft {
     visibility: hidden;
-    width: 200px;
-    background-color: #28515B;
+    width: 120px;
+    background-color: black;
     color: #fff;
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
-    /* Position the tooltip */
     position: absolute;
     z-index: 1;
-     top: -5px;
-    right: 105%; 
+    top: -5px;
+    left: 110%;
 }
 
+.hintLeft .toolLeft::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+}
 .hintLeft:hover .toolLeft {
     visibility: visible;
 }
-.hintLeft .toolLeft::after {
-    content: " ";
-    position: absolute;
-    top: 50%;
-    left: 100%; /* To the right of the tooltip */
-    margin-top: -7px;
-    border-width: 8px;
-    border-style: solid;
-    border-color: transparent transparent transparent #28515B;
-}
+
 .hintLeft #atomDetails::after{
     top:5%;
 }
@@ -240,52 +328,89 @@
 
 /*for the hint tooltips*/
 
-.tool {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-}
 
-.tool .tooltext {
-    visibility: hidden;
-    width: 200px;
-    font-size: 14px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    top: -5px;
-    left: 105%;
-}
-
-.tool:hover .tooltext {
-    visibility: visible;
-}
-
-.tool .tooltext::after {
-    content: " ";
-    position: absolute;
-    top: 50%;
-    right: 100%; /* To the left of the tooltip */
-    margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent black transparent transparent;
-}
 #topics{
     overflow-y: auto;
     height:580px;
 }
+
+#topicsList:hover{
+    color:white;
+}
 .reaction{
-    background-color:#fea363;
-    color: #28515B;
+    background-color:#fae596;
+    color: #173e43;
 }
 .lattices :hover{
     color:#c4eb27;
     cursor:pointer;
+}
+
+#topicsbar{
+
+  word-wrap: break-word;
+}
+
+/*sidenav*/
+
+.sidenav {
+    height: 70%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 130px;
+    right: 0;
+    
+    background-color: #395f65;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.button-menu {
+    display: block;
+    height: 40px;
+    width: 40px;
+    background: #dddfd4;
+    position: fixed;
+    right:0;
+    top:150px;
+    transition: 0.5s;
+    overflow-x: visible;
+    z-index:10;
+}
+ul.nav li.dropdown:hover > ul.dropdown-menu {
+display: block;    
+}
+@media (min-width: 979px) {
+  ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;
+  }
 }

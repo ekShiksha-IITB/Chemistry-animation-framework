@@ -4,54 +4,65 @@
  * and open the template in the editor.
  */
 
- var modal = document.getElementById('myModal');
-        var span = document.getElementsByClassName("close")[0];
-        var modalc,crystal;
-        span.onclick = function closeModal() {
-            modal.style.display = "none";
-        };
-        
-        var modal1 = document.getElementById('id01');
-        var span1 = document.getElementsByClassName("close")[1];
-        span1.onclick = function closeModal() {
-            modal1.style.display = "none";
-        };
+ function closeModal(id)
+ {
+     document.getElementById(id).style.display="none";
+     navControl();
+ }
+ function openModal(id) {
+            document.getElementById(id).style.display = "block";navControl();
 
-  var modal2 = document.getElementById('id02');
-        var span2 = document.getElementsByClassName("close")[2];
-        span2.onclick = function closeModal() {
-            modal2.style.display = "none";
-        };
-         var modal3 = document.getElementById('id03');
-        var span3 = document.getElementsByClassName("close")[3];
-        span3.onclick = function closeModal() {
-            modal3.style.display = "none";
-        };
-        
-          var modal4 = document.getElementById('id04');
-        var span4 = document.getElementsByClassName("close")[4];
-        span4.onclick = function closeModal() {
-            modal4.style.display = "none";
-        };
-        
-           var modal5 = document.getElementById('id05');
-        var span5 = document.getElementsByClassName("close")[5];
-        span5.onclick = function closeModal() {
-            modal5.style.display = "none";
-        };
-        
-            var modal6 = document.getElementById('id06');
-        var span6 = document.getElementsByClassName("close")[6];
-        span6.onclick = function closeModal() {
-            modal6.style.display = "none";
-        };
-
-        var modal7 = document.getElementById('id07');
-        var span7 = document.getElementsByClassName("close")[7];
-        span7.onclick = function closeModal() {
-            modal7.style.display = "none";
-        };
-
+          }
+function talk(description)//begin voice over
+{
+    responsiveVoice.speak( description, 'UK English Male',{rate: 0.85});
+}
+function stop()//stop voice over
+{ 
+      responsiveVoice.cancel();
+}
+            
+       
+         function getReaction(reaction)//to display reactions with proper formatting
+            {
+                var final=" ";
+                var i=0;
+                while(i<reaction.length)
+                {
+                   var j;
+                   var str=" "
+                   if(reaction.charAt(i)=='[')
+                   {
+                       j=i+1;
+                       while(reaction.charAt(j)!=']')
+                       {
+                           str+=reaction.charAt(j);
+                           j++;
+                       }
+                        i=j;
+                        final+=str.sup();
+                   }
+                   else if(reaction.charAt(i)=='{')
+                   {
+                  	j=i+1;
+                       while(reaction.charAt(j)!='}')
+                       {
+                           str+=reaction.charAt(j);
+                           j++;
+                       }
+                        i=j;
+                        final+=str.sub();
+                   }
+                   else
+                     {
+                     	var x=reaction.charAt(i);
+                        final+=x;
+                     	
+                     }
+                   i++;
+               }
+               return final;
+    }
         function excitation()
         {
             var l1=document.getElementById("l1").value;
@@ -59,6 +70,7 @@
             var l2=document.getElementById("l2").value;
             l2=parseInt(l2);
             var energy=(-13.6)*((1/l2)*(1/l2)-(1/l1)*(1/l1));
+            var e=energy.toFixed(2);
             var message=" ";
             if(energy<0)
             {
@@ -67,18 +79,12 @@
             }
             else if(energy>0)
                 message="absorbed";
-            document.getElementById("energy").innerHTML="Energy: "+energy+"eV "+message;
+            document.getElementById("energy").innerHTML="Energy: "+e+"eV "+message;
             showExcitation(l1,l2);
         }
 
-        function getAtom(val)
-        {
-            var z=document.getElementById("Z").value;
-            z=parseInt(z);
-            addAtom(z,2,8,8,2,0,0,0,val-1);
 
-        }
-       function setShape(val)
+       function setShape(val,string1,string2)//to select the lattice shape
         {
             for(i=1;i<=7;i++)
             {
@@ -128,11 +134,14 @@
             else if(val==7)
             {
                 document.getElementById("Simple").style.visibility="visible";
-            }     
+            }  
+            document.getElementById("constraint").innerHTML="<br><br>"+string1+"<br>";
+                        document.getElementById("constraint").innerHTML+=string2;
+
         }
         
     
-    function getLattice(val)
+    function getLattice(val)//to determine the basic lattice
         {
             if(crystal==1)
                addCubicLattice(val);
@@ -150,7 +159,7 @@
                  addRhombohedralLattice();
         }
 
-        function createVSEPRShapes(val){
+        function createVSEPRShapes(val){//call to animmation.js
             
             var lonepairs=val%10;
             var value=parseInt(val/10); 
@@ -226,29 +235,93 @@
             document.getElementById("help").innerHTML=message;
         }
 
-        function openModal(val) {
-if(val==1)
-            modal.style.display = "block";
-            else if(val==2)
-              document.getElementById('id01').style.display='block';
-            else if(val==3)
-                document.getElementById('id02').style.display='block';
-            else if(val==4)
-                document.getElementById('id03').style.display='block';
-            else if(val==5)
-                document.getElementById('id04').style.display='block';
-            else if(val==6)
-                document.getElementById('id05').style.display='block';
-            else if(val==7)
-                document.getElementById('id06').style.display='block';
-            else if(val==8)
-                document.getElementById('id07').style.display='block';
+        
+          function compounddetails(val)
+          {   
+                var t=val%100;
+                var value=parseInt(val/100);
+                var b2=(value%100); 
+                value=parseInt(value/100);
+                var b1=value%100;
+                value=parseInt(value/100);
+                var h=value%100;
+                value=parseInt(value/100);
+                c=value%100;
+                callHydrocarbon(c,h,b1,b2,t);
           }
-          function talk(description)
-          {
-              responsiveVoice.speak( description, 'UK English Male',{rate: 0.85});
+          
+          function showProperties(hydrocarbon) {
+              
+                        var hint= document.getElementById("hydrocarbonDetails");
+                               hint.innerHTML= "<h3>Properties<h3>";
+                               hint.innerHTML+= "<br><strong>Name: </strong> "+hydrocarbon.name+"<br>";
+                               hint.innerHTML+= "<strong>Type: </strong> "+hydrocarbon.type+"<br>";
+                               hint.innerHTML+= "<strong>Atomic Orbitals:  </strong>"+hydrocarbon.orbitals+"<br>";
+                               hint.innerHTML+= "<strong>Number of S orbitals:  </strong>"+hydrocarbon.s_orbitals+"<br>";
+                               hint.innerHTML+= "<strong>Number of P orbitals:  </strong>"+hydrocarbon.p_orbitals+"<br>";
+                               hint.innerHTML+= "<strong>Number of Groups attached to carbon atom: </strong> "+hydrocarbon.groups+"<br>";
+                               hint.innerHTML+= "<strong>Angle between each pair of orbitals(in Degrees): </strong> "+hydrocarbon.angle+"<br>";
+                               hint.innerHTML+= "<strong>Spatial Arrangement: </strong> <br>"+hydrocarbon.arrangement+"<br>";
+                               hint.innerHTML+= "<strong>Percent of S character:  </strong>"+hydrocarbon.s_character+"<br>";
+                               hint.innerHTML+= "<strong>Percent of P character:  </strong>"+hydrocarbon.p_character+"<br>";
+                               hint.innerHTML+= "<strong>Example: </strong> "+hydrocarbon.example+"<br>";
+                               addHybridisation(hydrocarbon.value);
           }
-          function stop()
-          { 
-                responsiveVoice.cancel();
-          }
+                           
+          function showsn1Groups(sn1) {
+              console.log(sn1);
+                        var hint= document.getElementById("sn1Details");
+                               hint.innerHTML= "<strong>Reactants: </strong><br> "+sn1.re+"<br>";
+                               hint.innerHTML+= "<strong>Products: </strong> <br>"+sn1.pr+"<br>";
+                               hint.innerHTML+= "<br>'<img src=\'Images/olive1.png\'> "+sn1.g1+"<br>";
+                               hint.innerHTML+= "<br>'<img src=\'Images/grey1.png\'>  "+sn1.g2+"<br>";
+                               hint.innerHTML+= "<br>'<img src=\'Images/blue1.png\'> "+sn1.g3+"<br>";
+                               hint.innerHTML+= "<br>'<img src=\'Images/cyan1.png\'>  "+sn1.ca+"<br>";
+                               hint.innerHTML+= "<br>'<img src=\'Images/green1.png\'>  "+sn1.lg+"<br>";
+                               hint.innerHTML+= "<br>'<img src=\'Images/white1.png\'> "+sn1.g4+"<br>";
+                               hint.innerHTML+= "<br>'<img src=\'Images/red1.png\'> "+sn1.ag+"<br>";
+                               callSN1();   
+                           }
+                           
+          function showsn2Groups(sn2) {
+                        var hint= document.getElementById("sn2Details");
+                               hint.innerHTML= "<strong>Reactants: </strong> <br>"+sn2.re+"<br>";
+                               hint.innerHTML+= "<strong>Products: </strong><br> "+sn2.pr+"<br>";
+                               hint.innerHTML+= "<br>'<img src=\'Images/olive1.png\'>  "+sn2.g1+"<br>";
+                               hint.innerHTML+= "<br>'<img src=\'Images/grey1.png\'>  "+sn2.g2+"<br>";
+                               hint.innerHTML+= "<br>'<img src=\'Images/blue1.png\'>  "+sn2.g3+"<br>";
+                               hint.innerHTML+= "<br>'<img src=\'Images/cyan1.png\'>  "+sn2.ca+"<br>";
+                               hint.innerHTML+= "<br>'<img src=\'Images/green1.png\'>  "+sn2.lg+"<br>";
+                               hint.innerHTML+= "<br>'<img src=\'Images/white1.png\'>  "+sn2.g4+"<br>";
+                               hint.innerHTML+= "<br>'<img src=\'Images/red1.png\'> "+sn2.ag+"<br>";
+                               callSN2();
+                           }
+var nav=0;
+function navControl() {//controls the sidenav movement
+    if(nav==0)
+    {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("settings-icon").style.right="250px";
+       document.getElementById("settings-icon").src="Images/right.png";
+
+        nav=1;
+    }
+    else
+    {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("settings-icon").style.right="0";
+       document.getElementById("settings-icon").src="Images/left.png";
+
+        nav=0;
+    }
+}
+        function getAtom(val)//call to animation.js to initiate atom creation
+        {
+            var z=document.getElementById("Z").value;
+            z=parseInt(z);
+            if(z>=1 && z<=118)
+            addAtom(z,2,8,8,2,0,0,0,val-1);
+            else
+                alert("Enter valid atomic number");
+
+        }
